@@ -107,7 +107,7 @@ local Themes = {
 local Theme = Themes["Dark Default"]
 
 -- // PREMIUM TIER PLACEHOLDER //
-local currentTier = getgenv().CX_Tier or "Free" -- Change to "Premium" to test unlocked UI
+local currentTier = getgenv().CX_Tier or "Premium" -- Change to "Premium" to test unlocked UI
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "CX_FARM_GUI"
