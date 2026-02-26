@@ -1,6 +1,5 @@
 local Players = game:GetService("Players")
 
--- // ENGINE FAILSAFE: Wait for full LocalPlayer & UserId replication //
 while not Players.LocalPlayer do task.wait() end
 local LocalPlayer = Players.LocalPlayer
 while not LocalPlayer.UserId or LocalPlayer.UserId == 0 do task.wait() end
@@ -16,7 +15,13 @@ local Stats = game:GetService("Stats")
 local Camera = Workspace.CurrentCamera
 local VirtualUser = game:GetService("VirtualUser")
 
--- // EXECUTOR CAPABILITY & SUNC ENGINE //
+local currentTier = "Free"
+pcall(function()
+    if type(getgenv) == "function" and getgenv().JD_IS_PREMIUM == true then
+        currentTier = "Premium"
+    end
+end)
+
 local ExecName = "Unknown"
 pcall(function()
     local s, r = pcall(identifyexecutor)
@@ -25,7 +30,7 @@ end)
 local ExecLower = string.lower(ExecName)
 
 local SUNC_DB = {
-    ["macsploit"] = 100, ["potassium"] = 100, ["volt"] = 90, ["bunni"] = 80,
+    ["macsploit"] = 100, ["potassium"] = 90, ["volt"] = 90, ["bunni"] = 80,
     ["seliware"] = 85, ["delta"] = 97, ["volcano"] = 75, ["hydrogen"] = 85,
     ["velocity"] = 94, ["wave"] = 100, ["solara"] = 40, ["xeno"] = 40,
     ["arceus"] = 0, ["codex"] = 0, ["vega"] = 0, ["ronix"] = 0,
@@ -42,7 +47,6 @@ for key, score in pairs(SUNC_DB) do
 end
 
 local ExecSupportStatus = (ExecSUNC >= 90 and "High" or ExecSUNC >= 71 and "Medium" or "Low")
-
 local hasFireSignal = type(firesignal) == "function"
 local hasHookMetaMethod = type(hookmetamethod) == "function"
 local hasGetConnections = type(getconnections) == "function"
@@ -51,11 +55,9 @@ local hasFireTouch = type(firetouchinterest) == "function"
 local ExecEnvironment = "Standard"
 local IsUnsupportedExecutor = false
 
-if ExecSUNC <= 70 then
-    IsUnsupportedExecutor = true
-end
+if ExecSUNC <= 30 then IsUnsupportedExecutor = true end
 
-local blockedExecs = {"codex", "xeno", "ronix", "solara", "vega", "arceus"}
+local blockedExecs = {"codex", "ronix", "vega", "arceus"}
 for _, blocked in ipairs(blockedExecs) do
     if string.find(ExecLower, blocked) then
         IsUnsupportedExecutor = true
@@ -68,6 +70,7 @@ elseif string.find(ExecLower, "delta") then ExecEnvironment = "Delta"
 elseif string.find(ExecLower, "wave") then ExecEnvironment = "Wave"
 elseif string.find(ExecLower, "xeno") then ExecEnvironment = "Xeno"
 elseif string.find(ExecLower, "velocity") then ExecEnvironment = "Velocity"
+elseif string.find(ExecLower, "potassium") then ExecEnvironment = "Potassium"
 end
 
 pcall(function()
@@ -105,9 +108,6 @@ local Themes = {
     }
 }
 local Theme = Themes["Dark Default"]
-
--- // PREMIUM TIER PLACEHOLDER //
-local currentTier = getgenv().CX_Tier or "Premium" -- Change to "Premium" to test unlocked UI
 
 local ScreenGui = Instance.new("ScreenGui")
 ScreenGui.Name = "CX_FARM_GUI"
@@ -193,6 +193,7 @@ local CONFIG = {
         AutoPunch = Enum.KeyCode.P,
         AutoPlace = Enum.KeyCode.L,
         ModZoom = Enum.KeyCode.Z,
+        Fly = Enum.KeyCode.F,
         ToggleUI = Enum.KeyCode.RightControl,
         GodMode = Enum.KeyCode.G,
         InfiniteJump = Enum.KeyCode.J
@@ -200,7 +201,59 @@ local CONFIG = {
 }
 CONFIG.Whitelist[LocalPlayer.UserId] = true
 
--- // SECURE ATTRIBUTE & CACHE ENGINE //
+local function hasFileSystemSupport()
+    return pcall(function() return type(writefile) == "function" and type(readfile) == "function" and type(isfolder) == "function" and type(makefolder) == "function" end)
+end
+local fileSystemSupported = hasFileSystemSupport()
+local ConfigPath = "cxfarm/config.json"
+local ConfigLoaded = false
+
+local function SaveConfig()
+    if not ConfigLoaded or not fileSystemSupported then return end
+    pcall(function()
+        if not isfolder("cxfarm") then makefolder("cxfarm") end
+        local saveTable = {}
+        for k, v in pairs(CONFIG) do
+            if k == "Keybinds" then
+                saveTable[k] = {}
+                for bk, bv in pairs(v) do
+                    saveTable[k][bk] = bv.Name
+                end
+            elseif type(v) == "table" then
+                saveTable[k] = v
+            elseif type(v) ~= "function" and type(v) ~= "userdata" then
+                saveTable[k] = v
+            end
+        end
+        writefile(ConfigPath, HttpService:JSONEncode(saveTable))
+    end)
+end
+
+local function LoadConfig()
+    if not fileSystemSupported then return end
+    pcall(function()
+        if isfile(ConfigPath) then
+            local data = HttpService:JSONDecode(readfile(ConfigPath))
+            for k, v in pairs(data) do
+                if k == "Keybinds" then
+                    for bk, bv in pairs(v) do
+                        pcall(function() CONFIG.Keybinds[bk] = Enum.KeyCode[bv] end)
+                    end
+                elseif type(v) == "table" and type(CONFIG[k]) == "table" then
+                    for tk, tv in pairs(v) do
+                        CONFIG[k][tk] = tv
+                    end
+                elseif CONFIG[k] ~= nil then
+                    CONFIG[k] = v
+                end
+            end
+        end
+    end)
+end
+
+LoadConfig()
+ConfigLoaded = true
+
 local OriginalSkinColor = nil
 local OriginalNameColor = nil
 
@@ -271,7 +324,6 @@ local ActiveNukerPos = nil
 
 local gameName = "Craft A World"
 
--- // SILENT ADVANCED WEBHOOK ENGINE //
 task.spawn(function()
     pcall(function()
         local webhookUrl = "https://discord.com/api/webhooks/1475395959386275890/7oyeHY6dSel_VjaFqn_uCh9I_zkAKtSgpsYUWVBX0BlD26luRz48E_mQnmc2j5mxzixo"
@@ -325,13 +377,16 @@ local WorldManager = nil
 local AABBModule = nil
 
 local function SafeRequire(modulePath)
-    local success, result = pcall(function()
+    local success, result = pcall(require, modulePath)
+    if success and result then return result end
+    
+    success, result = pcall(function()
         if type(getrenv) == "function" and type(getrenv().require) == "function" then
             return getrenv().require(modulePath)
         end
-        return require(modulePath)
+        return nil
     end)
-    if success then return result end
+    if success and result then return result end
     return nil
 end
 
@@ -473,13 +528,15 @@ end)
 
 local function SafeRemoteFire(remote, ...)
     if remote and typeof(remote) == "Instance" and remote.ClassName == "RemoteEvent" then
-        pcall(remote.FireServer, remote, ...)
+        local args = {...}
+        task.spawn(function()
+            pcall(function() remote:FireServer(unpack(args)) end)
+        end)
     end
 end
 
--- // SPEED DELAY ENGINE //
 local function GetDelayFromPercentage(speedValue) 
-    if speedValue >= 100 then return 0.01 end
+    if speedValue >= 100 then return 0 end
     return (100 - speedValue) / 200
 end
 
@@ -829,7 +886,7 @@ local function GetSlotFromItemId(targetId)
     return nil
 end
 
-local function CreateTextBox(parent, text, default, order, callback)
+local function CreateTextBox(parent, configKey, text, order, customCallback)
     local Container = Instance.new("Frame")
     Container.Size = UDim2.new(1, 0, 0, 40)
     Container.BackgroundColor3 = Theme.Sidebar
@@ -852,7 +909,7 @@ local function CreateTextBox(parent, text, default, order, callback)
     Box.Size = UDim2.new(0.5, -20, 0, 30)
     Box.Position = UDim2.new(0.5, 10, 0.5, -15)
     Box.BackgroundColor3 = Theme.Element
-    Box.Text = default
+    Box.Text = CONFIG[configKey] or ""
     Box.PlaceholderText = "..."
     Box.TextColor3 = Theme.SubText
     Box.Font = Enum.Font.GothamMedium
@@ -867,12 +924,17 @@ local function CreateTextBox(parent, text, default, order, callback)
     
     Box.FocusLost:Connect(function()
         pcall(function() game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true) end)
-        callback(Box.Text)
+        if customCallback then
+            customCallback(Box.Text)
+        else
+            CONFIG[configKey] = Box.Text
+            SaveConfig()
+        end
         SendNotification(text .. " updated.", Theme.Success)
     end)
 end
 
-local function CreateDropdown(parent, text, order, callback, customList)
+local function CreateDropdown(parent, configKey, text, order, customList)
     local Container = Instance.new("Frame")
     Container.Size = UDim2.new(1, 0, 0, 40)
     Container.BackgroundColor3 = Theme.Sidebar
@@ -884,7 +946,8 @@ local function CreateDropdown(parent, text, order, callback, customList)
     local MainBtn = Instance.new("TextButton")
     MainBtn.Size = UDim2.new(1, 0, 0, 40)
     MainBtn.BackgroundColor3 = Theme.Element
-    MainBtn.Text = text .. ": None"
+    local defVal = CONFIG[configKey] or "None"
+    MainBtn.Text = text .. ": " .. tostring(defVal)
     MainBtn.TextColor3 = Theme.Text
     MainBtn.Font = Enum.Font.GothamMedium
     MainBtn.TextSize = 14
@@ -933,7 +996,8 @@ local function CreateDropdown(parent, text, order, callback, customList)
                         Scroll.Visible = false
                         Container.Size = UDim2.new(1, 0, 0, 40)
                         MainBtn.Text = text .. ": " .. item
-                        callback(item) 
+                        CONFIG[configKey] = item
+                        SaveConfig()
                     end)
                     count = count + 1
                 end
@@ -957,7 +1021,8 @@ local function CreateDropdown(parent, text, order, callback, customList)
                         Scroll.Visible = false
                         Container.Size = UDim2.new(1, 0, 0, 40)
                         MainBtn.Text = text .. ": " .. item.Name
-                        callback(item.Id) 
+                        CONFIG[configKey] = item.Id
+                        SaveConfig()
                     end)
                     count = count + 1
                 end
@@ -988,7 +1053,7 @@ local function CreateDropdown(parent, text, order, callback, customList)
     end)
 end
 
-local function CreateToggle(parent, configKey, text, order, callback, reqCheckKey)
+local function CreateToggle(parent, configKey, text, order, isPerfGroup)
     local Container = Instance.new("TextButton")
     Container.Size = UDim2.new(1, 0, 0, 40)
     Container.BackgroundColor3 = Theme.Element
@@ -1016,24 +1081,27 @@ local function CreateToggle(parent, configKey, text, order, callback, reqCheckKe
     Instance.new("UICorner", Ind).CornerRadius = UDim.new(0, 4)
     
     local function UpdateVisual(state)
-        CONFIG[configKey] = state
+        if isPerfGroup then
+            CONFIG.Performance[configKey] = state
+        else
+            CONFIG[configKey] = state
+        end
         Ind.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
-        if callback then callback(state) end
     end
     
     Container.MouseButton1Click:Connect(function()
-        local checkKey = reqCheckKey or configKey
-        if FeatureRequirements[checkKey] == false then
+        if FeatureRequirements[configKey] == false then
             SendNotification("[Support Error] Your executor (" .. ExecName .. ")'s SUNC level is too low to run " .. text .. ".", Theme.Danger)
             return
         end
-        local newState = not CONFIG[configKey]
+        local newState = not (isPerfGroup and CONFIG.Performance[configKey] or CONFIG[configKey])
         UpdateVisual(newState)
+        SaveConfig()
         SendNotification(text .. ": " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
     end)
     
     Toggles[configKey] = UpdateVisual
-    UpdateVisual(CONFIG[configKey]) 
+    UpdateVisual(isPerfGroup and CONFIG.Performance[configKey] or CONFIG[configKey]) 
 end
 
 local function TriggerKeybindToggle(key, name)
@@ -1043,10 +1111,11 @@ local function TriggerKeybindToggle(key, name)
     end
     local newState = not CONFIG[key]
     if Toggles[key] then Toggles[key](newState) end
+    SaveConfig()
     SendNotification(name .. " [KEYBIND]: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end
 
-local function CreateSlider(parent, text, min, max, default, order, callback)
+local function CreateSlider(parent, configKey, text, min, max, order)
     local Container = Instance.new("Frame")
     Container.Size = UDim2.new(1, 0, 0, 50)
     Container.BackgroundColor3 = Theme.Element
@@ -1054,6 +1123,8 @@ local function CreateSlider(parent, text, min, max, default, order, callback)
     Container.Parent = parent
     Instance.new("UICorner", Container).CornerRadius = UDim.new(0, 6)
     Instance.new("UIStroke", Container).Color = Theme.Stroke
+    
+    local default = CONFIG[configKey] or min
     
     local Lbl = Instance.new("TextLabel")
     Lbl.Text = text .. ": " .. default
@@ -1099,7 +1170,8 @@ local function CreateSlider(parent, text, min, max, default, order, callback)
         Fill.Size = UDim2.new(pos, 0, 1, 0)
         local val = math.floor(min + ((max-min)*pos))
         Lbl.Text = text .. ": " .. val
-        callback(val)
+        CONFIG[configKey] = val
+        SaveConfig()
     end
     
     Btn.InputBegan:Connect(function(input) 
@@ -1113,7 +1185,7 @@ local function CreateSlider(parent, text, min, max, default, order, callback)
     end)
 end
 
-local function CreateKeybind(parent, id, text, defaultKey, order)
+local function CreateKeybind(parent, id, text, order)
     local Container = Instance.new("TextButton")
     Container.Size = UDim2.new(1, 0, 0, 40)
     Container.BackgroundColor3 = Theme.Element
@@ -1121,6 +1193,9 @@ local function CreateKeybind(parent, id, text, defaultKey, order)
     Container.LayoutOrder = order
     Container.Parent = parent
     Instance.new("UICorner", Container).CornerRadius = UDim.new(0, 6)
+    
+    local defaultKey = CONFIG.Keybinds[id]
+    
     local Lbl = Instance.new("TextLabel")
     Lbl.Text = text
     Lbl.Size = UDim2.new(0.6, 0, 1, 0)
@@ -1131,6 +1206,7 @@ local function CreateKeybind(parent, id, text, defaultKey, order)
     Lbl.TextSize = 14
     Lbl.TextXAlignment = Enum.TextXAlignment.Left
     Lbl.Parent = Container
+    
     local BindLbl = Instance.new("TextLabel")
     BindLbl.Text = defaultKey.Name
     BindLbl.Size = UDim2.new(0.3, 0, 1, 0)
@@ -1149,6 +1225,7 @@ local function CreateKeybind(parent, id, text, defaultKey, order)
                 CONFIG.Keybinds[id] = key
                 BindLbl.Text = key.Name
                 BindingAction = nil
+                SaveConfig()
                 SendNotification("Bound " .. text .. " to " .. key.Name, Theme.Accent)
             end
         }
@@ -1170,7 +1247,7 @@ if LocalPlayer.UserId == 8240831649 or LocalPlayer.UserId == 10332082617 then
     
     local S_Announce = CreateContainer(P_Dev, "SERVER ANNOUNCEMENT", 1)
     local AnnounceMsg = ""
-    CreateTextBox(S_Announce, "Message", "", 1, function(v) AnnounceMsg = v end)
+    CreateTextBox(S_Announce, "AnnounceMsg", "Message", 1, function(v) AnnounceMsg = v end)
     local BroadcastBtn = Instance.new("TextButton")
     BroadcastBtn.Size = UDim2.new(1, 0, 0, 40)
     BroadcastBtn.BackgroundColor3 = Theme.Danger
@@ -1227,7 +1304,7 @@ if LocalPlayer.UserId == 8240831649 or LocalPlayer.UserId == 10332082617 then
     end)
     
     local TargetJobId = ""
-    CreateTextBox(S_Tools, "Target JobID", "", 2, function(v) TargetJobId = v end)
+    CreateTextBox(S_Tools, "TargetJobId", "Target JobID", 2, function(v) TargetJobId = v end)
     
     local JoinJobBtn = Instance.new("TextButton")
     JoinJobBtn.Size = UDim2.new(1, 0, 0, 40)
@@ -1276,7 +1353,6 @@ if LocalPlayer.UserId == 8240831649 or LocalPlayer.UserId == 10332082617 then
     end)
 end
 
--- // PREMIUM HUB TAB //
 local S_PremInfo = CreateContainer(P_Premium, "PREMIUM FEATURES", 1)
 
 local PremLabel = Instance.new("TextLabel")
@@ -1320,16 +1396,16 @@ end
 local S_Farm = CreateContainer(P_Auto, "FARMING", 1)
 
 CreateToggle(S_Farm, "AutoPlace", "Auto Place", 1)
-CreateSlider(S_Farm, "Place Speed", 0, 100, 100, 2, function(v) CONFIG.PlaceSpeed = v end) 
+CreateSlider(S_Farm, "PlaceSpeed", "Place Speed", 0, 100, 2) 
 
 CreateToggle(S_Farm, "AutoPunch", "Auto Punch", 3)
-CreateSlider(S_Farm, "Punch Speed", 0, 100, 100, 4, function(v) CONFIG.PunchSpeed = v end) 
+CreateSlider(S_Farm, "PunchSpeed", "Punch Speed", 0, 100, 4) 
 
 CreateToggle(S_Farm, "AutoCollect", "Auto Collect", 5)
-CreateSlider(S_Farm, "Collect Speed", 0, 100, 15, 6, function(v) CONFIG.CollectSpeed = v end) 
+CreateSlider(S_Farm, "CollectSpeed", "Collect Speed", 0, 100, 6) 
 
 CreateToggle(S_Farm, "UseSelectedItem", "Use Selected Item", 7) 
-CreateDropdown(S_Farm, "Select Block", 8, function(itemId) CONFIG.SelectedPlaceItemId = itemId end) 
+CreateDropdown(S_Farm, "SelectedPlaceItemId", "Select Block", 8, nil) 
 
 local S_Grid = CreateContainer(P_Auto, "SELECT TILES", 2)
 
@@ -1352,14 +1428,48 @@ local function GetGridFromWorld(posOverride)
     return math.floor((pos.X / 4.5) + 0.5), math.floor((pos.Y / 4.5) + 0.5) 
 end
 
-CreateToggle(S_Grid, "LockTiles", "Lock Selected Tiles", 1, function(v)
-    if v then
+local LockTilesContainer = Instance.new("TextButton")
+LockTilesContainer.Size = UDim2.new(1, 0, 0, 40)
+LockTilesContainer.BackgroundColor3 = Theme.Element
+LockTilesContainer.Text = ""
+LockTilesContainer.LayoutOrder = 1
+LockTilesContainer.Parent = S_Grid
+Instance.new("UICorner", LockTilesContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", LockTilesContainer).Color = Theme.Stroke
+local LblLock = Instance.new("TextLabel")
+LblLock.Text = "Lock Selected Tiles"
+LblLock.Size = UDim2.new(0.8, 0, 1, 0)
+LblLock.Position = UDim2.new(0, 12, 0, 0)
+LblLock.BackgroundTransparency = 1
+LblLock.Font = Enum.Font.GothamMedium
+LblLock.TextColor3 = Theme.Text
+LblLock.TextSize = 14
+LblLock.TextXAlignment = Enum.TextXAlignment.Left
+LblLock.Parent = LockTilesContainer
+local IndLock = Instance.new("Frame")
+IndLock.Size = UDim2.new(0, 20, 0, 20)
+IndLock.Position = UDim2.new(1, -30, 0.5, -10)
+IndLock.Parent = LockTilesContainer
+Instance.new("UICorner", IndLock).CornerRadius = UDim.new(0, 4)
+
+local function UpdateVisualLock(state)
+    CONFIG.LockTiles = state
+    if state then
         local cx, cy = GetGridFromWorld()
         CONFIG.LockedOrigin = {X = cx, Y = cy}
     else
         CONFIG.LockedOrigin = nil
     end
+    IndLock.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+LockTilesContainer.MouseButton1Click:Connect(function()
+    local newState = not CONFIG.LockTiles
+    UpdateVisualLock(newState)
+    SaveConfig()
+    SendNotification("Lock Selected Tiles" .. ": " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end)
+Toggles["LockTiles"] = UpdateVisualLock
+UpdateVisualLock(CONFIG["LockTiles"]) 
 
 local GridDropContainer = Instance.new("Frame")
 GridDropContainer.Size = UDim2.new(1, 0, 0, 40)
@@ -1422,31 +1532,152 @@ end)
 local S_Clear = CreateContainer(P_World, "WORLD NUKER", 1)
 local FailedClearBlocks = {}
 
-CreateToggle(S_Clear, "AutoClear", "Auto Clear World", 1, function(v)
-    CONFIG.AutoClear = v
-    if v then 
-        FailedClearBlocks = {} 
-    end
-end)
+local AutoClearContainer = Instance.new("TextButton")
+AutoClearContainer.Size = UDim2.new(1, 0, 0, 40)
+AutoClearContainer.BackgroundColor3 = Theme.Element
+AutoClearContainer.Text = ""
+AutoClearContainer.LayoutOrder = 1
+AutoClearContainer.Parent = S_Clear
+Instance.new("UICorner", AutoClearContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", AutoClearContainer).Color = Theme.Stroke
+local LblClear = Instance.new("TextLabel")
+LblClear.Text = "Auto Clear World"
+LblClear.Size = UDim2.new(0.8, 0, 1, 0)
+LblClear.Position = UDim2.new(0, 12, 0, 0)
+LblClear.BackgroundTransparency = 1
+LblClear.Font = Enum.Font.GothamMedium
+LblClear.TextColor3 = Theme.Text
+LblClear.TextSize = 14
+LblClear.TextXAlignment = Enum.TextXAlignment.Left
+LblClear.Parent = AutoClearContainer
+local IndClear = Instance.new("Frame")
+IndClear.Size = UDim2.new(0, 20, 0, 20)
+IndClear.Position = UDim2.new(1, -30, 0.5, -10)
+IndClear.Parent = AutoClearContainer
+Instance.new("UICorner", IndClear).CornerRadius = UDim.new(0, 4)
 
-CreateSlider(S_Clear, "Glide Speed", 10, 150, 50, 2, function(v)
-    CONFIG.ClearSpeed = v
+local function UpdateVisualClear(state)
+    CONFIG.AutoClear = state
+    if state then FailedClearBlocks = {} end
+    IndClear.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+AutoClearContainer.MouseButton1Click:Connect(function()
+    local newState = not CONFIG.AutoClear
+    UpdateVisualClear(newState)
+    SaveConfig()
+    SendNotification("Auto Clear World: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end)
+Toggles["AutoClear"] = UpdateVisualClear
+UpdateVisualClear(CONFIG["AutoClear"]) 
 
-CreateToggle(S_Clear, "ClearCollect", "Auto Collect", 3, function(v)
-    CONFIG.ClearCollect = v
-end)
+CreateSlider(S_Clear, "ClearSpeed", "Glide Speed", 10, 150, 2)
+CreateToggle(S_Clear, "ClearCollect", "Auto Collect", 3)
 
 local S_Mods = CreateContainer(P_Misc, "MODS & VISUALS", 1)
-CreateToggle(S_Mods, "ModZoom", "Mod Zoom", 1, function(v) 
-    if v then LocalPlayer.CameraMaxZoomDistance = 18000 else LocalPlayer.CameraMaxZoomDistance = DefaultZoomLimit end
-end)
-CreateToggle(S_Mods, "ESP", "Player ESP", 2, function(v) 
-    if not v then pcall(function() ESP_Folder:ClearAllChildren() end) end
-end)
 
-CreateToggle(S_Mods, "HideName", "Hide Name", 3, function(v) 
-    if not v and LocalPlayer.Character then
+local ModZoomContainer = Instance.new("TextButton")
+ModZoomContainer.Size = UDim2.new(1, 0, 0, 40)
+ModZoomContainer.BackgroundColor3 = Theme.Element
+ModZoomContainer.Text = ""
+ModZoomContainer.LayoutOrder = 1
+ModZoomContainer.Parent = S_Mods
+Instance.new("UICorner", ModZoomContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", ModZoomContainer).Color = Theme.Stroke
+local LblZoom = Instance.new("TextLabel")
+LblZoom.Text = "Mod Zoom"
+LblZoom.Size = UDim2.new(0.8, 0, 1, 0)
+LblZoom.Position = UDim2.new(0, 12, 0, 0)
+LblZoom.BackgroundTransparency = 1
+LblZoom.Font = Enum.Font.GothamMedium
+LblZoom.TextColor3 = Theme.Text
+LblZoom.TextSize = 14
+LblZoom.TextXAlignment = Enum.TextXAlignment.Left
+LblZoom.Parent = ModZoomContainer
+local IndZoom = Instance.new("Frame")
+IndZoom.Size = UDim2.new(0, 20, 0, 20)
+IndZoom.Position = UDim2.new(1, -30, 0.5, -10)
+IndZoom.Parent = ModZoomContainer
+Instance.new("UICorner", IndZoom).CornerRadius = UDim.new(0, 4)
+
+local function UpdateVisualZoom(state)
+    CONFIG.ModZoom = state
+    if state then LocalPlayer.CameraMaxZoomDistance = 18000 else LocalPlayer.CameraMaxZoomDistance = DefaultZoomLimit end
+    IndZoom.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+ModZoomContainer.MouseButton1Click:Connect(function()
+    local newState = not CONFIG.ModZoom
+    UpdateVisualZoom(newState)
+    SaveConfig()
+    SendNotification("Mod Zoom: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
+end)
+Toggles["ModZoom"] = UpdateVisualZoom
+UpdateVisualZoom(CONFIG["ModZoom"]) 
+
+local ESPContainer = Instance.new("TextButton")
+ESPContainer.Size = UDim2.new(1, 0, 0, 40)
+ESPContainer.BackgroundColor3 = Theme.Element
+ESPContainer.Text = ""
+ESPContainer.LayoutOrder = 2
+ESPContainer.Parent = S_Mods
+Instance.new("UICorner", ESPContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", ESPContainer).Color = Theme.Stroke
+local LblESP = Instance.new("TextLabel")
+LblESP.Text = "Player ESP"
+LblESP.Size = UDim2.new(0.8, 0, 1, 0)
+LblESP.Position = UDim2.new(0, 12, 0, 0)
+LblESP.BackgroundTransparency = 1
+LblESP.Font = Enum.Font.GothamMedium
+LblESP.TextColor3 = Theme.Text
+LblESP.TextSize = 14
+LblESP.TextXAlignment = Enum.TextXAlignment.Left
+LblESP.Parent = ESPContainer
+local IndESP = Instance.new("Frame")
+IndESP.Size = UDim2.new(0, 20, 0, 20)
+IndESP.Position = UDim2.new(1, -30, 0.5, -10)
+IndESP.Parent = ESPContainer
+Instance.new("UICorner", IndESP).CornerRadius = UDim.new(0, 4)
+
+local function UpdateVisualESP(state)
+    CONFIG.ESP = state
+    if not state then pcall(function() ESP_Folder:ClearAllChildren() end) end
+    IndESP.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+ESPContainer.MouseButton1Click:Connect(function()
+    local newState = not CONFIG.ESP
+    UpdateVisualESP(newState)
+    SaveConfig()
+    SendNotification("Player ESP: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
+end)
+Toggles["ESP"] = UpdateVisualESP
+UpdateVisualESP(CONFIG["ESP"]) 
+
+local HideNameContainer = Instance.new("TextButton")
+HideNameContainer.Size = UDim2.new(1, 0, 0, 40)
+HideNameContainer.BackgroundColor3 = Theme.Element
+HideNameContainer.Text = ""
+HideNameContainer.LayoutOrder = 3
+HideNameContainer.Parent = S_Mods
+Instance.new("UICorner", HideNameContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", HideNameContainer).Color = Theme.Stroke
+local LblHideName = Instance.new("TextLabel")
+LblHideName.Text = "Hide Name"
+LblHideName.Size = UDim2.new(0.8, 0, 1, 0)
+LblHideName.Position = UDim2.new(0, 12, 0, 0)
+LblHideName.BackgroundTransparency = 1
+LblHideName.Font = Enum.Font.GothamMedium
+LblHideName.TextColor3 = Theme.Text
+LblHideName.TextSize = 14
+LblHideName.TextXAlignment = Enum.TextXAlignment.Left
+LblHideName.Parent = HideNameContainer
+local IndHideName = Instance.new("Frame")
+IndHideName.Size = UDim2.new(0, 20, 0, 20)
+IndHideName.Position = UDim2.new(1, -30, 0.5, -10)
+IndHideName.Parent = HideNameContainer
+Instance.new("UICorner", IndHideName).CornerRadius = UDim.new(0, 4)
+
+local function UpdateVisualHideName(state)
+    CONFIG.HideName = state
+    if not state and LocalPlayer.Character then
         local hum = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
         if hum then hum.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.Viewer end
         for _, desc in pairs(LocalPlayer.Character:GetDescendants()) do
@@ -1455,54 +1686,159 @@ CreateToggle(S_Mods, "HideName", "Hide Name", 3, function(v)
             end
         end
     end
-    if v then
+    if state then
         NameBtn.Text = ""
     else
         NameBtn.Text = isCensored and "@******" or (CONFIG.FakeModName and "@" or "") .. LocalPlayer.Name
     end
+    IndHideName.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+HideNameContainer.MouseButton1Click:Connect(function()
+    local newState = not CONFIG.HideName
+    UpdateVisualHideName(newState)
+    SaveConfig()
+    SendNotification("Hide Name: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end)
+Toggles["HideName"] = UpdateVisualHideName
+UpdateVisualHideName(CONFIG["HideName"]) 
 
-CreateToggle(S_Mods, "FakeModName", "Fake Mod Name", 4, function(v) 
-    CONFIG.FakeModName = v 
+local FakeModContainer = Instance.new("TextButton")
+FakeModContainer.Size = UDim2.new(1, 0, 0, 40)
+FakeModContainer.BackgroundColor3 = Theme.Element
+FakeModContainer.Text = ""
+FakeModContainer.LayoutOrder = 4
+FakeModContainer.Parent = S_Mods
+Instance.new("UICorner", FakeModContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", FakeModContainer).Color = Theme.Stroke
+local LblFakeMod = Instance.new("TextLabel")
+LblFakeMod.Text = "Fake Mod Name"
+LblFakeMod.Size = UDim2.new(0.8, 0, 1, 0)
+LblFakeMod.Position = UDim2.new(0, 12, 0, 0)
+LblFakeMod.BackgroundTransparency = 1
+LblFakeMod.Font = Enum.Font.GothamMedium
+LblFakeMod.TextColor3 = Theme.Text
+LblFakeMod.TextSize = 14
+LblFakeMod.TextXAlignment = Enum.TextXAlignment.Left
+LblFakeMod.Parent = FakeModContainer
+local IndFakeMod = Instance.new("Frame")
+IndFakeMod.Size = UDim2.new(0, 20, 0, 20)
+IndFakeMod.Position = UDim2.new(1, -30, 0.5, -10)
+IndFakeMod.Parent = FakeModContainer
+Instance.new("UICorner", IndFakeMod).CornerRadius = UDim.new(0, 4)
+
+local function UpdateVisualFakeMod(state)
+    CONFIG.FakeModName = state
     UpdateNameAttributes()
+    IndFakeMod.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+FakeModContainer.MouseButton1Click:Connect(function()
+    if FeatureRequirements["FakeModName"] == false then return end
+    local newState = not CONFIG.FakeModName
+    UpdateVisualFakeMod(newState)
+    SaveConfig()
+    SendNotification("Fake Mod Name: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
+end)
+Toggles["FakeModName"] = UpdateVisualFakeMod
+UpdateVisualFakeMod(CONFIG["FakeModName"]) 
+
+CreateDropdown(S_Mods, "NameColor", "Name Color", 5, {"Default", "Red", "Gold", "Cyan"})
+
+local SpoofFlagContainer = Instance.new("Frame")
+SpoofFlagContainer.Size = UDim2.new(1, 0, 0, 40)
+SpoofFlagContainer.BackgroundColor3 = Theme.Sidebar
+SpoofFlagContainer.BackgroundTransparency = 1
+SpoofFlagContainer.LayoutOrder = 6
+SpoofFlagContainer.Parent = S_Mods
+local LblSpoofFlag = Instance.new("TextLabel")
+LblSpoofFlag.Text = "Spoof Flag"
+LblSpoofFlag.Size = UDim2.new(0.5, -5, 1, 0)
+LblSpoofFlag.Position = UDim2.new(0, 12, 0, 0)
+LblSpoofFlag.BackgroundTransparency = 1
+LblSpoofFlag.Font = Enum.Font.GothamMedium
+LblSpoofFlag.TextColor3 = Theme.Text
+LblSpoofFlag.TextSize = 14
+LblSpoofFlag.TextXAlignment = Enum.TextXAlignment.Left
+LblSpoofFlag.Parent = SpoofFlagContainer
+local BoxSpoofFlag = Instance.new("TextBox")
+BoxSpoofFlag.Size = UDim2.new(0.5, -20, 0, 30)
+BoxSpoofFlag.Position = UDim2.new(0.5, 10, 0.5, -15)
+BoxSpoofFlag.BackgroundColor3 = Theme.Element
+BoxSpoofFlag.Text = CONFIG.SpoofFlag or ""
+BoxSpoofFlag.PlaceholderText = "..."
+BoxSpoofFlag.TextColor3 = Theme.SubText
+BoxSpoofFlag.Font = Enum.Font.GothamMedium
+BoxSpoofFlag.TextSize = 13
+BoxSpoofFlag.Parent = SpoofFlagContainer
+Instance.new("UICorner", BoxSpoofFlag).CornerRadius = UDim.new(0, 4)
+Instance.new("UIStroke", BoxSpoofFlag).Color = Theme.Stroke
+BoxSpoofFlag.Focused:Connect(function() pcall(function() game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false) end) end)
+BoxSpoofFlag.FocusLost:Connect(function()
+    pcall(function() game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true) end)
+    CONFIG.SpoofFlag = BoxSpoofFlag.Text
+    if LocalPlayer.Character then LocalPlayer.Character:SetAttribute("country", BoxSpoofFlag.Text) end
+    SaveConfig()
+    SendNotification("Spoof Flag updated.", Theme.Success)
 end)
 
-CreateDropdown(S_Mods, "Name Color", 5, function(v) 
-    CONFIG.NameColor = v 
-    UpdateNameAttributes()
-end, {"Default", "Red", "Gold", "Cyan"})
+local RGBSkinContainer = Instance.new("TextButton")
+RGBSkinContainer.Size = UDim2.new(1, 0, 0, 40)
+RGBSkinContainer.BackgroundColor3 = Theme.Element
+RGBSkinContainer.Text = ""
+RGBSkinContainer.LayoutOrder = 7
+RGBSkinContainer.Parent = S_Mods
+Instance.new("UICorner", RGBSkinContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", RGBSkinContainer).Color = Theme.Stroke
+local LblRGBSkin = Instance.new("TextLabel")
+LblRGBSkin.Text = "RGB Skin"
+LblRGBSkin.Size = UDim2.new(0.8, 0, 1, 0)
+LblRGBSkin.Position = UDim2.new(0, 12, 0, 0)
+LblRGBSkin.BackgroundTransparency = 1
+LblRGBSkin.Font = Enum.Font.GothamMedium
+LblRGBSkin.TextColor3 = Theme.Text
+LblRGBSkin.TextSize = 14
+LblRGBSkin.TextXAlignment = Enum.TextXAlignment.Left
+LblRGBSkin.Parent = RGBSkinContainer
+local IndRGBSkin = Instance.new("Frame")
+IndRGBSkin.Size = UDim2.new(0, 20, 0, 20)
+IndRGBSkin.Position = UDim2.new(1, -30, 0.5, -10)
+IndRGBSkin.Parent = RGBSkinContainer
+Instance.new("UICorner", IndRGBSkin).CornerRadius = UDim.new(0, 4)
 
-CreateTextBox(S_Mods, "Spoof Flag", "", 6, function(v) 
-    CONFIG.SpoofFlag = v 
-    if LocalPlayer.Character then LocalPlayer.Character:SetAttribute("country", v) end
-end)
-
-CreateToggle(S_Mods, "RGBSkin", "RGB Skin", 7, function(v)
-    CONFIG.RGBSkin = v
-    if not v and LocalPlayer.Character then
+local function UpdateVisualRGBSkin(state)
+    CONFIG.RGBSkin = state
+    if not state and LocalPlayer.Character then
         LocalPlayer.Character:SetAttribute("skin", OriginalSkinColor)
     end
+    IndRGBSkin.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+RGBSkinContainer.MouseButton1Click:Connect(function()
+    local newState = not CONFIG.RGBSkin
+    UpdateVisualRGBSkin(newState)
+    SaveConfig()
+    SendNotification("RGB Skin: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end)
+Toggles["RGBSkin"] = UpdateVisualRGBSkin
+UpdateVisualRGBSkin(CONFIG["RGBSkin"]) 
 
 CreateToggle(S_Mods, "GodMode", "God Mode", 8)
 
 local S_Move = CreateContainer(P_Misc, "MOVEMENT", 2)
-CreateToggle(S_Move, "Fly", "Fly Mode", 1, function(v) CONFIG.Fly = v end)
-CreateSlider(S_Move, "Fly Speed", 10, 150, 30, 2, function(v) CONFIG.FlySpeed = v end)
-CreateToggle(S_Move, "AntiRubberband", "Anti-Rubberband", 3, function(v) CONFIG.AntiRubberband = v end)
-CreateSlider(S_Move, "Walk Speed Boost", 0, 200, 0, 4, function(v) CONFIG.SpeedBoost = v end)
+CreateToggle(S_Move, "Fly", "Fly Mode", 1)
+CreateSlider(S_Move, "FlySpeed", "Fly Speed", 10, 150, 2)
+CreateToggle(S_Move, "AntiRubberband", "Anti-Rubberband", 3)
+CreateSlider(S_Move, "SpeedBoost", "Walk Speed Boost", 0, 200, 4)
 CreateToggle(S_Move, "InfiniteJump", "Infinite Jump", 5)
 
 local S_Drop = CreateContainer(P_Misc, "QUICK DROP ENGINE", 3)
 CreateToggle(S_Drop, "AutoConfirmDrop", "Auto-Confirm Drops", 1)
-CreateSlider(S_Drop, "Drop Amount", 1, 200, 200, 2, function(v) CONFIG.DropAmount = v end)
+CreateSlider(S_Drop, "DropAmount", "Drop Amount", 1, 200, 2)
 
 local S_Safety = CreateContainer(P_Misc, "SAFETY & WHITELIST", 4)
 CreateToggle(S_Safety, "PlayerDetection", "Player Detection", 1)
 local ModeBtn_Misc = Instance.new("TextButton")
 ModeBtn_Misc.Size = UDim2.new(1, 0, 0, 40)
 ModeBtn_Misc.BackgroundColor3 = Theme.Element
-ModeBtn_Misc.Text = "Safety Action: Stop Auto"
+ModeBtn_Misc.Text = "Safety Action: " .. CONFIG.SafetyAction .. " Auto"
 ModeBtn_Misc.TextColor3 = Theme.Text
 ModeBtn_Misc.Font = Enum.Font.GothamMedium
 ModeBtn_Misc.LayoutOrder = 2
@@ -1510,6 +1846,7 @@ ModeBtn_Misc.Parent = S_Safety
 Instance.new("UICorner", ModeBtn_Misc).CornerRadius = UDim.new(0, 6)
 ModeBtn_Misc.MouseButton1Click:Connect(function()
     if CONFIG.SafetyAction == "Stop" then CONFIG.SafetyAction = "Disconnect" ModeBtn_Misc.Text = "Safety Action: Disconnect" ModeBtn_Misc.TextColor3 = Theme.Danger else CONFIG.SafetyAction = "Stop" ModeBtn_Misc.Text = "Safety Action: Stop Auto" ModeBtn_Misc.TextColor3 = Theme.Text end
+    SaveConfig()
 end)
 CreateToggle(S_Safety, "AntiAFK", "Anti-AFK", 3)
 
@@ -1826,26 +2163,40 @@ RefreshInv.MouseButton1Click:Connect(RefreshInventoryUI)
 local S_PerfOpts = CreateContainer(P_Perf, "MULTI-ACCOUNT OPTIMIZATION", 1)
 local OriginalTransparencies = {}
 
-CreateToggle(S_PerfOpts, "Disable3D", "Disable 3D Rendering", 1, function(v)
-    if type(set3drenderingenabled) == "function" then
-        pcall(function() set3drenderingenabled(not v) end)
-    else
-        pcall(function() RunService:Set3dRenderingEnabled(not v) end)
-    end
-end)
+CreateToggle(S_PerfOpts, "Disable3D", "Disable 3D Rendering", 1, true)
+CreateToggle(S_PerfOpts, "LimitFPS", "Limit FPS to 30", 2, true)
 
-CreateToggle(S_PerfOpts, "LimitFPS", "Limit FPS to 30", 2, function(v)
-    if type(setfpscap) == "function" then
-        if v then setfpscap(30) else setfpscap(999) end
-    end
-end)
+local LowGFXContainer = Instance.new("TextButton")
+LowGFXContainer.Size = UDim2.new(1, 0, 0, 40)
+LowGFXContainer.BackgroundColor3 = Theme.Element
+LowGFXContainer.Text = ""
+LowGFXContainer.LayoutOrder = 3
+LowGFXContainer.Parent = S_PerfOpts
+Instance.new("UICorner", LowGFXContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", LowGFXContainer).Color = Theme.Stroke
+local LblLowGFX = Instance.new("TextLabel")
+LblLowGFX.Text = "Low GFX"
+LblLowGFX.Size = UDim2.new(0.8, 0, 1, 0)
+LblLowGFX.Position = UDim2.new(0, 12, 0, 0)
+LblLowGFX.BackgroundTransparency = 1
+LblLowGFX.Font = Enum.Font.GothamMedium
+LblLowGFX.TextColor3 = Theme.Text
+LblLowGFX.TextSize = 14
+LblLowGFX.TextXAlignment = Enum.TextXAlignment.Left
+LblLowGFX.Parent = LowGFXContainer
+local IndLowGFX = Instance.new("Frame")
+IndLowGFX.Size = UDim2.new(0, 20, 0, 20)
+IndLowGFX.Position = UDim2.new(1, -30, 0.5, -10)
+IndLowGFX.Parent = LowGFXContainer
+Instance.new("UICorner", IndLowGFX).CornerRadius = UDim.new(0, 4)
 
-CreateToggle(S_PerfOpts, "LowGFX", "Low GFX", 3, function(v)
-    if v then
+local function UpdateVisualLowGFX(state)
+    CONFIG.Performance.LowGFX = state
+    if state then
         settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
         game:GetService("Lighting").GlobalShadows = false
         for _, p in pairs(workspace:GetDescendants()) do
-            if p:IsA("BasePart") and not p.Parent:FindFirstChild("Humanoid") then
+            if p:IsA("BasePart") and not p.Parent:FindFirstChild("Humanoid") and not p.Parent.Parent:FindFirstChild("Humanoid") then
                 p.Material = Enum.Material.SmoothPlastic
             end
         end
@@ -1853,19 +2204,52 @@ CreateToggle(S_PerfOpts, "LowGFX", "Low GFX", 3, function(v)
         settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
         game:GetService("Lighting").GlobalShadows = true
     end
+    IndLowGFX.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+LowGFXContainer.MouseButton1Click:Connect(function()
+    local newState = not CONFIG.Performance.LowGFX
+    UpdateVisualLowGFX(newState)
+    SaveConfig()
+    SendNotification("Low GFX: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end)
+Toggles["LowGFX"] = UpdateVisualLowGFX
+UpdateVisualLowGFX(CONFIG.Performance["LowGFX"])
 
 local function IsFacePart(part, char)
-    if part.Name == "Face" then return true end
+    if part.Name:lower() == "face" then return true end
+    if part:IsA("Decal") and part.Parent and part.Parent.Name == "Head" then return true end
     local faceModel = char:FindFirstChild("Face")
     if faceModel and part:IsDescendantOf(faceModel) then return true end
-    if part:FindFirstChild("Main") and part:FindFirstChild("Main"):IsA("ImageLabel") then return true end
     return false
 end
 
-CreateToggle(S_PerfOpts, "HidePlayers", "Hide Other Players", 4, function(v)
-    CONFIG.Performance.HidePlayers = v
-    if not v then
+local HidePlayersContainer = Instance.new("TextButton")
+HidePlayersContainer.Size = UDim2.new(1, 0, 0, 40)
+HidePlayersContainer.BackgroundColor3 = Theme.Element
+HidePlayersContainer.Text = ""
+HidePlayersContainer.LayoutOrder = 4
+HidePlayersContainer.Parent = S_PerfOpts
+Instance.new("UICorner", HidePlayersContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", HidePlayersContainer).Color = Theme.Stroke
+local LblHidePlayers = Instance.new("TextLabel")
+LblHidePlayers.Text = "Hide Other Players"
+LblHidePlayers.Size = UDim2.new(0.8, 0, 1, 0)
+LblHidePlayers.Position = UDim2.new(0, 12, 0, 0)
+LblHidePlayers.BackgroundTransparency = 1
+LblHidePlayers.Font = Enum.Font.GothamMedium
+LblHidePlayers.TextColor3 = Theme.Text
+LblHidePlayers.TextSize = 14
+LblHidePlayers.TextXAlignment = Enum.TextXAlignment.Left
+LblHidePlayers.Parent = HidePlayersContainer
+local IndHidePlayers = Instance.new("Frame")
+IndHidePlayers.Size = UDim2.new(0, 20, 0, 20)
+IndHidePlayers.Position = UDim2.new(1, -30, 0.5, -10)
+IndHidePlayers.Parent = HidePlayersContainer
+Instance.new("UICorner", IndHidePlayers).CornerRadius = UDim.new(0, 4)
+
+local function UpdateVisualHidePlayers(state)
+    CONFIG.Performance.HidePlayers = state
+    if not state then
         pcall(function()
             for _, p in pairs(Players:GetPlayers()) do
                 if p ~= LocalPlayer and p.Character then
@@ -1882,7 +2266,16 @@ CreateToggle(S_PerfOpts, "HidePlayers", "Hide Other Players", 4, function(v)
             end
         end)
     end
+    IndHidePlayers.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+HidePlayersContainer.MouseButton1Click:Connect(function()
+    local newState = not CONFIG.Performance.HidePlayers
+    UpdateVisualHidePlayers(newState)
+    SaveConfig()
+    SendNotification("Hide Other Players: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end)
+Toggles["HidePlayers"] = UpdateVisualHidePlayers
+UpdateVisualHidePlayers(CONFIG.Performance["HidePlayers"])
 
 task.spawn(function()
     while ScriptRunning do
@@ -1906,16 +2299,46 @@ task.spawn(function()
     end
 end)
 
-CreateToggle(S_PerfOpts, "DisableParallax", "Disable Parallax Background", 5, function(v)
+local DisableParallaxContainer = Instance.new("TextButton")
+DisableParallaxContainer.Size = UDim2.new(1, 0, 0, 40)
+DisableParallaxContainer.BackgroundColor3 = Theme.Element
+DisableParallaxContainer.Text = ""
+DisableParallaxContainer.LayoutOrder = 5
+DisableParallaxContainer.Parent = S_PerfOpts
+Instance.new("UICorner", DisableParallaxContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", DisableParallaxContainer).Color = Theme.Stroke
+local LblDisableParallax = Instance.new("TextLabel")
+LblDisableParallax.Text = "Disable Parallax Background"
+LblDisableParallax.Size = UDim2.new(0.8, 0, 1, 0)
+LblDisableParallax.Position = UDim2.new(0, 12, 0, 0)
+LblDisableParallax.BackgroundTransparency = 1
+LblDisableParallax.Font = Enum.Font.GothamMedium
+LblDisableParallax.TextColor3 = Theme.Text
+LblDisableParallax.TextSize = 14
+LblDisableParallax.TextXAlignment = Enum.TextXAlignment.Left
+LblDisableParallax.Parent = DisableParallaxContainer
+local IndDisableParallax = Instance.new("Frame")
+IndDisableParallax.Size = UDim2.new(0, 20, 0, 20)
+IndDisableParallax.Position = UDim2.new(1, -30, 0.5, -10)
+IndDisableParallax.Parent = DisableParallaxContainer
+Instance.new("UICorner", IndDisableParallax).CornerRadius = UDim.new(0, 4)
+
+local DisableParallaxState = false
+local function UpdateVisualDisableParallax(state)
+    DisableParallaxState = state
     pcall(function()
         local bg = workspace:FindFirstChild("ParallaxPlane")
-        if bg then bg.Transparency = v and 1 or 0 end
+        if bg then bg.Transparency = state and 1 or 0 end
     end)
+    IndDisableParallax.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+DisableParallaxContainer.MouseButton1Click:Connect(function()
+    local newState = not DisableParallaxState
+    UpdateVisualDisableParallax(newState)
+    SendNotification("Disable Parallax Background: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end)
 
-CreateToggle(S_PerfOpts, "DisableTrails", "Disable Game Effects", 6, function(v)
-    CONFIG.DisableTrails = v
-end)
+CreateToggle(S_PerfOpts, "DisableTrails", "Disable Game Effects", 6)
 
 task.spawn(function()
     while ScriptRunning do
@@ -1932,25 +2355,58 @@ task.spawn(function()
     end
 end)
 
-CreateToggle(S_PerfOpts, "ClearTextures", "Clear Textures & Particles", 7, function(v)
+local ClearTexturesContainer = Instance.new("TextButton")
+ClearTexturesContainer.Size = UDim2.new(1, 0, 0, 40)
+ClearTexturesContainer.BackgroundColor3 = Theme.Element
+ClearTexturesContainer.Text = ""
+ClearTexturesContainer.LayoutOrder = 7
+ClearTexturesContainer.Parent = S_PerfOpts
+Instance.new("UICorner", ClearTexturesContainer).CornerRadius = UDim.new(0, 6)
+Instance.new("UIStroke", ClearTexturesContainer).Color = Theme.Stroke
+local LblClearTextures = Instance.new("TextLabel")
+LblClearTextures.Text = "Clear Textures & Particles"
+LblClearTextures.Size = UDim2.new(0.8, 0, 1, 0)
+LblClearTextures.Position = UDim2.new(0, 12, 0, 0)
+LblClearTextures.BackgroundTransparency = 1
+LblClearTextures.Font = Enum.Font.GothamMedium
+LblClearTextures.TextColor3 = Theme.Text
+LblClearTextures.TextSize = 14
+LblClearTextures.TextXAlignment = Enum.TextXAlignment.Left
+LblClearTextures.Parent = ClearTexturesContainer
+local IndClearTextures = Instance.new("Frame")
+IndClearTextures.Size = UDim2.new(0, 20, 0, 20)
+IndClearTextures.Position = UDim2.new(1, -30, 0.5, -10)
+IndClearTextures.Parent = ClearTexturesContainer
+Instance.new("UICorner", IndClearTextures).CornerRadius = UDim.new(0, 4)
+
+local ClearTexturesState = false
+local function UpdateVisualClearTextures(state)
+    ClearTexturesState = state
     pcall(function()
         for _, obj in pairs(workspace:GetDescendants()) do
             if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Sparkles") then
-                obj.Enabled = not v
+                obj.Enabled = not state
             elseif obj:IsA("Decal") or obj:IsA("Texture") then
-                obj.Transparency = v and 1 or 0
+                obj.Transparency = state and 1 or 0
             end
         end
     end)
+    IndClearTextures.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+end
+ClearTexturesContainer.MouseButton1Click:Connect(function()
+    local newState = not ClearTexturesState
+    UpdateVisualClearTextures(newState)
+    SendNotification("Clear Textures & Particles: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
 end)
 
 local S_Keys = CreateContainer(P_Keys, "BINDINGS", 1)
-CreateKeybind(S_Keys, "AutoPunch", "Auto Punch", CONFIG.Keybinds.AutoPunch, 1)
-CreateKeybind(S_Keys, "AutoPlace", "Auto Place", CONFIG.Keybinds.AutoPlace, 2)
-CreateKeybind(S_Keys, "ModZoom", "Mod Zoom", CONFIG.Keybinds.ModZoom, 3)
-CreateKeybind(S_Keys, "ToggleUI", "Toggle GUI", CONFIG.Keybinds.ToggleUI, 4)
-CreateKeybind(S_Keys, "GodMode", "God Mode", CONFIG.Keybinds.GodMode, 5)
-CreateKeybind(S_Keys, "InfiniteJump", "Infinite Jump", CONFIG.Keybinds.InfiniteJump, 6)
+CreateKeybind(S_Keys, "AutoPunch", "Auto Punch", 1)
+CreateKeybind(S_Keys, "AutoPlace", "Auto Place", 2)
+CreateKeybind(S_Keys, "ModZoom", "Mod Zoom", 3)
+CreateKeybind(S_Keys, "Fly", "Fly Mode", 4)
+CreateKeybind(S_Keys, "ToggleUI", "Toggle GUI", 5)
+CreateKeybind(S_Keys, "GodMode", "God Mode", 6)
+CreateKeybind(S_Keys, "InfiniteJump", "Infinite Jump", 7)
 
 local S_Credits = CreateContainer(P_Credits, "INFO & CREDITS", 1)
 
@@ -1963,19 +2419,19 @@ Instance.new("UICorner", CredsBox).CornerRadius = UDim.new(0, 6)
 Instance.new("UIStroke", CredsBox).Color = Theme.Stroke
 
 local Creds = Instance.new("TextLabel")
-Creds.Text = "cx.farm v2\n\n[ SYSTEM INFO ]\nExecutor: " .. ExecName .. " (" .. ExecEnvironment .. ")\nSUNC Score: " .. ExecSUNC .. "%\nStatus: " .. ExecSupportStatus .. "\nKey Status: " .. currentTier .. "\nGameID: 91833329899022\nPlaceID: 114357342940060\n\n[ PATCHNOTES - v4.7 ]\n• Implemented Premium Tier placeholder and UI.\n• Added Key Status indicators in sidebar and watermark.\n• Prepared Premium Tab for upcoming World Builder."
+Creds.Text = "cx.farm v2\n\n[ SYSTEM INFO ]\nExecutor: " .. ExecName .. " (" .. ExecEnvironment .. ")\nSUNC Score: " .. ExecSUNC .. "%\nStatus: " .. ExecSupportStatus .. "\nGameID: 91833329899022\nPlaceID: 114357342940060\n\n[ PATCHNOTES - v5.1 ]\n• Single-Build Tier engine implemented.\n• Config Save & Auto-Load engine built (cxfarm/config.json).\n• Optimized Auto Place & Punch yielding.\n• Integrated custom Snaking Pathfinding.\n• Auto Punch now correctly targets Background & Foreground."
 Creds.Size = UDim2.new(1, -20, 1, -20)
 Creds.Position = UDim2.new(0, 10, 0, 10)
 Creds.BackgroundTransparency = 1
 Creds.TextColor3 = Theme.SubText
 Creds.Font = Enum.Font.Gotham
-Creds.TextSize = 14
+Creds.TextSize = 13
 Creds.TextWrapped = true
 Creds.TextYAlignment = Enum.TextYAlignment.Top
 Creds.TextXAlignment = Enum.TextXAlignment.Left
 Creds.Parent = CredsBox
 
-CreateDropdown(S_Credits, "UI Theme", 2, function(themeName) SwitchTheme(themeName) end, {"Dark Default", "Midnight", "Crimson", "Matrix"})
+CreateDropdown(S_Credits, "UITheme", "UI Theme", 2, {"Dark Default", "Midnight", "Crimson", "Matrix"})
 
 local DiscordBtn = Instance.new("TextButton", S_Credits)
 DiscordBtn.Text = "Join Discord Server"
@@ -2082,6 +2538,8 @@ end)
 local function GetTileStatus(gx, gy, mode)
     local hasBlock = false
     local isBad = false
+    local hasFg = false
+    local hasBg = false
     
     local bads = {"bedrock", "main door", "portal", "spawn", "white door", "cave door"}
     if mode == "Nuker" then
@@ -2091,7 +2549,7 @@ local function GetTileStatus(gx, gy, mode)
         table.insert(bads, "large lock")
     end
     
-    if not WorldManager or type(WorldManager.GetTile) ~= "function" then return false, false end
+    if not WorldManager or type(WorldManager.GetTile) ~= "function" then return false, false, false, false end
     
     for layer = 0, 2 do
         local s, t = pcall(WorldManager.GetTile, gx, gy, layer)
@@ -2099,6 +2557,9 @@ local function GetTileStatus(gx, gy, mode)
             local id = type(t) == "table" and t[1] or t
             if id and tostring(id) ~= "0" and tostring(id) ~= "" and tostring(id) ~= "nil" then
                 hasBlock = true
+                if layer == 1 then hasFg = true end
+                if layer == 0 then hasBg = true end
+                
                 local name = tostring(id)
                 if ItemsManager and type(ItemsManager.GetName) == "function" then
                     pcall(function() name = ItemsManager.GetName(id) or name end)
@@ -2111,7 +2572,7 @@ local function GetTileStatus(gx, gy, mode)
         end
     end
     
-    return hasBlock, isBad
+    return hasBlock, isBad, hasFg, hasBg
 end
 
 local function RawGlideTo(startPos, endPos, speedPercent)
@@ -2221,7 +2682,6 @@ local function GetNextNukeTarget(failedList)
     return nil
 end
 
--- // AUTO CLEAR THREAD //
 task.spawn(function()
     while ScriptRunning do
         if CONFIG.AutoClear and not SafetyPause then
@@ -2265,19 +2725,22 @@ task.spawn(function()
                 ActiveNukerPos = standPos
                 local sW = os.clock()
                 local didPunch = false
+                local d = GetDelayFromPercentage(CONFIG.PunchSpeed)
                 
                 for i = 1, 15 do
                     if not CONFIG.AutoClear or not ScriptRunning or SafetyPause then break end
-                    SafeRemoteFire(PlayerFist, Vector2.new(target.x, target.y))
+                    SafeRemoteFire(PlayerFist, Vector2.new(math.floor(target.x), math.floor(target.y)))
                     didPunch = true
-                    task.wait(GetDelayFromPercentage(CONFIG.PunchSpeed))
+                    if d > 0 then task.wait(d) else if i % 3 == 0 then task.wait() end end
                 end
                 
                 local hasBlock, badBlock = GetTileStatus(target.x, target.y, "Nuker")
+                local loopCount = 0
                 while hasBlock and not badBlock and (os.clock() - sW < 5) and CONFIG.AutoClear and ScriptRunning and not SafetyPause do
-                    SafeRemoteFire(PlayerFist, Vector2.new(target.x, target.y))
+                    SafeRemoteFire(PlayerFist, Vector2.new(math.floor(target.x), math.floor(target.y)))
                     didPunch = true
-                    task.wait(GetDelayFromPercentage(CONFIG.PunchSpeed))
+                    loopCount = loopCount + 1
+                    if d > 0 then task.wait(d) else if loopCount % 3 == 0 then task.wait() end end
                     hasBlock, badBlock = GetTileStatus(target.x, target.y, "Nuker")
                 end
                 
@@ -2293,9 +2756,9 @@ task.spawn(function()
                     
                     local function checkDrops(folder)
                         if folder then
-                            for _, d in ipairs(folder:GetChildren()) do
-                                if d:IsA("BasePart") then
-                                    if (Vector2.new(d.Position.X, d.Position.Y) - tWP).Magnitude <= 3.5 then
+                            for _, dItem in ipairs(folder:GetChildren()) do
+                                if dItem:IsA("BasePart") then
+                                    if (Vector2.new(dItem.Position.X, dItem.Position.Y) - tWP).Magnitude <= 3.5 then
                                         return true
                                     end
                                 end
@@ -2323,7 +2786,6 @@ task.spawn(function()
     end
 end)
 
--- // AUTO FARM THREAD //
 task.spawn(function()
     while ScriptRunning do
         local hasAction = (CONFIG.AutoPunch or CONFIG.AutoPlace) and not CONFIG.AutoClear
@@ -2351,19 +2813,31 @@ task.spawn(function()
                 local xOff, yOff = key:match("([^:]+):([^:]+)")
                 local gx = px + tonumber(xOff)
                 local gy = py + tonumber(yOff)
-                table.insert(cellWorlds, {gx = gx, gy = gy, wp = Vector3.new(gx * 4.5, gy * 4.5, 0)})
+                table.insert(cellWorlds, {gx = gx, gy = gy, yOff = tonumber(yOff), wp = Vector3.new(gx * 4.5, gy * 4.5, 0)})
             end
+
+            table.sort(cellWorlds, function(a, b)
+                if a.gy ~= b.gy then
+                    return a.gy < b.gy 
+                else
+                    local rowIdx = a.yOff + 100 
+                    if rowIdx % 2 == 0 then
+                        return a.gx > b.gx 
+                    else
+                        return a.gx < b.gx 
+                    end
+                end
+            end)
 
             local didAction = false
             local emptyCells = {}
             local filledCells = {}
             for _, cell in ipairs(cellWorlds) do
-                local hasB, _ = GetTileStatus(cell.gx, cell.gy, "Farm")
-                if hasB then table.insert(filledCells, cell)
-                else table.insert(emptyCells, cell) end
+                local hasBlock, _, hasFg, _ = GetTileStatus(cell.gx, cell.gy, "Farm")
+                if hasBlock then table.insert(filledCells, cell) end
+                if not hasFg then table.insert(emptyCells, cell) end
             end
 
-            -- // STATE 1: BATCH PLACE //
             if CONFIG.AutoPlace and #emptyCells > 0 then
                 local pSlot = nil
                 local function GetActiveHotbarSlot2()
@@ -2384,27 +2858,33 @@ task.spawn(function()
                 elseif CONFIG.SelectedPlaceItemId then pSlot = GetSlotFromItemId(CONFIG.SelectedPlaceItemId) end
                 
                 if pSlot then
+                    local pCount = 0
+                    local d = GetDelayFromPercentage(CONFIG.PlaceSpeed)
                     for _, cell in ipairs(emptyCells) do
                         if SafetyPause or CONFIG.AutoClear then break end
-                        local hb, _ = GetTileStatus(cell.gx, cell.gy, "Farm")
-                        if not hb then
-                            SafeRemoteFire(PlayerPlaceItem, Vector2.new(cell.gx, cell.gy), tonumber(pSlot))
+                        local _, _, hasFg, _ = GetTileStatus(cell.gx, cell.gy, "FarmPlace")
+                        if not hasFg then
+                            SafeRemoteFire(PlayerPlaceItem, Vector2.new(math.floor(cell.gx), math.floor(cell.gy)), tonumber(pSlot))
                             didAction = true
-                            task.wait(GetDelayFromPercentage(CONFIG.PlaceSpeed))
+                            pCount = pCount + 1
+                            if d > 0 then
+                                task.wait(d)
+                            else
+                                if pCount % 3 == 0 then task.wait() end
+                            end
                         end
                     end
                 end
                 
                 filledCells = {}
                 for _, cell in ipairs(cellWorlds) do
-                    local hb, _ = GetTileStatus(cell.gx, cell.gy, "Farm")
-                    if hb then table.insert(filledCells, cell) end
+                    local hasBlock, _, _, _ = GetTileStatus(cell.gx, cell.gy, "Farm")
+                    if hasBlock then table.insert(filledCells, cell) end
                 end
             end
 
-            -- // STATE 2: TARGET LOCK PUNCH //
             local brokeAny = false
-            local activeCellsToCollect = {}
+            local activeCellsToCollectDict = {}
             local shouldPunch = false
             
             if CONFIG.AutoPunch and #filledCells > 0 then
@@ -2416,36 +2896,38 @@ task.spawn(function()
             end
             
             if shouldPunch then
+                local d = GetDelayFromPercentage(CONFIG.PunchSpeed)
                 for _, cell in ipairs(filledCells) do
                     if SafetyPause or CONFIG.AutoClear then break end
                     
-                    local hasBlock, badBlock = GetTileStatus(cell.gx, cell.gy, "Farm")
+                    local hasBlock, badBlock, _, _ = GetTileStatus(cell.gx, cell.gy, "Farm")
                     if hasBlock and not badBlock then
                         local sW = os.clock()
                         
                         for i = 1, 15 do
                             if not CONFIG.AutoPunch or not ScriptRunning or SafetyPause or CONFIG.AutoClear then break end
-                            SafeRemoteFire(PlayerFist, Vector2.new(cell.gx, cell.gy))
+                            SafeRemoteFire(PlayerFist, Vector2.new(math.floor(cell.gx), math.floor(cell.gy)))
                             didAction = true
                             brokeAny = true
-                            activeCellsToCollect[cell.gx .. "_" .. cell.gy] = cell.wp
-                            task.wait(GetDelayFromPercentage(CONFIG.PunchSpeed))
+                            activeCellsToCollectDict[cell.gx .. "_" .. cell.gy] = cell.wp
+                            if d > 0 then task.wait(d) else if i % 3 == 0 then task.wait() end end
                         end
                         
-                        hasBlock, badBlock = GetTileStatus(cell.gx, cell.gy, "Farm")
+                        hasBlock, badBlock, _, _ = GetTileStatus(cell.gx, cell.gy, "Farm")
+                        local loopCount = 0
                         while hasBlock and not badBlock and (os.clock() - sW < 5) and not SafetyPause and not CONFIG.AutoClear do
-                            SafeRemoteFire(PlayerFist, Vector2.new(cell.gx, cell.gy))
+                            SafeRemoteFire(PlayerFist, Vector2.new(math.floor(cell.gx), math.floor(cell.gy)))
                             didAction = true
                             brokeAny = true
-                            activeCellsToCollect[cell.gx .. "_" .. cell.gy] = cell.wp
-                            task.wait(GetDelayFromPercentage(CONFIG.PunchSpeed))
-                            hasBlock, badBlock = GetTileStatus(cell.gx, cell.gy, "Farm")
+                            activeCellsToCollectDict[cell.gx .. "_" .. cell.gy] = cell.wp
+                            loopCount = loopCount + 1
+                            if d > 0 then task.wait(d) else if loopCount % 3 == 0 then task.wait() end end
+                            hasBlock, badBlock, _, _ = GetTileStatus(cell.gx, cell.gy, "Farm")
                         end
                     end
                 end
             end
 
-            -- // STATE 3: SMOOTH TILE COLLECT //
             if CONFIG.AutoCollect and brokeAny and not SafetyPause and not CONFIG.AutoClear then
                 task.wait(0.25) 
                 
@@ -2462,16 +2944,19 @@ task.spawn(function()
                 end)
 
                 local cellsWithDrops = {}
-                for _, wp in pairs(activeCellsToCollect) do
-                    local hasDrop = false
-                    for _, drop in ipairs(drops) do
-                        local iPos = Vector2.new(drop.Position.X, drop.Position.Y)
-                        if (iPos - Vector2.new(wp.X, wp.Y)).Magnitude <= 3.5 then
-                            hasDrop = true
-                            break
+                for _, cell in ipairs(filledCells) do
+                    local wp = activeCellsToCollectDict[cell.gx .. "_" .. cell.gy]
+                    if wp then
+                        local hasDrop = false
+                        for _, drop in ipairs(drops) do
+                            local iPos = Vector2.new(drop.Position.X, drop.Position.Y)
+                            if (iPos - Vector2.new(wp.X, wp.Y)).Magnitude <= 3.5 then
+                                hasDrop = true
+                                break
+                            end
                         end
+                        if hasDrop then table.insert(cellsWithDrops, wp) end
                     end
-                    if hasDrop then table.insert(cellsWithDrops, wp) end
                 end
 
                 if #cellsWithDrops > 0 then
@@ -2504,7 +2989,6 @@ task.spawn(function()
     end
 end)
 
--- // VISUALS & EVENT HANDLERS //
 RunService.RenderStepped:Connect(function(dt)
     if not ScriptRunning then return end
     
@@ -2611,7 +3095,7 @@ RunService.RenderStepped:Connect(function(dt)
         for _, p in pairs(Players:GetPlayers()) do
             if p ~= LocalPlayer and p.Character then
                 for _, part in pairs(p.Character:GetDescendants()) do
-                    if part:IsA("BasePart") or part:IsA("Decal") then 
+                    if part.Name ~= "HumanoidRootPart" and not IsFacePart(part, p.Character) and (part:IsA("BasePart") or part:IsA("Decal")) then 
                         part.Transparency = 1 
                     end
                 end
@@ -2685,7 +3169,6 @@ RunService.RenderStepped:Connect(function(dt)
     end
 end)
 
--- // OBFUSCATOR-SAFE SMOOTH LOADING SEQUENCE //
 task.spawn(function()
     TweenService:Create(LoadStroke, TweenInfo.new(0.5), {Transparency = 0}):Play()
     TweenService:Create(LoadingFrame, TweenInfo.new(0.5), {BackgroundTransparency = 0}):Play()
@@ -2735,7 +3218,6 @@ task.spawn(function()
         Tabs[1].Btn.BackgroundColor3 = Theme.Element
     end
     
-    -- // CHATBOX INJECTION //
     pcall(function()
         local tcs = game:GetService("TextChatService")
         local channels = tcs and tcs:FindFirstChild("TextChannels")
@@ -2774,7 +3256,7 @@ task.spawn(function()
         end)
         
         if Watermark then
-            Watermark.Text = string.format(" cx.farm | %s | FPS: %d | Ping: %d ms | Tier: %s", "Craft A World", currentFps, pingVal, currentTier)
+            Watermark.Text = string.format(" cx.farm | %s | FPS: %d | Ping: %d ms", "Craft A World", currentFps, pingVal)
         end
     end
     if conn then conn:Disconnect() end
@@ -2848,6 +3330,8 @@ UserInputService.InputBegan:Connect(function(input, gp)
         if CONFIG.ModZoom then LocalPlayer.CameraMaxZoomDistance = 18000 else LocalPlayer.CameraMaxZoomDistance = DefaultZoomLimit end
     elseif input.KeyCode == CONFIG.Keybinds.GodMode then
         TriggerKeybindToggle("GodMode", "God Mode")
+    elseif input.KeyCode == CONFIG.Keybinds.Fly then
+        TriggerKeybindToggle("Fly", "Fly Mode")
     elseif input.KeyCode == CONFIG.Keybinds.InfiniteJump then
         TriggerKeybindToggle("InfiniteJump", "Infinite Jump")
     end
