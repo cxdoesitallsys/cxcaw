@@ -28,7 +28,7 @@ local function GetSafeGuiParent()
 end
 local targetGuiParent = GetSafeGuiParent()
 
-local currentTier = "Premium"
+local currentTier = "Free"
 
 local ExecName = "Unknown"
 pcall(function()
