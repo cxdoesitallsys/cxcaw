@@ -1,3 +1,3336 @@
--- nuh uh
--- dsc.gg/cxscript
-local v0=game:GetService("Players");while  not v0.LocalPlayer do task.wait();end local v1=v0.LocalPlayer;while  not v1.UserId or (v1.UserId==(0 -0))  do task.wait();end local v2=game:GetService("UserInputService");local v3=game:GetService("RunService");local v4=game:GetService("ReplicatedStorage");local v5=game:GetService("TweenService");local v6=game:GetService("Workspace");local v7=game:GetService("HttpService");local v8=game:GetService("Stats");local v9=v6.CurrentCamera;local v10=nil;pcall(function() v10=game:GetService("VirtualUser");end);local function v11() local v628=0;local v629;local v630;while true do if (v628==(1 -0)) then return v1:WaitForChild("PlayerGui");end if (v628==(939 -(714 + 225))) then v629,v630=pcall(function() return game:GetService("CoreGui");end);if (v629 and v630) then local v1371=0;local v1372;local v1373;while true do if (v1371==(0 -0)) then v1372=Instance.new("Folder");v1373=pcall(function() v1372.Parent=v630;end);v1371=1;end if (v1371==(1 -0)) then if v1373 then local v1787=0 + 0 ;while true do if (v1787==0) then v1372:Destroy();return v630;end end end break;end end end v628=1 -0 ;end end end local v12=v11();local v13="Premium";local v14="Unknown";pcall(function() local v631,v632=pcall(identifyexecutor);if (v631 and (type(v632)=="string")) then v14=v632;end end);local v15=string.lower(v14);local v16={macsploit=906 -(118 + 688) ,potassium=90,volt=90,bunni=128 -(25 + 23) ,seliware=17 + 68 ,delta=97,volcano=1961 -(927 + 959) ,hydrogen=286 -201 ,velocity=94,wave=832 -(16 + 716) ,solara=40,xeno=77 -37 ,arceus=97 -(11 + 86) ,codex=0,vega=0,ronix=98,chocosploit=85,isaeva=195 -115 ,cryptic=365 -(175 + 110) ,valex=70,sirhurt=65,luna=163 -98 };local v17=419 -334 ;for v633,v634 in pairs(v16) do if string.find(v15,v633) then v17=v634;break;end end local v18=((v17>=(1886 -(503 + 1293))) and "High") or ((v17>=71) and "Medium") or "Low" ;local v19="Standard";local v20=false;if (v17<=30) then v20=true;end local v21={"codex","vega","arceus"};for v635,v636 in ipairs(v21) do if string.find(v15,v636) then v20=true;break;end end if string.find(v15,"solara") then v19="Solara";elseif string.find(v15,"delta") then v19="Delta";elseif string.find(v15,"wave") then v19="Wave";elseif string.find(v15,"xeno") then v19="Xeno";elseif string.find(v15,"velocity") then v19="Velocity";elseif string.find(v15,"potassium") then v19="Potassium";end pcall(function() local v637=0;while true do if (v637==(0 + 0)) then if v12:FindFirstChild("CX_FARM_GUI") then v12.CX_FARM_GUI:Destroy();end if v12:FindFirstChild("CX_VISUALS") then v12.CX_VISUALS:Destroy();end v637=1 + 0 ;end if (v637==1) then if (v1:FindFirstChild("PlayerGui") and v1.PlayerGui:FindFirstChild("CX_FARM_GUI")) then v1.PlayerGui.CX_FARM_GUI:Destroy();end break;end end end);local v22=Instance.new("Folder");v22.Name="CX_VISUALS";v22.Parent=v12;local v25={};local v26={["Dark Default"]={Background=Color3.fromRGB(20,19 + 1 ,20),Sidebar=Color3.fromRGB(28,561 -(43 + 490) ,761 -(711 + 22) ),Element=Color3.fromRGB(154 -114 ,40,40),Text=Color3.fromRGB(240,1099 -(240 + 619) ,240),SubText=Color3.fromRGB(160,39 + 121 ,160),Accent=Color3.fromRGB(85,198 -73 ,17 + 238 ),Danger=Color3.fromRGB(1979 -(1344 + 400) ,65,470 -(255 + 150) ),Success=Color3.fromRGB(52 + 13 ,235,54 + 46 ),Stroke=Color3.fromRGB(213 -163 ,161 -111 ,1789 -(404 + 1335) )},Midnight={Background=Color3.fromRGB(421 -(183 + 223) ,18 -3 ,17 + 8 ),Sidebar=Color3.fromRGB(20,8 + 12 ,372 -(10 + 327) ),Element=Color3.fromRGB(21 + 9 ,30,388 -(118 + 220) ),Text=Color3.fromRGB(80 + 160 ,689 -(108 + 341) ,115 + 140 ),SubText=Color3.fromRGB(634 -484 ,1643 -(711 + 782) ,345 -165 ),Accent=Color3.fromRGB(579 -(270 + 199) ,49 + 101 ,255),Danger=Color3.fromRGB(255,1899 -(580 + 1239) ,80),Success=Color3.fromRGB(80,758 -503 ,120),Stroke=Color3.fromRGB(39 + 1 ,40,70)},Crimson={Background=Color3.fromRGB(1 + 24 ,7 + 8 ,15),Sidebar=Color3.fromRGB(35,52 -32 ,13 + 7 ),Element=Color3.fromRGB(50,30,1197 -(645 + 522) ),Text=Color3.fromRGB(255,240,2030 -(1010 + 780) ),SubText=Color3.fromRGB(180 + 0 ,150,714 -564 ),Accent=Color3.fromRGB(255,80,234 -154 ),Danger=Color3.fromRGB(2091 -(1045 + 791) ,126 -76 ,76 -26 ),Success=Color3.fromRGB(585 -(351 + 154) ,1829 -(1281 + 293) ,366 -(28 + 238) ),Stroke=Color3.fromRGB(156 -86 ,40,1599 -(1381 + 178) )},Matrix={Background=Color3.fromRGB(10 + 0 ,20,10),Sidebar=Color3.fromRGB(13 + 2 ,13 + 17 ,15),Element=Color3.fromRGB(86 -61 ,45,13 + 12 ),Text=Color3.fromRGB(670 -(381 + 89) ,255,200),SubText=Color3.fromRGB(120,160 + 20 ,82 + 38 ),Accent=Color3.fromRGB(85 -35 ,1411 -(1074 + 82) ,219 -119 ),Danger=Color3.fromRGB(255,1844 -(214 + 1570) ,60),Success=Color3.fromRGB(50,1710 -(990 + 465) ,42 + 58 ),Stroke=Color3.fromRGB(14 + 16 ,69 + 1 ,118 -88 )}};local v27=v26["Dark Default"];local v28=Instance.new("ScreenGui");v28.Name="CX_FARM_GUI";v28.ResetOnSpawn=false;v28.Parent=v12;v28.DisplayOrder=100;local v33=Instance.new("Frame");v33.Size=UDim2.new(1726 -(1668 + 58) ,926 -(512 + 114) ,0,80);v33.Position=UDim2.new(0.5 -0 , -(310 -160),0.5 -0 , -(19 + 21));v33.BackgroundColor3=v27.Background;v33.BackgroundTransparency=0;v33.Parent=v28;Instance.new("UICorner",v33).CornerRadius=UDim.new(0,8);local v41=Instance.new("TextLabel");v41.Size=UDim2.new(1,0,1,0);v41.BackgroundTransparency=1 + 0 ;v41.Text="Loading up cx.farm...";v41.TextColor3=v27.Accent;v41.Font=Enum.Font.GothamBold;v41.TextSize=16 + 2 ;v41.TextTransparency=0 -0 ;v41.Parent=v33;local v52=v5:Create(v41,TweenInfo.new(0.8,Enum.EasingStyle.Sine,Enum.EasingDirection.InOut, -1,true),{TextTransparency=0.4});v52:Play();local v53=Instance.new("TextButton");v53.Size=UDim2.new(1994 -(109 + 1885) ,420,1469 -(1269 + 200) ,47 -22 );v53.Position=UDim2.new(815.5 -(98 + 717) , -(1036 -(802 + 24)),0 -0 ,15);v53.BackgroundColor3=v27.Sidebar;v53.Text=" cx.farm | Loading...";v53.TextColor3=v27.Text;v53.Font=Enum.Font.GothamMedium;v53.TextSize=13;v53.AutoButtonColor=false;v53.Active=true;v53.Parent=v28;Instance.new("UICorner",v53).CornerRadius=UDim.new(0,4 -0 );local v68={GridSize=1.5 + 3 ,AutoPunch=false,AutoPlace=false,AutoCollect=false,AutoClear=false,ClearSpeed=50,ClearCollect=false,FastDropCatch=true,PlaceSpeed=77 + 23 ,PunchSpeed=17 + 83 ,CollectSpeed=11 + 39 ,UseSelectedItem=true,SelectedPlaceItemId=nil,LockTiles=false,LockedOrigin=nil,SpeedBoost=0 -0 ,FlySpeed=100 -70 ,InfiniteJump=false,ShowVisuals=true,ModZoom=false,GodMode=false,HideWatermark=false,Fly=false,AntiRubberband=false,HideName=false,FakeModName=false,NameColor="Default",SpoofFlag="😫",RGBSkin=false,PlayerDetection=false,SafetyAction="Stop",AntiAFK=true,AutoConfirmDrop=false,DropAmount=72 + 128 ,DisableTrails=false,ClearTextures=false,LowGFX=true,HidePlayers=false,Disable3D=false,LimitFPS=false,Whitelist={},Keybinds={AutoPunch=Enum.KeyCode.P,AutoPlace=Enum.KeyCode.L,ModZoom=Enum.KeyCode.Z,Fly=Enum.KeyCode.F,ToggleUI=Enum.KeyCode.RightControl,GodMode=Enum.KeyCode.G,InfiniteJump=Enum.KeyCode.J}};v68.Whitelist[v1.UserId]=true;local v70=nil;local v71=nil;local function v72() pcall(function() local v997=0 + 0 ;while true do if (v997==(0 + 0)) then if (v1.Character and (v70==nil)) then v70=v1.Character:GetAttribute("skin");end if (v71==nil) then v71=v1:GetAttribute("nameColor") or Color3.new(1 + 0 ,1 + 0 ,1434 -(797 + 636) ) ;end break;end end end);end v1.CharacterAdded:Connect(function(v638) local v639=0 -0 ;while true do if (v639==1) then v71=v1:GetAttribute("nameColor") or Color3.new(1620 -(1427 + 192) ,1 + 0 ,2 -1 ) ;if (v68.SpoofFlag~="") then v638:SetAttribute("country",v68.SpoofFlag);end break;end if (v639==(0 + 0)) then task.wait(1 + 0 );v70=v638:GetAttribute("skin");v639=327 -(192 + 134) ;end end end);v72();if (v1.Character and (v68.SpoofFlag~="")) then pcall(function() v1.Character:SetAttribute("country",v68.SpoofFlag);end);end local function v73() local v640=1276 -(316 + 960) ;while true do if ((2 + 0)==v640) then task.spawn(function() local v1266=0 + 0 ;while true do if (v1266==(0 + 0)) then task.wait(0.05 -0 );v1:SetAttribute("nameColor",v71);break;end end end);break;end if (v640==1) then v1:SetAttribute("prefix",tick());v1:SetAttribute("nameColor",Color3.new(551 -(83 + 468) ,1806 -(1202 + 604) ,0 -0 ));v640=2;end if (v640==(0 -0)) then v72();if v68.FakeModName then v1:SetAttribute("namePrefix","@");v1:SetAttribute("specialNameColor",Color3.fromRGB(0 -0 ,580 -(45 + 280) ,255));else local v1374=0;while true do if (v1374==(0 + 0)) then v1:SetAttribute("namePrefix","");if (v68.NameColor=="Red") then v1:SetAttribute("specialNameColor",Color3.fromRGB(223 + 32 ,19 + 31 ,28 + 22 ));elseif (v68.NameColor=="Gold") then v1:SetAttribute("specialNameColor",Color3.fromRGB(45 + 210 ,398 -183 ,1911 -(340 + 1571) ));elseif (v68.NameColor=="Cyan") then v1:SetAttribute("specialNameColor",Color3.fromRGB(0 + 0 ,2027 -(1733 + 39) ,255));else v1:SetAttribute("specialNameColor",nil);end break;end end end v640=2 -1 ;end end end local v74={AutoCollect=v17>=(1084 -(125 + 909)) ,Fly=v17>=(1998 -(1096 + 852)) ,GodMode=type(hookmetamethod)=="function" ,AntiRubberband=type(getconnections)=="function" ,AutoConfirmDrop=type(getconnections)=="function" ,FakeModName=true};local v75={};local v76=v1.CameraMaxZoomDistance;local v77=true;local v78={};local v79={Minimized=false,LastSize=UDim2.new(0,650,0,189 + 231 ),MiniSize=UDim2.new(0 -0 ,49 + 1 ,512 -(409 + 103) ,50)};local v80=false;local v81=nil;local v82=nil;local v83=false;local v84={};local v85=false;local v86=nil;local v87=nil;local v88="Craft A World";local v89=nil;local v90=nil;local v91=nil;local v92=nil;local v93=nil;local v94=nil;local function v95(v641) local v642=0;local v643;local v644;while true do if (v642==(236 -(46 + 190))) then v643,v644=pcall(require,v641);if (v643 and v644) then return v644;end v642=96 -(51 + 44) ;end if (v642==(1 + 1)) then return nil;end if (v642==(1318 -(1114 + 203))) then v643,v644=pcall(function() local v1267=726 -(228 + 498) ;while true do if (v1267==0) then if ((type(getrenv)=="function") and (type(getrenv().require)=="function")) then return getrenv().require(v641);end return nil;end end end);if (v643 and v644) then return v644;end v642=1 + 1 ;end end end task.spawn(function() local v645=0;while true do if (v645==1) then v91=v95(v1:WaitForChild("PlayerScripts",3 + 2 ):WaitForChild("PlayerMovement"));v92=v95(v4:WaitForChild("WorldTiles",5));v645=665 -(174 + 489) ;end if (v645==(5 -3)) then v93=v95(v4:WaitForChild("Managers",5):WaitForChild("WorldManager"));v94=v95(v4:WaitForChild("Modules",5):WaitForChild("AABB"));v645=3;end if (v645==3) then if (v94 and (type(v94.SweepAABB)=="function")) then local v1375=0;local v1376;while true do if (v1375==(1905 -(830 + 1075))) then v1376=v94.SweepAABB;v94.SweepAABB=function(...) if v68.Fly then return nil,nil;end return v1376(...);end;break;end end end break;end if (v645==(524 -(303 + 221))) then v89=v95(v4:WaitForChild("Modules",5):WaitForChild("Inventory"));v90=v95(v4:WaitForChild("Managers",5):WaitForChild("ItemsManager"));v645=1;end end end);local function v96() task.spawn(function() pcall(function() if (type(getgc)=="function") then local v1268=1269 -(231 + 1038) ;local v1269;while true do if (v1268==(0 + 0)) then v1269=getgc(true);for v1690,v1691 in pairs(v1269) do if (type(v1691)=="table") then if (rawget(v1691,"VelocityX") and (rawget(v1691,"Sensor")~=nil)) then v91=v1691;end if (rawget(v1691,"SelectedHotbar") and rawget(v1691,"HotbarStacks")) then v89=v1691;end end end break;end end end end);end);end local v97=false;task.spawn(function() while v77 do local v998=0;while true do if ((1162 -(171 + 991))==v998) then if ( not v91 or  not v89) then if  not v97 then local v1692=0 -0 ;while true do if ((0 -0)==v1692) then v96();v97=true;break;end end end end task.wait(7 -4 );break;end end end end);v1.Idled:Connect(function() if (v68.AntiAFK and v77 and v10) then pcall(function() local v1134=0 + 0 ;while true do if (v1134==0) then v10:CaptureController();v10:ClickButton2(Vector2.new());break;end end end);end end);local v98=nil;local v99=nil;local v100=nil;local v101=nil;local v102=nil;local v103=nil;task.spawn(function() pcall(function() local v999=0;while true do if (v999==(0 -0)) then v98=v4:WaitForChild("Remotes",5);v99=v98 and v98:WaitForChild("PlayerFist",8 -5 ) ;v999=1 -0 ;end if (v999==(3 -2)) then v100=v98 and v98:WaitForChild("PlayerPlaceItem",1251 -(111 + 1137) ) ;v101=v98 and v98:WaitForChild("PlayerMovementPackets",3) ;v999=160 -(91 + 67) ;end if (v999==2) then v102=v101 and v101:WaitForChild(v1.Name,8 -5 ) ;v103=v98 and v98:WaitForChild("PlayerSetPosition",1 + 2 ) ;break;end end end);end);local v104=nil;task.spawn(function() if ((type(getconnections)=="function") and v103) then pcall(function() for v1270,v1271 in pairs(getconnections(v103.OnClientEvent)) do local v1272=523 -(423 + 100) ;local v1273;while true do if (v1272==(0 + 0)) then v1273=v1271.Function;if (type(v1273)=="function") then local v1733=0;while true do if (0==v1733) then v104=v1273;v1271:Disable();v1733=2 -1 ;end if (1==v1733) then v103.OnClientEvent:Connect(function(v1912,v1913,...) local v1914=0;while true do if (v1914==(0 + 0)) then if ((v68.Fly or v68.AntiRubberband) and (v1912==v1)) then return;end v1273(v1912,v1913,...);break;end end end);break;end end end break;end end end end);end end);pcall(function() if (type(hookmetamethod)=="function") then local v1078;v1078=hookmetamethod(game,"__namecall",function(v1135,...) local v1136=771 -(326 + 445) ;local v1137;while true do if (0==v1136) then if  not v77 then return v1078(v1135,...);end v1137=getnamecallmethod();v1136=4 -3 ;end if (v1136==1) then if (v1137=="FireServer") then if (v68.GodMode and (tostring(v1135)=="PlayerHurtMe")) then return;end if ((type(checkcaller)=="function") and  not checkcaller()) then if (tostring(v1135)=="PlayerEquipItem") then local v1880=0;local v1881;while true do if (v1880==(0 -0)) then v1881={...};if (type(v1881[712 -(530 + 181) ])=="number") then v82=v1881[1];end break;end end end end elseif ((v1137=="Fire") and (tostring(v1135)=="Event") and (v1135.ClassName=="BindableEvent")) then if ((type(checkcaller)=="function") and  not checkcaller()) then local v1882={...};if (type(v1882[33 -(19 + 13) ])=="number") then v82=v1882[2 -0 ];end end end return v1078(v1135,...);end end end);end end);task.spawn(function() if (type(getconnections)=="function") then local v1079=0 -0 ;local v1080;local v1081;while true do if (1==v1079) then if v1081 then pcall(function() for v1734,v1735 in pairs(getconnections(v1081.OnClientEvent)) do local v1736=v1735.Function;if (type(v1736)=="function") then v1735:Disable();v1081.OnClientEvent:Connect(function(v1883,...) local v1884=0;while true do if ((0 -0)==v1884) then if ((type(v1883)=="table") and v1883.Title) then local v1996=string.lower(v1883.Title);if (v68.AutoConfirmDrop and string.find(v1996,"drop")) then local v2008=0 + 0 ;while true do if (v2008==0) then task.spawn(function() local v2019=0 -0 ;local v2020;while true do if (v2019==(0 -0)) then v2020={ButtonAction="drp",Inputs={amt=tostring(v68.DropAmount)}};v1081:FireServer(v2020);break;end end end);return;end end end end v1736(v1883,...);break;end end end);end end end);end break;end if (v1079==0) then v1080=v4:WaitForChild("Managers",1817 -(1293 + 519) );v1081=v1080 and v1080:WaitForChild("UIManager",5) and v1080.UIManager:WaitForChild("UIPromptEvent",10 -5 ) ;v1079=1;end end end end);local function v105(v646,...) if (v646 and (typeof(v646)=="Instance") and (v646.ClassName=="RemoteEvent")) then v646:FireServer(...);end end local function v106(v647) local v648=0 -0 ;local v649;while true do if (v648==(0 -0)) then if (v647>=100) then return 0;end v649=(100 -v647)/(862 -662) ;v648=2 -1 ;end if (v648==(1 + 0)) then return math.max(0.05 + 0 ,v649);end end end local v107=false;local function v108(v650,v651) local v652=0;local v653;local v654;local v655;local v656;while true do if (v652==(2 -1)) then v654,v655,v656=nil;v650.InputBegan:Connect(function(v1274) if ((v1274.UserInputType==Enum.UserInputType.MouseButton1) or (v1274.UserInputType==Enum.UserInputType.Touch)) then local v1507=0;while true do if (v1507==(1 + 0)) then v655=v1274.Position;v656=v651.Position;v1507=1 + 1 ;end if (v1507==2) then v1274.Changed:Connect(function() if (v1274.UserInputState==Enum.UserInputState.End) then v653=false;task.delay(0.1 + 0 ,function() v107=false;end);end end);break;end if (v1507==(1096 -(709 + 387))) then v653=true;v107=false;v1507=1;end end end end);v652=1860 -(673 + 1185) ;end if (v652==(5 -3)) then v650.InputChanged:Connect(function(v1275) if ((v1275.UserInputType==Enum.UserInputType.MouseMovement) or (v1275.UserInputType==Enum.UserInputType.Touch)) then v654=v1275;end end);v2.InputChanged:Connect(function(v1276) if ((v1276==v654) and v653) then local v1508=0 -0 ;local v1509;while true do if ((0 -0)==v1508) then v1509=v1276.Position-v655 ;if (v1509.Magnitude>(3 + 0)) then v107=true;end v1508=1;end if (v1508==(1 + 0)) then v651.Position=UDim2.new(v656.X.Scale,v656.X.Offset + v1509.X ,v656.Y.Scale,v656.Y.Offset + v1509.Y );break;end end end end);break;end if (v652==(0 -0)) then v651=v651 or v650 ;v653=false;v652=1 + 0 ;end end end local function v109(v657,v658) local v659=0 -0 ;local v660;local v661;local v662;local v663;while true do if (v659==(1 -0)) then v657.InputBegan:Connect(function(v1277) if ((v1277.UserInputType==Enum.UserInputType.MouseButton1) or (v1277.UserInputType==Enum.UserInputType.Touch)) then v660=true;v662=v1277.Position;v663=v658.Size;v1277.Changed:Connect(function() if (v1277.UserInputState==Enum.UserInputState.End) then v660=false;end end);end end);v657.InputChanged:Connect(function(v1278) if ((v1278.UserInputType==Enum.UserInputType.MouseMovement) or (v1278.UserInputType==Enum.UserInputType.Touch)) then v661=v1278;end end);v659=2;end if (v659==0) then v660=false;v661,v662,v663=nil;v659=1881 -(446 + 1434) ;end if (v659==(1285 -(1040 + 243))) then v2.InputChanged:Connect(function(v1279) if ((v1279==v661) and v660) then local v1512=v1279.Position-v662 ;v658.Size=UDim2.new(0 -0 ,math.max(2247 -(559 + 1288) ,v663.X.Offset + v1512.X ),1931 -(609 + 1322) ,math.max(754 -(13 + 441) ,v663.Y.Offset + v1512.Y ));end end);break;end end end local v110=Instance.new("Frame");v110.Size=UDim2.new(0 -0 ,0 -0 ,0,0 -0 );v110.BackgroundColor3=v27.Accent;v110.Visible=false;v110.Active=true;v110.ZIndex=4 + 96 ;v110.Parent=v28;Instance.new("UICorner",v110).CornerRadius=UDim.new(0 -0 ,8);local v118=Instance.new("ImageLabel");v118.Size=UDim2.new(1 + 0 , -(5 + 5),2 -1 , -(6 + 4));v118.Position=UDim2.new(0.5 -0 ,0,0.5 + 0 ,0 + 0 );v118.AnchorPoint=Vector2.new(0.5 + 0 ,0.5 + 0 );v118.BackgroundTransparency=1 + 0 ;v118.Image="rbxassetid://137345139045332";v118.ZIndex=534 -(153 + 280) ;v118.Parent=v110;local v126=Instance.new("TextButton");v126.Size=UDim2.new(2 -1 ,0 + 0 ,1 + 0 ,0);v126.BackgroundTransparency=1 + 0 ;v126.Text="";v126.ZIndex=93 + 9 ;v126.Parent=v110;local v132=Instance.new("Frame");v132.Name="MainFrame";v132.Size=UDim2.new(0 + 0 ,0 -0 ,0 + 0 ,0);v132.Position=UDim2.new(667.5 -(89 + 578) , -(233 + 92),0.5, -(436 -226));v132.BackgroundColor3=v27.Background;v132.BorderSizePixel=0;v132.Visible=false;v132.Active=true;v132.Parent=v28;v132.ClipsDescendants=true;Instance.new("UICorner",v132).CornerRadius=UDim.new(1049 -(572 + 477) ,2 + 6 );local v143=Instance.new("UIStroke");v143.Color=v27.Stroke;v143.Thickness=1.5;v143.Parent=v132;local v148=Instance.new("Frame");v148.Size=UDim2.new(1 + 0 ,0 + 0 ,86 -(84 + 2) ,65 -25 );v148.BackgroundColor3=v27.Sidebar;v148.BorderSizePixel=0 + 0 ;v148.Parent=v132;local v153=Instance.new("UICorner");v153.CornerRadius=UDim.new(842 -(497 + 345) ,1 + 7 );v153.Parent=v148;local v156=Instance.new("Frame");v156.Size=UDim2.new(1 + 0 ,1333 -(605 + 728) ,0.5 + 0 ,0);v156.Position=UDim2.new(0 -0 ,0 + 0 ,0.5 -0 ,0 + 0 );v156.BackgroundColor3=v27.Sidebar;v156.BorderSizePixel=0 -0 ;v156.Parent=v148;local v162=Instance.new("Frame");v162.Size=UDim2.new(0.8 + 0 , -(499 -(457 + 32)),1,0 + 0 );v162.Position=UDim2.new(1402 -(832 + 570) ,10,0 + 0 ,0 + 0 );v162.BackgroundTransparency=1;v162.Parent=v148;local v167=Instance.new("UIListLayout",v162);v167.SortOrder=Enum.SortOrder.LayoutOrder;v167.Padding=UDim.new(0 -0 ,0 + 0 );v167.VerticalAlignment=Enum.VerticalAlignment.Center;local v173=Instance.new("TextLabel");v173.Text="cx.farm v3 [dsc.gg/cxscript]";v173.Size=UDim2.new(1,796 -(588 + 208) ,0,20);v173.BackgroundTransparency=2 -1 ;v173.Font=Enum.Font.GothamBold;v173.TextColor3=v27.Accent;v173.TextSize=1815 -(884 + 916) ;v173.TextXAlignment=Enum.TextXAlignment.Left;v173.LayoutOrder=1;v173.Parent=v162;local v184=Instance.new("TextLabel");v184.Text=v13   .. " Version" ;v184.Size=UDim2.new(1 -0 ,0 + 0 ,653 -(232 + 421) ,1903 -(1569 + 320) );v184.BackgroundTransparency=1 + 0 ;v184.Font=Enum.Font.GothamMedium;v184.TextColor3=v27.SubText;v184.TextSize=2 + 8 ;v184.TextXAlignment=Enum.TextXAlignment.Left;v184.LayoutOrder=6 -4 ;v184.Parent=v162;local v195=Instance.new("TextButton");v195.Text="-";v195.Size=UDim2.new(0,645 -(316 + 289) ,1,0);v195.Position=UDim2.new(1, -(104 -64),0 + 0 ,1453 -(666 + 787) );v195.BackgroundTransparency=426 -(360 + 65) ;v195.Font=Enum.Font.GothamBold;v195.TextColor3=v27.SubText;v195.TextSize=23 + 1 ;v195.Parent=v148;local v204=Instance.new("TextButton");v204.Size=UDim2.new(254 -(79 + 175) ,20,0,20);v204.AnchorPoint=Vector2.new(1 -0 ,1 + 0 );v204.Position=UDim2.new(1,0,2 -1 ,0);v204.BackgroundColor3=v27.Accent;v204.BackgroundTransparency=0.5;v204.Text="";v204.ZIndex=38 -18 ;v204.Parent=v132;Instance.new("UICorner",v204).CornerRadius=UDim.new(899 -(503 + 396) ,185 -(92 + 89) );local v214=Instance.new("Frame");v214.Size=UDim2.new(1 -0 ,0 + 0 ,1, -40);v214.Position=UDim2.new(0 + 0 ,0,0 -0 ,6 + 34 );v214.BackgroundTransparency=2 -1 ;v214.Parent=v132;local v219=Instance.new("Frame");v219.Size=UDim2.new(0 + 0 ,67 + 73 ,2 -1 ,0 + 0 );v219.BackgroundColor3=v27.Sidebar;v219.BorderSizePixel=0 -0 ;v219.Active=true;v219.Parent=v214;local v225=Instance.new("Frame");v225.Size=UDim2.new(1245 -(485 + 759) , -(323 -183),1190 -(442 + 747) ,1135 -(832 + 303) );v225.Position=UDim2.new(946 -(88 + 858) ,140,0 + 0 ,0 + 0 );v225.BackgroundTransparency=1 + 0 ;v225.Parent=v214;local v230=Instance.new("ScrollingFrame");v230.Size=UDim2.new(790 -(766 + 23) ,0,4 -3 , -(82 -22));v230.Position=UDim2.new(0 -0 ,0 -0 ,1073 -(1036 + 37) ,8 + 2 );v230.BackgroundTransparency=1 -0 ;v230.ScrollBarThickness=4 + 0 ;v230.ScrollingDirection=Enum.ScrollingDirection.Y;v230.AutomaticCanvasSize=Enum.AutomaticSize.None;v230.ScrollBarImageColor3=v27.Accent;v230.Parent=v219;local v241=Instance.new("Frame");v241.Size=UDim2.new(1480 -(641 + 839) ,260,913.5 -(910 + 3) ,0 -0 );v241.Position=UDim2.new(1, -(1954 -(1466 + 218)),0.5, -(46 + 54));v241.BackgroundTransparency=1149 -(556 + 592) ;v241.ZIndex=36 + 64 ;v241.Parent=v28;local v247=Instance.new("UIListLayout",v241);v247.VerticalAlignment=Enum.VerticalAlignment.Bottom;v247.Padding=UDim.new(808 -(329 + 479) ,5);local v251=Instance.new("Frame");v251.Size=UDim2.new(855 -(174 + 680) , -(34 -24),0 -0 ,45);v251.Position=UDim2.new(0 + 0 ,744 -(396 + 343) ,1 + 0 , -(1527 -(29 + 1448)));v251.BackgroundColor3=v27.Element;v251.Parent=v219;Instance.new("UICorner",v251).CornerRadius=UDim.new(0,1395 -(135 + 1254) );local v258=Instance.new("ImageLabel");v258.Size=UDim2.new(0,131 -96 ,0 -0 ,24 + 11 );v258.Position=UDim2.new(1527 -(389 + 1138) ,579 -(102 + 472) ,0 + 0 ,3 + 2 );v258.BackgroundColor3=v27.Sidebar;v258.Parent=v251;Instance.new("UICorner",v258).CornerRadius=UDim.new(1 + 0 ,0);task.spawn(function() pcall(function() local v1000,v1001=v0:GetUserThumbnailAsync(v1.UserId,Enum.ThumbnailType.HeadShot,Enum.ThumbnailSize.Size420x420);if v1001 then v258.Image=v1000;end end);end);local v264=Instance.new("TextButton");v264.Size=UDim2.new(1546 -(320 + 1225) , -(89 -39),0 + 0 ,1484 -(157 + 1307) );v264.Position=UDim2.new(1859 -(821 + 1038) ,45,0 -0 ,5);v264.BackgroundTransparency=1;v264.Text="@******";v264.TextColor3=v27.Text;v264.Font=Enum.Font.GothamMedium;v264.TextSize=2 + 10 ;v264.TextXAlignment=Enum.TextXAlignment.Left;v264.Parent=v251;local v274=true;v264.MouseButton1Click:Connect(function() if v68.HideName then return;end v274= not v274;v264.Text=(v274 and "@******") or (((v68.FakeModName and "@") or "")   .. v1.Name) ;end);local v275=Instance.new("TextLabel");v275.Size=UDim2.new(1, -50,0 -0 ,6 + 9 );v275.Position=UDim2.new(0,111 -66 ,0,25);v275.BackgroundTransparency=1;v275.Text=v13   .. " User" ;v275.TextColor3=v27.SubText;v275.Font=Enum.Font.GothamBold;v275.TextSize=1037 -(834 + 192) ;v275.TextXAlignment=Enum.TextXAlignment.Left;v275.Parent=v251;local function v285(v665,v666) task.spawn(function() local v1002=Instance.new("Frame");v1002.Size=UDim2.new(1 + 0 ,0 + 0 ,0 + 0 ,0 -0 );v1002.AutomaticSize=Enum.AutomaticSize.Y;v1002.BackgroundColor3=v27.Sidebar;v1002.BackgroundTransparency=304.1 -(300 + 4) ;v1002.ZIndex=27 + 73 ;v1002.Parent=v241;Instance.new("UICorner",v1002).CornerRadius=UDim.new(0 -0 ,4);local v1012=Instance.new("UIPadding",v1002);v1012.PaddingTop=UDim.new(362 -(112 + 250) ,4 + 6 );v1012.PaddingBottom=UDim.new(0 -0 ,6 + 4 );v1012.PaddingLeft=UDim.new(0 + 0 ,10);v1012.PaddingRight=UDim.new(0,8 + 2 );local v1017=Instance.new("TextLabel",v1002);v1017.Size=UDim2.new(1 + 0 ,0,0 + 0 ,1414 -(1001 + 413) );v1017.AutomaticSize=Enum.AutomaticSize.Y;v1017.BackgroundTransparency=1;v1017.Text=v665;v1017.TextColor3=v27.Text;v1017.Font=Enum.Font.GothamBold;v1017.TextSize=28 -15 ;v1017.TextWrapped=true;v1017.ZIndex=982 -(244 + 638) ;v1017.TextXAlignment=Enum.TextXAlignment.Left;v1002.Position=UDim2.new(694 -(627 + 66) ,0 -0 ,602 -(512 + 90) ,1906 -(1665 + 241) );v5:Create(v1002,TweenInfo.new(0.3),{Position=UDim2.new(717 -(373 + 344) ,0 + 0 ,0 + 0 ,0 -0 )}):Play();task.wait(4);if v1002 then v1002:Destroy();end end);end local function v286(v667) local v668=0 -0 ;local v669;while true do if (v668==(1100 -(35 + 1064))) then for v1280,v1281 in pairs(v28:GetDescendants()) do pcall(function() for v1514,v1515 in pairs(v27) do if (v1281:IsA("GuiObject") or v1281:IsA("UIStroke")) then local v1693=0 + 0 ;while true do if (v1693==(2 -1)) then if (v1281:IsA("UIStroke") and (v1281.Color==v1515)) then v1281.Color=v669[v1514];end if (v1281:IsA("ScrollingFrame") and (v1281.ScrollBarImageColor3==v1515)) then v1281.ScrollBarImageColor3=v669[v1514];end v1693=1 + 1 ;end if (v1693==2) then if ((v1281:IsA("ImageLabel") or v1281:IsA("ImageButton")) and (v1281.ImageColor3==v1515)) then v1281.ImageColor3=v669[v1514];end break;end if (v1693==(1236 -(298 + 938))) then if (v1281:IsA("GuiObject") and (v1281.BackgroundColor3==v1515)) then v1281.BackgroundColor3=v669[v1514];end if (v1281:IsA("TextLabel") or v1281:IsA("TextButton") or v1281:IsA("TextBox")) then if (v1281.TextColor3==v1515) then v1281.TextColor3=v669[v1514];end end v1693=1;end end end end end);end v27=v669;break;end if (v668==(1259 -(233 + 1026))) then v669=v26[v667];if  not v669 then return;end v668=1667 -(636 + 1030) ;end end end local v287={};local function v288(v670,v671) local v672=0;local v673;local v674;local v675;while true do if ((2 + 1)==v672) then v674.Name=v670   .. "Page" ;v674.Size=UDim2.new(1 + 0 , -(6 + 14),1, -(2 + 18));v674.Position=UDim2.new(0,10,221 -(55 + 166) ,2 + 8 );v674.BackgroundTransparency=1;v672=1 + 3 ;end if (v672==(3 -2)) then v673.BackgroundColor3=v27.Sidebar;v673.Text=v670;v673.Font=Enum.Font.GothamMedium;v673.TextColor3=v27.SubText;v672=299 -(36 + 261) ;end if (v672==(12 -5)) then return v674;end if ((1374 -(34 + 1334))==v672) then v675.SortOrder=Enum.SortOrder.LayoutOrder;v675:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() v674.CanvasSize=UDim2.new(0 + 0 ,0 + 0 ,0,v675.AbsoluteContentSize.Y + 20 );end);v673.MouseButton1Click:Connect(function() local v1283=0;while true do if (v1283==(1283 -(1035 + 248))) then for v1694,v1695 in pairs(v287) do local v1696=21 -(20 + 1) ;while true do if ((0 + 0)==v1696) then v1695.Btn.TextColor3=v27.SubText;v1695.Btn.BackgroundColor3=v27.Sidebar;v1696=320 -(134 + 185) ;end if (v1696==(1134 -(549 + 584))) then v1695.Page.Visible=false;break;end end end v673.TextColor3=v27.Text;v1283=686 -(314 + 371) ;end if (v1283==(3 -2)) then v673.BackgroundColor3=v27.Element;v674.Visible=true;break;end end end);table.insert(v287,{Btn=v673,Page=v674});v672=975 -(478 + 490) ;end if (v672==2) then v673.TextSize=8 + 7 ;v673.Parent=v230;Instance.new("UICorner",v673).CornerRadius=UDim.new(1172 -(786 + 386) ,19 -13 );v674=Instance.new("ScrollingFrame");v672=1382 -(1055 + 324) ;end if (v672==(1345 -(1093 + 247))) then v674.Visible=false;v674.Parent=v225;v675=Instance.new("UIListLayout",v674);v675.Padding=UDim.new(0,8);v672=6;end if (v672==0) then v673=Instance.new("TextButton");v673.Name=v670;v673.Size=UDim2.new(1 + 0 , -(3 + 17),0,138 -103 );v673.LayoutOrder=v671;v672=1;end if ((13 -9)==v672) then v674.ScrollBarThickness=16 -10 ;v674.ScrollingDirection=Enum.ScrollingDirection.Y;v674.AutomaticCanvasSize=Enum.AutomaticSize.Y;v674.ScrollBarImageColor3=v27.Accent;v672=12 -7 ;end end end local v289=Instance.new("UIListLayout",v230);v289.SortOrder=Enum.SortOrder.LayoutOrder;v289.Padding=UDim.new(0 + 0 ,19 -14 );v289:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() v230.CanvasSize=UDim2.new(0 -0 ,0,0 + 0 ,v289.AbsoluteContentSize.Y + 20 );end);local function v292(v677,v678,v679) local v680=Instance.new("Frame");v680.LayoutOrder=v679;v680.Size=UDim2.new(2 -1 ,688 -(364 + 324) ,0 -0 ,0 -0 );v680.AutomaticSize=Enum.AutomaticSize.Y;v680.BackgroundTransparency=1 + 0 ;v680.Parent=v677;local v687=Instance.new("UIListLayout",v680);v687.Padding=UDim.new(0 -0 ,9 -3 );v687.SortOrder=Enum.SortOrder.LayoutOrder;v687:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() v680.Size=UDim2.new(2 -1 ,1268 -(1249 + 19) ,0,v687.AbsoluteContentSize.Y + 6 + 0 );end);local v691=Instance.new("TextLabel");v691.Size=UDim2.new(1,0 -0 ,1086 -(686 + 400) ,20 + 5 );v691.BackgroundTransparency=230 -(73 + 156) ;v691.Text=v678;v691.Font=Enum.Font.GothamBold;v691.TextColor3=v27.Accent;v691.TextSize=1 + 12 ;v691.TextXAlignment=Enum.TextXAlignment.Left;v691.LayoutOrder=811 -(721 + 90) ;v691.Parent=v680;return v680;end local v293="cxfarm/config";pcall(function() if (type(makefolder)=="function") then if  not isfolder("cxfarm") then makefolder("cxfarm");end if  not isfolder(v293) then makefolder(v293);end end end);local function v294() local v704={};pcall(function() if (type(listfiles)=="function") then for v1284,v1285 in ipairs(listfiles(v293)) do if v1285:match("%.json$") then local v1516=0 + 0 ;local v1517;while true do if (v1516==(0 -0)) then v1517=v1285:match("([^/\\]+)%.json$");if v1517 then table.insert(v704,v1517);end break;end end end end end end);return (( #v704>(470 -(224 + 246))) and v704) or {"No Configs Found"} ;end local function v295() local v705=0 -0 ;while true do if (v705==(0 + 0)) then table.clear(v78);if (v89 and (type(v89)=="table") and rawget(v89,"Stacks")) then pcall(function() for v1617,v1618 in pairs(v89.Stacks) do if ((type(v1618)=="table") and v1618.Id) then local v1740="ID: "   .. tostring(v1618.Id) ;if (v90 and (type(v90)=="table")) then if (type(v90.GetName)=="function") then local v1923,v1924=pcall(function() return v90.GetName(v1618.Id);end);if (v1923 and v1924) then v1740=v1924;end else local v1925=0;local v1926;local v1927;while true do if (v1925==(0 + 0)) then v1926,v1927=pcall(function() return v90.RequestItemData(v1618.Id);end);if (v1926 and (type(v1927)=="table") and v1927.Name) then v1740=v1927.Name;end break;end end end end v78[v1617]={Slot=v1617,Id=v1618.Id,Name=v1740,Amount=v1618.Amount or 1 };end end end);end break;end end end local function v296() local v706=0;local v707;local v708;while true do if (v706==(2 + 0)) then for v1286,v1287 in pairs(v707) do table.insert(v708,v1287);end table.sort(v708,function(v1288,v1289) return v1288.Name<v1289.Name ;end);v706=5 -2 ;end if (v706==1) then for v1290,v1291 in pairs(v78) do if v1291.Id then local v1518=0;while true do if (v1518==(0 -0)) then if  not v707[v1291.Id] then v707[v1291.Id]={Id=v1291.Id,Name=v1291.Name,Amount=513 -(203 + 310) ,Slot=v1291.Slot};end v707[v1291.Id].Amount=v707[v1291.Id].Amount + (tonumber(v1291.Amount) or (1994 -(1238 + 755))) ;break;end end end end v708={};v706=1 + 1 ;end if (v706==(1534 -(709 + 825))) then pcall(v295);v707={};v706=1;end if (v706==3) then table.clear(v707);return v708;end end end local function v297(v709) local v710=0 -0 ;while true do if ((0 -0)==v710) then if (v89 and (type(v89)=="table") and rawget(v89,"Stacks")) then for v1519,v1520 in pairs(v89.Stacks) do if ((type(v1520)=="table") and (v1520.Id==v709)) then return v1519;end end end return nil;end end end local function v298(v711,v712,v713,v714,v715) local v716=Instance.new("Frame");v716.Size=UDim2.new(1,0,864 -(196 + 668) ,157 -117 );v716.BackgroundColor3=v27.Sidebar;v716.BackgroundTransparency=1 -0 ;v716.LayoutOrder=v714;v716.Parent=v711;local v723=Instance.new("TextLabel");v723.Text=v712;v723.Size=UDim2.new(833.5 -(171 + 662) , -(98 -(4 + 89)),1,0 -0 );v723.Position=UDim2.new(0,5 + 7 ,0 -0 ,0 + 0 );v723.BackgroundTransparency=1487 -(35 + 1451) ;v723.Font=Enum.Font.GothamMedium;v723.TextColor3=v27.Text;v723.TextSize=14;v723.TextXAlignment=Enum.TextXAlignment.Left;v723.Parent=v716;local v736=Instance.new("TextBox");v736.Size=UDim2.new(1453.5 -(28 + 1425) , -(2013 -(941 + 1052)),0 + 0 ,30);v736.Position=UDim2.new(0.5,10,1514.5 -(822 + 692) , -(20 -5));v736.BackgroundColor3=v27.Element;v736.Text=v713;v736.PlaceholderText="...";v736.TextColor3=v27.SubText;v736.Font=Enum.Font.GothamMedium;v736.TextSize=13;v736.Parent=v716;Instance.new("UICorner",v736).CornerRadius=UDim.new(0 + 0 ,301 -(45 + 252) );v736.Focused:Connect(function() pcall(function() game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,false);end);end);v736.FocusLost:Connect(function() local v1033=0 + 0 ;while true do if (v1033==(0 + 0)) then pcall(function() game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat,true);end);v715(v736.Text);v1033=2 -1 ;end if (v1033==(434 -(114 + 319))) then v285(v712   .. " updated." ,v27.Success);break;end end end);end local function v299(v749,v750,v751,v752,v753) local v754=Instance.new("Frame");v754.Size=UDim2.new(1,0 -0 ,0 -0 ,26 + 14 );v754.BackgroundColor3=v27.Sidebar;v754.BackgroundTransparency=1;v754.LayoutOrder=v751;v754.ZIndex=7 -2 ;v754.Parent=v749;local v762=Instance.new("TextButton");v762.Size=UDim2.new(1 -0 ,0,1963 -(556 + 1407) ,40);v762.BackgroundColor3=v27.Element;v762.Text=v750   .. ": None" ;v762.TextColor3=v27.Text;v762.Font=Enum.Font.GothamMedium;v762.TextSize=14;v762.ZIndex=1211 -(741 + 465) ;v762.Parent=v754;Instance.new("UICorner",v762).CornerRadius=UDim.new(465 -(170 + 295) ,4 + 2 );local v775=Instance.new("ScrollingFrame");v775.Size=UDim2.new(1,0 + 0 ,0 -0 ,0 + 0 );v775.Position=UDim2.new(0 + 0 ,0 + 0 ,1230 -(957 + 273) ,45);v775.BackgroundTransparency=1 + 0 ;v775.ScrollBarThickness=6;v775.AutomaticCanvasSize=Enum.AutomaticSize.Y;v775.ScrollBarImageColor3=v27.Accent;v775.Visible=false;v775.ZIndex=5 + 5 ;v775.Parent=v754;local v787=Instance.new("UIListLayout",v775);v787.Padding=UDim.new(0,4);local v789=false;v762.MouseButton1Click:Connect(function() v789= not v789;if v789 then for v1292,v1293 in pairs(v775:GetChildren()) do if (v1293:IsA("TextButton") or v1293:IsA("TextLabel")) then v1293:Destroy();end end local v1169=0 -0 ;if v753 then for v1521,v1522 in ipairs(v753) do local v1523=Instance.new("TextButton");v1523.Size=UDim2.new(1, -(26 -16),0,91 -61 );v1523.BackgroundColor3=v27.Sidebar;v1523.Text="  "   .. v1522 ;v1523.TextColor3=v27.SubText;v1523.TextXAlignment=Enum.TextXAlignment.Left;v1523.Font=Enum.Font.Gotham;v1523.TextSize=64 -51 ;v1523.ZIndex=1790 -(389 + 1391) ;v1523.Parent=v775;Instance.new("UICorner",v1523).CornerRadius=UDim.new(0 + 0 ,4);v1523.MouseButton1Click:Connect(function() local v1619=0 + 0 ;while true do if (v1619==(2 -1)) then v754.Size=UDim2.new(952 -(783 + 168) ,0,0 -0 ,40 + 0 );v762.Text=v750   .. ": "   .. v1522 ;v1619=2;end if (v1619==(313 -(309 + 2))) then v752(v1522);break;end if (v1619==(0 -0)) then v789=false;v775.Visible=false;v1619=1213 -(1090 + 122) ;end end end);v1169=v1169 + 1 ;end else local v1377=v296();for v1538,v1539 in pairs(v1377) do local v1540=0 + 0 ;local v1541;while true do if (v1540==(9 -6)) then v1169=v1169 + 1 + 0 ;break;end if (v1540==(1120 -(628 + 490))) then v1541.ZIndex=10;v1541.Parent=v775;Instance.new("UICorner",v1541).CornerRadius=UDim.new(0 + 0 ,4);v1541.MouseButton1Click:Connect(function() v789=false;v775.Visible=false;v754.Size=UDim2.new(1,0 -0 ,0 -0 ,814 -(431 + 343) );v762.Text=v750   .. ": "   .. v1539.Name ;v752(v1539.Id);end);v1540=3;end if (v1540==(0 -0)) then v1541=Instance.new("TextButton");v1541.Size=UDim2.new(1, -10,0 -0 ,24 + 6 );v1541.BackgroundColor3=v27.Sidebar;v1541.Text="  "   .. v1539.Name   .. " (x"   .. v1539.Amount   .. ")" ;v1540=1 + 0 ;end if (v1540==(1696 -(556 + 1139))) then v1541.TextColor3=v27.SubText;v1541.TextXAlignment=Enum.TextXAlignment.Left;v1541.Font=Enum.Font.Gotham;v1541.TextSize=28 -(6 + 9) ;v1540=1 + 1 ;end end end end if (v1169==0) then local v1378=0;local v1379;while true do if (v1378==(0 + 0)) then v1379=Instance.new("TextLabel");v1379.Size=UDim2.new(170 -(28 + 141) , -(4 + 6),0 -0 ,45);v1379.BackgroundColor3=v27.Sidebar;v1378=1;end if (v1378==1) then v1379.Text="No items available!";v1379.TextColor3=v27.Danger;v1379.Font=Enum.Font.GothamBold;v1378=2 + 0 ;end if (v1378==2) then v1379.TextSize=1329 -(486 + 831) ;v1379.ZIndex=26 -16 ;v1379.Parent=v775;v1378=10 -7 ;end if (v1378==(1 + 2)) then Instance.new("UICorner",v1379).CornerRadius=UDim.new(0 -0 ,1267 -(668 + 595) );v1169=1.5 + 0 ;break;end end end local v1170=math.min(31 + 119 ,v1169 * (92 -58) );v775.Size=UDim2.new(291 -(23 + 267) ,1944 -(1129 + 815) ,387 -(371 + 16) ,v1170);v754.Size=UDim2.new(1,1750 -(1326 + 424) ,0 -0 ,(164 -119) + v1170 );v775.Visible=true;else v775.Visible=false;v754.Size=UDim2.new(119 -(88 + 30) ,771 -(720 + 51) ,0 -0 ,1816 -(421 + 1355) );end end);end local function v300(v790,v791,v792,v793,v794,v795,v796) local v797=0 -0 ;local v798;local v799;local v800;local v801;while true do if (v797==(2 + 1)) then v799.Font=Enum.Font.GothamMedium;v799.TextColor3=v27.Text;v799.TextSize=1097 -(286 + 797) ;v799.TextXAlignment=Enum.TextXAlignment.Left;v797=14 -10 ;end if ((2 -0)==v797) then v799.Text=v792;v799.Size=UDim2.new(439.8 -(397 + 42) ,0 + 0 ,1,800 -(24 + 776) );v799.Position=UDim2.new(0,12,0 -0 ,785 -(222 + 563) );v799.BackgroundTransparency=1;v797=6 -3 ;end if (v797==4) then v799.Parent=v798;v800=Instance.new("Frame");v800.Size=UDim2.new(0 + 0 ,20,190 -(23 + 167) ,1818 -(690 + 1108) );v800.Position=UDim2.new(1 + 0 , -(25 + 5),0.5, -(858 -(40 + 808)));v797=5;end if (v797==(0 + 0)) then v798=Instance.new("TextButton");v798.Size=UDim2.new(1,0,0 -0 ,40);v798.BackgroundColor3=v27.Element;v798.Text="";v797=1 + 0 ;end if (v797==6) then v798.MouseButton1Click:Connect(function() local v1294=0 + 0 ;local v1295;local v1296;while true do if (2==v1294) then v801(v1296);v285(v792   .. ": "   .. ((v1296 and "ON") or "OFF") ,(v1296 and v27.Success) or v27.Danger );break;end if ((1 + 0)==v1294) then if (v74[v1295]==false) then local v1757=0;while true do if ((571 -(47 + 524))==v1757) then v285("[Support Error] Your executor ("   .. v14   .. ")'s SUNC level is too low to run "   .. v792   .. "." ,v27.Danger);return;end end end v1296= not v68[v791];v1294=2 + 0 ;end if (v1294==(0 -0)) then if (v796 and (v13~="Premium")) then v285("This feature is for Premium users only!",v27.Danger);return;end v1295=v795 or v791 ;v1294=1;end end end);v84[v791]=v801;v801(v68[v791]);break;end if (1==v797) then v798.LayoutOrder=v793;v798.Parent=v790;Instance.new("UICorner",v798).CornerRadius=UDim.new(0,8 -2 );v799=Instance.new("TextLabel");v797=4 -2 ;end if (v797==(1731 -(1165 + 561))) then v800.Parent=v798;Instance.new("UICorner",v800).CornerRadius=UDim.new(0,1 + 3 );v801=nil;function v801(v1297) local v1298=0 -0 ;while true do if (v1298==(1 + 0)) then if v794 then v794(v1297);end break;end if (v1298==(479 -(341 + 138))) then v68[v791]=v1297;v800.BackgroundColor3=(v1297 and v27.Success) or v27.Sidebar ;v1298=1 + 0 ;end end end v797=6;end end end local function v301(v802,v803) local v804=0 -0 ;local v805;while true do if (v804==(326 -(89 + 237))) then if (v74[v802]==false) then v285("[Support Error] "   .. v803   .. " requires a higher SUNC level than "   .. v14   .. " provides." ,v27.Danger);return;end v805= not v68[v802];v804=3 -2 ;end if ((1 -0)==v804) then if v84[v802] then v84[v802](v805);end v285(v803   .. " [KEYBIND]: "   .. ((v805 and "ON") or "OFF") ,(v805 and v27.Success) or v27.Danger );break;end end end local function v302(v806,v807,v808,v809,v810,v811,v812) local v813=Instance.new("Frame");v813.Size=UDim2.new(1,881 -(581 + 300) ,1220 -(855 + 365) ,50);v813.BackgroundColor3=v27.Element;v813.LayoutOrder=v811;v813.Parent=v806;Instance.new("UICorner",v813).CornerRadius=UDim.new(0,6);local v820=Instance.new("TextLabel");v820.Text=v807   .. ": "   .. v810 ;v820.Size=UDim2.new(1, -(47 -27),0 + 0 ,20);v820.Position=UDim2.new(1235 -(1030 + 205) ,12 + 0 ,0 + 0 ,291 -(156 + 130) );v820.BackgroundTransparency=2 -1 ;v820.Font=Enum.Font.Gotham;v820.TextColor3=v27.SubText;v820.TextSize=21 -8 ;v820.TextXAlignment=Enum.TextXAlignment.Left;v820.Parent=v813;local v833=Instance.new("Frame");v833.Size=UDim2.new(1 -0 , -(7 + 17),0 + 0 ,75 -(10 + 59) );v833.Position=UDim2.new(0,4 + 8 ,0,32);v833.BackgroundColor3=v27.Sidebar;v833.Parent=v813;Instance.new("UICorner",v833).CornerRadius=UDim.new(1,0);local v840=Instance.new("Frame");v840.Size=UDim2.new((v810-v808)/(v809-v808) ,0,1,0 -0 );v840.BackgroundColor3=v27.Accent;v840.Parent=v833;Instance.new("UICorner",v840).CornerRadius=UDim.new(1164 -(671 + 492) ,0);local v846=Instance.new("Frame");v846.Size=UDim2.new(0 + 0 ,1227 -(369 + 846) ,0,12);v846.Position=UDim2.new(1 + 0 ,0,0.5 + 0 ,1945 -(1036 + 909) );v846.AnchorPoint=Vector2.new(0.5,0.5);v846.BackgroundColor3=v27.Text;v846.Parent=v840;Instance.new("UICorner",v846).CornerRadius=UDim.new(1,0 + 0 );local v854=Instance.new("TextButton");v854.Size=UDim2.new(1 -0 ,0,204 -(11 + 192) ,0 + 0 );v854.BackgroundTransparency=1;v854.Text="";v854.Parent=v833;local v859=false;local function v860(v1034) local v1035=175 -(135 + 40) ;local v1036;local v1037;while true do if (v1035==(4 -2)) then v812(v1037);break;end if (v1035==(0 + 0)) then v1036=math.clamp((v1034.Position.X-v833.AbsolutePosition.X)/v833.AbsoluteSize.X ,0 -0 ,1);v840.Size=UDim2.new(v1036,0 -0 ,177 -(50 + 126) ,0 -0 );v1035=1;end if (v1035==1) then v1037=math.floor(v808 + ((v809-v808) * v1036) );v820.Text=v807   .. ": "   .. v1037 ;v1035=2;end end end v854.InputBegan:Connect(function(v1038) if ((v1038.UserInputType==Enum.UserInputType.MouseButton1) or (v1038.UserInputType==Enum.UserInputType.Touch)) then v859=true;v860(v1038);end end);v2.InputEnded:Connect(function(v1039) if ((v1039.UserInputType==Enum.UserInputType.MouseButton1) or (v1039.UserInputType==Enum.UserInputType.Touch)) then v859=false;end end);v2.InputChanged:Connect(function(v1040) if (v859 and ((v1040.UserInputType==Enum.UserInputType.MouseMovement) or (v1040.UserInputType==Enum.UserInputType.Touch))) then v860(v1040);end end);end local function v303(v861,v862,v863,v864,v865) local v866=0 + 0 ;local v867;local v868;local v869;while true do if (v866==(1414 -(1233 + 180))) then v867.LayoutOrder=v865;v867.Parent=v861;Instance.new("UICorner",v867).CornerRadius=UDim.new(0,6);v868=Instance.new("TextLabel");v866=971 -(522 + 447) ;end if (v866==(1423 -(107 + 1314))) then v868.Text=v863;v868.Size=UDim2.new(0.6 + 0 ,0 -0 ,1 + 0 ,0 -0 );v868.Position=UDim2.new(0,47 -35 ,1910 -(716 + 1194) ,0);v868.BackgroundTransparency=1 + 0 ;v866=1 + 2 ;end if ((506 -(74 + 429))==v866) then v868.Font=Enum.Font.GothamMedium;v868.TextColor3=v27.Text;v868.TextSize=14;v868.TextXAlignment=Enum.TextXAlignment.Left;v866=4;end if (v866==4) then v868.Parent=v867;v869=Instance.new("TextLabel");v869.Text=v864.Name;v869.Size=UDim2.new(0.3 -0 ,0 + 0 ,2 -1 ,0);v866=5;end if (v866==(4 + 1)) then v869.Position=UDim2.new(0.65 -0 ,0 -0 ,433 -(279 + 154) ,0);v869.BackgroundTransparency=779 -(454 + 324) ;v869.Font=Enum.Font.GothamBold;v869.TextColor3=v27.SubText;v866=6;end if (v866==(0 + 0)) then v867=Instance.new("TextButton");v867.Size=UDim2.new(18 -(12 + 5) ,0,0,22 + 18 );v867.BackgroundColor3=v27.Element;v867.Text="";v866=1;end if (v866==(14 -8)) then v869.TextSize=14;v869.TextXAlignment=Enum.TextXAlignment.Right;v869.Parent=v867;v867.MouseButton1Click:Connect(function() v869.Text="...";v81={Callback=function(v1380) v68.Keybinds[v862]=v1380;v869.Text=v1380.Name;v81=nil;v285("Bound "   .. v863   .. " to "   .. v1380.Name ,v27.Accent);end};end);break;end end end local v304=v288("Auto",1 + 0 );local v305=v288("World",2);local v306=v288("Misc",1096 -(277 + 816) );local v307=v288("World Scanner",4);local v308=v288("Inventory",21 -16 );local v309=v288("Performance",1189 -(1058 + 125) );local v310=v288("Keybinds",2 + 5 );local v311=v288("Configs",983 -(815 + 160) );local v312=v288("Credits",38 -29 );local v313=v292(v304,"FARMING",1);v300(v313,"AutoPlace","Auto Place",2 -1 );v302(v313,"Place Speed",0 + 0 ,100,292 -192 ,2,function(v870) v68.PlaceSpeed=v870;end);v300(v313,"AutoPunch","Auto Punch",1901 -(41 + 1857) );v302(v313,"Punch Speed",1893 -(1222 + 671) ,258 -158 ,143 -43 ,1186 -(229 + 953) ,function(v872) v68.PunchSpeed=v872;end);v300(v313,"AutoCollect","Auto Collect",5);v302(v313,"Collect Speed",1774 -(1111 + 663) ,1679 -(874 + 705) ,15,6,function(v874) v68.CollectSpeed=v874;end);v300(v313,"UseSelectedItem","Use Selected Item",1 + 6 );v299(v313,"Select Block",8,function(v876) v68.SelectedPlaceItemId=v876;end);local v314=v292(v304,"SELECT TILES",2 + 0 );local function v315() local v878=nil;if (v91 and (type(v91)=="table")) then v878=rawget(v91,"Position");end if  not v878 then local v1082=v1.Character and v1.Character:FindFirstChild("HumanoidRootPart") ;v878=(v1082 and v1082.Position) or Vector3.zero ;end return v878 or Vector3.zero ;end local function v316(v879) local v880=v879 or v315() ;return math.floor((v880.X/(7.5 -3)) + 0.5 ),math.floor((v880.Y/4.5) + 0.5 + 0 );end v300(v314,"LockTiles","Lock Selected Tiles",1,function(v881) if v881 then local v1083=679 -(642 + 37) ;local v1084;local v1085;while true do if (v1083==0) then v1084,v1085=v316();v68.LockedOrigin={X=v1084,Y=v1085};break;end end else v68.LockedOrigin=nil;end end);local v317=Instance.new("Frame");v317.Size=UDim2.new(1,0 + 0 ,0 + 0 ,100 -60 );v317.BackgroundColor3=v27.Sidebar;v317.BackgroundTransparency=455 -(233 + 221) ;v317.LayoutOrder=2;v317.Parent=v314;local v323=Instance.new("TextButton");v323.Size=UDim2.new(2 -1 ,0,0 + 0 ,40);v323.BackgroundColor3=v27.Element;v323.Text="Tile Selector";v323.TextColor3=v27.Text;v323.Font=Enum.Font.GothamMedium;v323.TextSize=14;v323.Parent=v317;Instance.new("UICorner",v323).CornerRadius=UDim.new(0,6);local v332=Instance.new("Frame");v332.Size=UDim2.new(1542 -(718 + 823) ,0 + 0 ,805 -(266 + 539) ,290);v332.Position=UDim2.new(0,0 -0 ,0,45);v332.BackgroundTransparency=1226 -(636 + 589) ;v332.Visible=false;v332.Parent=v317;local v338=Instance.new("Frame");v338.Size=UDim2.new(0 -0 ,577 -297 ,0 + 0 ,102 + 178 );v338.Position=UDim2.new(1015.5 -(657 + 358) , -(370 -230),0 -0 ,1187 -(1151 + 36) );v338.BackgroundColor3=v27.Element;v338.Parent=v332;Instance.new("UICorner",v338).CornerRadius=UDim.new(0 + 0 ,2 + 4 );local v344=Instance.new("UIGridLayout",v338);v344.CellSize=UDim2.new(0 -0 ,35,1832 -(1552 + 280) ,869 -(64 + 770) );v344.CellPadding=UDim2.new(0,4 + 1 ,0 -0 ,1 + 4 );v344.HorizontalAlignment=Enum.HorizontalAlignment.Center;v344.VerticalAlignment=Enum.VerticalAlignment.Center;for v882=3, -(1246 -(157 + 1086)), -1 do for v1041= -(5 -2),13 -10 ,1 -0  do local v1042=0;local v1043;local v1044;while true do if (v1042==1) then v1044.Text=((v1041==(0 -0)) and (v882==(819 -(599 + 220))) and "P") or "" ;v1044.BackgroundColor3=v27.Sidebar;v1042=3 -1 ;end if (v1042==(1934 -(1813 + 118))) then Instance.new("UICorner",v1044).CornerRadius=UDim.new(0,3 + 1 );v1044.MouseButton1Click:Connect(function() if v75[v1043] then local v1622=0;while true do if (v1622==(1217 -(841 + 376))) then v75[v1043]=nil;v1044.BackgroundColor3=v27.Sidebar;break;end end else local v1623=0 -0 ;while true do if (v1623==(0 + 0)) then v75[v1043]={xOff=v1041,yOff=v882};v1044.BackgroundColor3=v27.Success;break;end end end end);break;end if (v1042==(5 -3)) then v1044.TextColor3=v27.Text;v1044.Parent=v338;v1042=862 -(464 + 395) ;end if (v1042==0) then v1043=v1041   .. ":"   .. v882 ;v1044=Instance.new("TextButton");v1042=1;end end end end v323.MouseButton1Click:Connect(function() local v883=0 -0 ;while true do if ((0 + 0)==v883) then v332.Visible= not v332.Visible;v317.Size=(v332.Visible and UDim2.new(838 -(467 + 370) ,0 -0 ,0 + 0 ,340)) or UDim2.new(3 -2 ,0 + 0 ,0 -0 ,560 -(150 + 370) ) ;break;end end end);local v350=v292(v304,"Auto PTHT (Premium)⭐",3);local v351=Instance.new("TextButton");v351.Size=UDim2.new(1283 -(74 + 1208) ,0 -0 ,0 -0 ,29 + 11 );v351.BackgroundColor3=v27.Accent;v351.Text="Open cx.planter";v351.TextColor3=v27.Text;v351.Font=Enum.Font.GothamBold;v351.TextSize=404 -(14 + 376) ;v351.LayoutOrder=1 -0 ;v351.Parent=v350;Instance.new("UICorner",v351).CornerRadius=UDim.new(0,6);local v361=Instance.new("TextLabel");v361.Size=UDim2.new(1 + 0 , -(9 + 1),0 + 0 ,380 -250 );v361.BackgroundTransparency=1 + 0 ;v361.Text="🤑 <b>Premium Perks:</b>\n• Premium Features: Unlock exclusive powerful tools like Auto PTHT Planter!\n• Early Access: Get all new script feature updates 6 hours ahead of free users!\n• Multi-Device Support: Enjoy increased HWID limits so you can use your key across multiple devices Up to 2 devices!.\n• Direct Support: Your purchase directly supports the Developer!";v361.TextColor3=v27.SubText;v361.Font=Enum.Font.Gotham;v361.TextSize=11;v361.RichText=true;v361.TextWrapped=true;v361.TextXAlignment=Enum.TextXAlignment.Left;v361.TextYAlignment=Enum.TextYAlignment.Top;v361.LayoutOrder=3;v361.Visible=false;v361.Parent=v350;local v377=Instance.new("TextButton");v377.Size=UDim2.new(79 -(23 + 55) ,0 -0 ,0 + 0 ,32 + 3 );v377.BackgroundColor3=v27.Sidebar;v377.Text="Get Premium Here (dsc.gg/cxscript)";v377.TextColor3=v27.SubText;v377.Font=Enum.Font.GothamMedium;v377.TextSize=18 -6 ;v377.LayoutOrder=1 + 1 ;v377.Visible=false;v377.Parent=v350;Instance.new("UICorner",v377).CornerRadius=UDim.new(901 -(652 + 249) ,10 -6 );if (v13=="Premium") then local v1045=1868 -(708 + 1160) ;while true do if (v1045==1) then v361.Visible=false;break;end if (v1045==(0 -0)) then v351.Visible=true;v377.Visible=false;v1045=1;end end else local v1046=0 -0 ;while true do if (0==v1046) then v351.Visible=false;v377.Visible=true;v1046=28 -(10 + 17) ;end if (v1046==1) then v361.Visible=true;break;end end end v351.MouseButton1Click:Connect(function() pcall(function() local v1047=0 + 0 ;while true do if (v1047==0) then loadstring(game:HttpGet("https://raw.githubusercontent.com/cxdoesitallsys/cxcaw/refs/heads/main/cxplanter.lua"))();v285("Launching cx.planter...",v27.Success);break;end end end);end);v377.MouseButton1Click:Connect(function() local v884=setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set) ;if v884 then local v1087=1732 -(1400 + 332) ;while true do if ((0 -0)==v1087) then pcall(function() v884("https://dsc.gg/cxscript");end);v285("Copied Discord Link!",v27.Success);break;end end end end);local function v388(v885,v886,v887) local v888=false;local v889=false;local v890=false;local v891=false;local v892={"bedrock","main door","portal","spawn","white door","cave door","lock"};if ( not v93 or (type(v93.GetTile)~="function")) then return false,false,false,false;end for v1048=0 -0 ,1392 -(360 + 1030)  do local v1049=0;local v1050;while true do if (0==v1049) then v1050=v93.GetTile(v885,v886,v1048);if v1050 then if (type(v1050)=="table") then v1050=v1050[1];end if (v1050 and (tostring(v1050)~="0") and (tostring(v1050)~="") and (tostring(v1050)~="nil")) then v888=true;if (v1048==(1 + 0)) then v890=true;end if ((v1048==(5 -3)) or (v1048==(0 -0))) then v891=true;end if (v887=="Nuker") then local v1800=1661 -(909 + 752) ;local v1801;while true do if (v1800==(1223 -(109 + 1114))) then v1801=tostring(v1050);if v90 then local v1967=0;while true do if (v1967==(0 -0)) then if (type(v90.GetName)=="function") then pcall(function() v1801=v90.GetName(v1050) or v1801 ;end);end if ((v1801==tostring(v1050)) and (type(v90.RequestItemData)=="function")) then pcall(function() local v2018=v90.RequestItemData(v1050);if (v2018 and v2018.Name) then v1801=v2018.Name;end end);end break;end end end v1800=1 + 0 ;end if (v1800==(243 -(6 + 236))) then v1801=string.lower(v1801);for v1954,v1955 in ipairs(v892) do if string.find(v1801,v1955) then v889=true;break;end end break;end end end end end break;end end end return v888,v889,v890,v891;end local v389=v292(v305,"WORLD NUKER",1 + 0 );local v390={};v300(v389,"AutoClear","Auto Clear World",1,function(v893) v68.AutoClear=v893;if v893 then table.clear(v390);else table.clear(v390);end end);v302(v389,"Pathfinding Speed",0 + 0 ,235 -135 ,87 -37 ,1135 -(1076 + 57) ,function(v895) v68.ClearSpeed=v895;end);v300(v389,"ClearCollect","Auto Collect",3,function(v897) v68.ClearCollect=v897;end);local v391=v292(v306,"MODS & VISUALS",1 + 0 );v300(v391,"ModZoom","Mod Zoom",690 -(579 + 110) ,function(v899) if v899 then v1.CameraMaxZoomDistance=1422 + 16578 ;else v1.CameraMaxZoomDistance=v76;end end);v300(v391,"HideName","Hide Name",2,function(v900) v68.HideName=v900;if ( not v900 and v1.Character) then local v1090=0 + 0 ;local v1091;while true do if (v1090==(1 + 0)) then for v1542,v1543 in pairs(v1.Character:GetDescendants()) do if (v1543:IsA("BillboardGui") and (v1543.Name:lower():find("name") or v1543.Name:lower():find("title") or v1543.Name:lower():find("tag"))) then v1543.Enabled=true;end end break;end if (v1090==(407 -(174 + 233))) then v1091=v1.Character:FindFirstChildOfClass("Humanoid");if v1091 then v1091.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.Viewer;end v1090=2 -1 ;end end end if v900 then v264.Text="";else v264.Text=(v274 and "@******") or (((v68.FakeModName and "@") or "")   .. v1.Name) ;end end);v300(v391,"FakeModName","Fake Mod Name",4 -1 ,function(v902) local v903=0 + 0 ;while true do if (v903==(1174 -(663 + 511))) then v68.FakeModName=v902;v73();break;end end end);v299(v391,"Name Color",4 + 0 ,function(v904) local v905=0;while true do if ((0 + 0)==v905) then v68.NameColor=v904;v73();break;end end end,{"Default","Red","Gold","Cyan"});v298(v391,"Spoof Flag",v68.SpoofFlag,5,function(v906) v68.SpoofFlag=v906;if v1.Character then v1.Character:SetAttribute("country",v906);end end);v300(v391,"RGBSkin","RGB Skin",13 -7 ,function(v908) v68.RGBSkin=v908;if ( not v908 and v1.Character) then v1.Character:SetAttribute("skin",v70);end end);v300(v391,"GodMode","God Mode",7);local v392=((v13=="Premium") and "Hide Watermark") or "Hide Watermark (Premium Only)" ;v300(v391,"HideWatermark",v392,19 -11 ,function(v910) if v53 then v53.Visible= not v910;end end,nil,true);local v393=v292(v306,"MOVEMENT",1 + 1 );v300(v393,"Fly","Fly Mode",1,function(v911) v68.Fly=v911;end);v302(v393,"Fly Speed",19 -9 ,150,22 + 8 ,2,function(v913) v68.FlySpeed=v913;end);v300(v393,"AntiRubberband","Anti-Rubberband",3,function(v915) v68.AntiRubberband=v915;end);v302(v393,"Walk Speed Boost",0 + 0 ,922 -(478 + 244) ,517 -(440 + 77) ,2 + 2 ,function(v917) v68.SpeedBoost=v917;end);v300(v393,"InfiniteJump","Infinite Jump",18 -13 );local v394=v292(v306,"QUICK DROP ENGINE",3);v300(v394,"AutoConfirmDrop","Auto-Confirm Drops",1557 -(655 + 901) );v302(v394,"Drop Amount",1 + 0 ,200,154 + 46 ,2,function(v919) v68.DropAmount=v919;end);local v395=v292(v306,"SAFETY & WHITELIST",3 + 1 );v300(v395,"PlayerDetection","Player Detection",1);local v396=Instance.new("TextButton");v396.Size=UDim2.new(3 -2 ,0,1445 -(695 + 750) ,136 -96 );v396.BackgroundColor3=v27.Element;v396.Text="Safety Action: Stop Auto";v396.TextColor3=v27.Text;v396.Font=Enum.Font.GothamMedium;v396.TextScaled=true;v396.LayoutOrder=2;v396.Parent=v395;Instance.new("UICorner",v396).CornerRadius=UDim.new(0 -0 ,24 -18 );local v406=Instance.new("UIPadding",v396);v406.PaddingTop=UDim.new(0,359 -(285 + 66) );v406.PaddingBottom=UDim.new(0,18 -10 );v406.PaddingLeft=UDim.new(1310 -(682 + 628) ,2 + 8 );v406.PaddingRight=UDim.new(0,309 -(176 + 123) );v396.MouseButton1Click:Connect(function() if (v68.SafetyAction=="Stop") then v68.SafetyAction="Disconnect";v396.Text="Safety Action: Disconnect";v396.TextColor3=v27.Danger;else v68.SafetyAction="Stop";v396.Text="Safety Action: Stop Auto";v396.TextColor3=v27.Text;end end);v300(v395,"AntiAFK","Anti-AFK",2 + 1 );local v411=Instance.new("Frame");v411.Size=UDim2.new(1 + 0 ,0,0,150);v411.BackgroundColor3=v27.Element;v411.LayoutOrder=4;v411.Parent=v395;Instance.new("UICorner",v411).CornerRadius=UDim.new(269 -(239 + 30) ,2 + 4 );local v417=Instance.new("TextLabel");v417.Text="Whitelist";v417.Size=UDim2.new(1, -20,0,29 + 1 );v417.Position=UDim2.new(0,17 -7 ,0 -0 ,315 -(306 + 9) );v417.BackgroundTransparency=3 -2 ;v417.Font=Enum.Font.GothamBold;v417.TextColor3=v27.SubText;v417.TextSize=3 + 10 ;v417.TextXAlignment=Enum.TextXAlignment.Left;v417.Parent=v411;local v427=Instance.new("ScrollingFrame");v427.Size=UDim2.new(1 + 0 , -(5 + 5),2 -1 , -(1410 -(1140 + 235)));v427.Position=UDim2.new(0 + 0 ,5,0 + 0 ,35);v427.BackgroundTransparency=1 + 0 ;v427.Parent=v411;local v432=Instance.new("UIListLayout",v427);v432.Padding=UDim.new(52 -(33 + 19) ,2 + 2 );local function v434() pcall(function() local v1051=0 -0 ;local v1052;while true do if ((1 + 0)==v1051) then for v1385,v1386 in pairs(v0:GetPlayers()) do if ( not v1386 or  not v1386.UserId) then continue;end local v1387=Instance.new("TextButton");v1387.Size=UDim2.new(1 -0 , -(4 + 0),689 -(586 + 103) ,3 + 22 );v1387.BackgroundColor3=v27.Sidebar;v1387.Text="  "   .. v1386.Name ;v1387.TextColor3=(v68.Whitelist[v1386.UserId] and v27.Success) or v27.Danger ;v1387.Font=Enum.Font.GothamMedium;v1387.TextSize=13;v1387.TextXAlignment=Enum.TextXAlignment.Left;v1387.Parent=v427;Instance.new("UICorner",v1387).CornerRadius=UDim.new(0 -0 ,1492 -(1309 + 179) );v1052=v1052 + (1 -0) ;if (v1386==v1) then local v1626=0;while true do if (v1626==(0 + 0)) then v1387.TextColor3=v27.Accent;v1387.Text=v1387.Text   .. " (YOU)" ;break;end end else v1387.MouseButton1Click:Connect(function() if v68.Whitelist[v1386.UserId] then v68.Whitelist[v1386.UserId]=nil;else v68.Whitelist[v1386.UserId]=true;end v434();end);end end v427.CanvasSize=UDim2.new(0,0 -0 ,0 + 0 ,v1052 * 29 );break;end if (v1051==(0 -0)) then for v1400,v1401 in pairs(v427:GetChildren()) do if v1401:IsA("TextButton") then v1401:Destroy();end end v1052=0;v1051=1 -0 ;end end end);end v0.PlayerAdded:Connect(v434);v0.PlayerRemoving:Connect(v434);v434();task.spawn(function() while v77 do local v1053=609 -(295 + 314) ;while true do if (v1053==(0 -0)) then if v68.PlayerDetection then local v1544=false;for v1627,v1628 in pairs(v0:GetPlayers()) do if ((v1628~=v1) and  not v68.Whitelist[v1628.UserId]) then v1544=true;break;end end if v1544 then if (v68.SafetyAction=="Disconnect") then v1:Kick("cx.farm | Player Detected! Disconnecting for safety.");v77=false;elseif (v68.SafetyAction=="Stop") then v80=true;end else v80=false;end elseif (v80 and  not v68.PlayerDetection) then v80=false;end task.wait(1963 -(1300 + 662) );break;end end end end);local v435=v292(v311,"CONFIGURATION MANAGEMENT",1);local v436="MyConfig";v298(v435,"Config Name","MyConfig",1,function(v921) v436=v921;end);local v437=Instance.new("TextButton");v437.Size=UDim2.new(1,0,0,125 -85 );v437.BackgroundColor3=v27.Accent;v437.Text="Save Config";v437.TextColor3=v27.Text;v437.Font=Enum.Font.GothamBold;v437.TextSize=1769 -(1178 + 577) ;v437.LayoutOrder=2 + 0 ;v437.Parent=v435;Instance.new("UICorner",v437).CornerRadius=UDim.new(0,6);v437.MouseButton1Click:Connect(function() local v922={};for v1054,v1055 in pairs(v68) do if ((type(v1055)=="boolean") or (type(v1055)=="number") or (type(v1055)=="string")) then v922[v1054]=v1055;elseif ((type(v1055)=="table") and (v1054=="Keybinds")) then local v1402=0 -0 ;while true do if ((1405 -(851 + 554))==v1402) then v922[v1054]={};for v1758,v1759 in pairs(v1055) do v922[v1054][v1758]=v1759.Name;end break;end end end end local v923=v7:JSONEncode(v922);pcall(function() if (type(writefile)=="function") then writefile(v293   .. "/"   .. v436   .. ".json" ,v923);v285("Saved "   .. v436   .. ".json!" ,v27.Success);else v285("Executor does not support file saving.",v27.Danger);end end);end);local v447="";local v448=Instance.new("Frame");v448.Size=UDim2.new(1,0 + 0 ,0,110 -70 );v448.BackgroundColor3=v27.Sidebar;v448.BackgroundTransparency=1 -0 ;v448.LayoutOrder=3;v448.ZIndex=307 -(115 + 187) ;v448.Parent=v435;local v455=Instance.new("TextButton");v455.Size=UDim2.new(1 + 0 ,0 + 0 ,0 -0 ,40);v455.BackgroundColor3=v27.Element;v455.Text="Select Config: None";v455.TextColor3=v27.Text;v455.Font=Enum.Font.GothamMedium;v455.TextSize=1175 -(160 + 1001) ;v455.ZIndex=5 + 0 ;v455.Parent=v448;Instance.new("UICorner",v455).CornerRadius=UDim.new(0,5 + 1 );local v465=Instance.new("ScrollingFrame");v465.Size=UDim2.new(1 -0 ,358 -(237 + 121) ,897 -(525 + 372) ,0 -0 );v465.Position=UDim2.new(0 -0 ,142 -(96 + 46) ,777 -(643 + 134) ,17 + 28 );v465.BackgroundTransparency=2 -1 ;v465.ScrollBarThickness=22 -16 ;v465.AutomaticCanvasSize=Enum.AutomaticSize.Y;v465.ScrollBarImageColor3=v27.Accent;v465.Visible=false;v465.ZIndex=10 + 0 ;v465.Parent=v448;local v476=Instance.new("UIListLayout",v465);v476.Padding=UDim.new(0,4);local v478=false;v455.MouseButton1Click:Connect(function() v478= not v478;if v478 then for v1237,v1238 in pairs(v465:GetChildren()) do if (v1238:IsA("TextButton") or v1238:IsA("TextLabel")) then v1238:Destroy();end end local v1103=v294();local v1104=0 -0 ;for v1239,v1240 in ipairs(v1103) do local v1241=0 -0 ;local v1242;while true do if (v1241==2) then v1242.ZIndex=729 -(316 + 403) ;v1242.Parent=v465;Instance.new("UICorner",v1242).CornerRadius=UDim.new(0,3 + 1 );v1242.MouseButton1Click:Connect(function() local v1629=0;while true do if (v1629==(2 -1)) then v448.Size=UDim2.new(1 + 0 ,0 -0 ,0 + 0 ,40);if (v1240~="No Configs Found") then local v1885=0 + 0 ;while true do if (v1885==(0 -0)) then v447=v1240;v455.Text="Select Config: "   .. v1240 ;break;end end end break;end if ((0 -0)==v1629) then v478=false;v465.Visible=false;v1629=1 -0 ;end end end);v1241=1 + 2 ;end if (v1241==(5 -2)) then v1104=v1104 + 1 + 0 ;break;end if (v1241==0) then v1242=Instance.new("TextButton");v1242.Size=UDim2.new(1, -10,0 -0 ,47 -(12 + 5) );v1242.BackgroundColor3=v27.Sidebar;v1242.Text="  "   .. v1240 ;v1241=3 -2 ;end if (v1241==(1 -0)) then v1242.TextColor3=v27.SubText;v1242.TextXAlignment=Enum.TextXAlignment.Left;v1242.Font=Enum.Font.Gotham;v1242.TextSize=27 -14 ;v1241=4 -2 ;end end end local v1105=math.min(150,v1104 * (7 + 27) );v465.Size=UDim2.new(1,1973 -(1656 + 317) ,0 + 0 ,v1105);v448.Size=UDim2.new(1,0,0 + 0 ,(119 -74) + v1105 );v465.Visible=true;else local v1109=0;while true do if (v1109==0) then v465.Visible=false;v448.Size=UDim2.new(4 -3 ,354 -(5 + 349) ,0 -0 ,40);break;end end end end);local v479=Instance.new("TextButton");v479.Size=UDim2.new(1,0,0,1311 -(266 + 1005) );v479.BackgroundColor3=v27.Element;v479.Text="Import / Load Config";v479.TextColor3=v27.Text;v479.Font=Enum.Font.GothamBold;v479.TextSize=14;v479.LayoutOrder=3 + 1 ;v479.Parent=v435;Instance.new("UICorner",v479).CornerRadius=UDim.new(0 -0 ,7 -1 );v479.MouseButton1Click:Connect(function() if (v447~="") then pcall(function() if (type(readfile)=="function") then local v1405=readfile(v293   .. "/"   .. v447   .. ".json" );local v1406,v1407=pcall(function() return v7:JSONDecode(v1405);end);if (v1406 and (type(v1407)=="table")) then for v1712,v1713 in pairs(v1407) do if ((v1712=="Keybinds") and (type(v1713)=="table")) then for v1844,v1845 in pairs(v1713) do pcall(function() v68.Keybinds[v1844]=Enum.KeyCode[v1845];end);end elseif ((v68[v1712]~=nil) and (v1712~="Whitelist") and (v1712~="LockedOrigin")) then v68[v1712]=v1713;if v84[v1712] then pcall(function() v84[v1712](v1713);end);end end end v285("Config loaded! Settings applied.",v27.Success);else v285("Invalid config data.",v27.Danger);end else v285("Executor does not support file reading.",v27.Danger);end end);else v285("Please select a config from the dropdown first.",v27.Danger);end end);local v489=v292(v307,"WORLD STATISTICS",1);local v490=Instance.new("TextButton");v490.Size=UDim2.new(1697 -(561 + 1135) ,0 -0 ,0 -0 ,35);v490.BackgroundColor3=v27.Sidebar;v490.Text="Scan Blocks & Drops";v490.TextColor3=v27.Text;v490.Font=Enum.Font.GothamMedium;v490.TextSize=1079 -(507 + 559) ;v490.LayoutOrder=9 -5 ;v490.Parent=v489;Instance.new("UICorner",v490).CornerRadius=UDim.new(0 -0 ,394 -(212 + 176) );local v500=Instance.new("Frame",v489);v500.Size=UDim2.new(1,905 -(250 + 655) ,0 -0 ,260);v500.BackgroundTransparency=1;v500.LayoutOrder=5;local v504=Instance.new("Frame",v500);v504.Size=UDim2.new(0.5 -0 , -(5 -1),1956 -(1869 + 87) ,763 -543 );v504.Position=UDim2.new(0,1901 -(484 + 1417) ,0 -0 ,0 -0 );v504.BackgroundColor3=v27.Sidebar;Instance.new("UICorner",v504).CornerRadius=UDim.new(773 -(48 + 725) ,6);local v509=Instance.new("Frame",v500);v509.Size=UDim2.new(0.5, -(5 -1),0 -0 ,128 + 92 );v509.Position=UDim2.new(0.5,4,0 -0 ,0 + 0 );v509.BackgroundColor3=v27.Sidebar;Instance.new("UICorner",v509).CornerRadius=UDim.new(0 + 0 ,859 -(152 + 701) );local v514=Instance.new("Frame",v500);v514.Size=UDim2.new(1312 -(430 + 881) ,0,0 + 0 ,930 -(557 + 338) );v514.Position=UDim2.new(0 + 0 ,0,0,634 -409 );v514.BackgroundColor3=v27.Sidebar;Instance.new("UICorner",v514).CornerRadius=UDim.new(0,20 -14 );local v519=Instance.new("TextLabel",v504);v519.Size=UDim2.new(2 -1 , -10,0 -0 ,826 -(499 + 302) );v519.Position=UDim2.new(866 -(39 + 827) ,13 -8 ,0 -0 ,19 -14 );v519.BackgroundTransparency=1 -0 ;v519.Text="Dropped Items";v519.TextColor3=v27.Text;v519.Font=Enum.Font.GothamBold;v519.TextSize=13;v519.TextXAlignment=Enum.TextXAlignment.Left;local v528=Instance.new("TextLabel",v509);v528.Size=UDim2.new(1 + 0 , -(29 -19),0 + 0 ,39 -14 );v528.Position=UDim2.new(104 -(103 + 1) ,559 -(475 + 79) ,0 -0 ,5);v528.BackgroundTransparency=3 -2 ;v528.Text="World Blocks";v528.TextColor3=v27.Text;v528.Font=Enum.Font.GothamBold;v528.TextSize=2 + 11 ;v528.TextXAlignment=Enum.TextXAlignment.Left;local v537=Instance.new("ScrollingFrame",v504);v537.Size=UDim2.new(1,0 + 0 ,1504 -(1395 + 108) , -30);v537.Position=UDim2.new(0 -0 ,1204 -(7 + 1197) ,0 + 0 ,30);v537.BackgroundTransparency=1 + 0 ;v537.ScrollBarThickness=4;v537.ScrollBarImageColor3=v27.Accent;local v543=Instance.new("UIListLayout",v537);v543.Padding=UDim.new(319 -(27 + 292) ,5 -3 );local v545=Instance.new("ScrollingFrame",v509);v545.Size=UDim2.new(1 -0 ,0,4 -3 , -(59 -29));v545.Position=UDim2.new(0 -0 ,0,139 -(43 + 96) ,30);v545.BackgroundTransparency=4 -3 ;v545.ScrollBarThickness=4;v545.ScrollBarImageColor3=v27.Accent;local v551=Instance.new("UIListLayout",v545);v551.Padding=UDim.new(0 -0 ,2 + 0 );local v553=Instance.new("TextLabel",v514);v553.Size=UDim2.new(1 + 0 ,0 -0 ,1 + 0 ,0 -0 );v553.BackgroundTransparency=1 + 0 ;v553.Text="💎 Gems in World: 0";v553.TextColor3=v27.Text;v553.Font=Enum.Font.GothamBold;v553.TextSize=13;local function v560(v924,v925,v926) local v927=Instance.new("TextLabel");v927.Size=UDim2.new(1 + 0 , -10,0,18);v927.Position=UDim2.new(1751 -(1414 + 337) ,1945 -(1642 + 298) ,0 -0 ,0);v927.BackgroundTransparency=1;v927.Text=v925;v927.TextColor3=v926;v927.Font=Enum.Font.Gotham;v927.TextSize=34 -22 ;v927.TextXAlignment=Enum.TextXAlignment.Left;v927.Parent=v924;end v490.MouseButton1Click:Connect(function() pcall(function() local v1056=0 -0 ;local v1057;local v1058;local v1059;local v1060;local v1061;local v1062;local v1063;local v1064;local v1065;while true do if (1==v1056) then v1058={};v1059=workspace:FindFirstChild("Drops");if v1059 then for v1630,v1631 in ipairs(v1059:GetChildren()) do local v1632=0;local v1633;local v1634;while true do if (v1632==(1 + 0)) then if (v1634 and (tostring(v1634)~="0") and (tostring(v1634)~="") and (tostring(v1634)~="nil")) then local v1889=0 + 0 ;local v1890;while true do if (v1889==(972 -(357 + 615))) then v1890=tostring(v1634);if (v90 and (type(v90.GetName)=="function")) then pcall(function() v1890=v90.GetName(v1634) or v1890 ;end);end v1889=1 + 0 ;end if (v1889==(2 -1)) then v1058[v1890]=(v1058[v1890] or (0 + 0)) + v1633 ;break;end end elseif (v1631.Name~="Drops") then local v1956=0;local v1957;while true do if (v1956==(0 -0)) then v1957=v1631.Name;if (v90 and (type(v90.GetName)=="function")) then pcall(function() v1957=v90.GetName(v1631.Name) or v1957 ;end);end v1956=1;end if (v1956==(1 + 0)) then v1058[v1957]=(v1058[v1957] or (0 + 0)) + 1 + 0 ;break;end end end break;end if (v1632==(1301 -(384 + 917))) then v1633=tonumber(v1631:GetAttribute("amount")) or (698 -(128 + 569)) ;v1634=v1631:GetAttribute("id");v1632=1544 -(1407 + 136) ;end end end end v1060={};v1056=2;end if (v1056==(1891 -(687 + 1200))) then v545.CanvasSize=UDim2.new(1710 -(556 + 1154) ,0 -0 ,0,v1064);v1065="💎 Gems in World: "   .. v1061 ;if (v1061>(95 -(9 + 86))) then local v1559=421 -(275 + 146) ;while true do if (v1559==0) then v1065=v1065   .. " (" ;for v1809,v1810 in pairs(v1060) do v1065=v1065   .. v1810   .. "x "   .. v1809   .. ", " ;end v1559=1 + 0 ;end if ((65 -(29 + 35))==v1559) then v1065=v1065:sub(4 -3 , -(8 -5))   .. ")" ;break;end end end v553.Text=v1065;break;end if ((0 -0)==v1056) then for v1408,v1409 in pairs(v537:GetChildren()) do if v1409:IsA("TextLabel") then v1409:Destroy();end end for v1410,v1411 in pairs(v545:GetChildren()) do if v1411:IsA("TextLabel") then v1411:Destroy();end end v1057={};if (v93 and (type(v93.GetTile)=="function")) then for v1635=0 + 0 ,1112 -(53 + 959)  do local v1636=0;while true do if (v1636==0) then if ((v1635%(418 -(312 + 96)))==(0 -0)) then task.wait();end for v1846=0,345 -(147 + 138)  do for v1891=899 -(813 + 86) ,2 + 0  do local v1892=v93.GetTile(v1635,v1846,v1891);if v1892 then local v1958=((type(v1892)=="table") and v1892[1]) or v1892 ;if (v1958 and (tostring(v1958)~="0") and (tostring(v1958)~="") and (tostring(v1958)~="nil")) then local v1981=tostring(v1958);if (v90 and (type(v90.GetName)=="function")) then pcall(function() v1981=v90.GetName(v1958) or v1981 ;end);end v1057[v1981]=(v1057[v1981] or 0) + (1 -0) ;break;end end end end break;end end end end v1056=493 -(18 + 474) ;end if (v1056==(1 + 1)) then v1061=0;v1062=workspace:FindFirstChild("Gems");if v1062 then for v1637,v1638 in ipairs(v1062:GetChildren()) do local v1639=v1638.Name;v1060[v1639]=(v1060[v1639] or 0) + 1 ;v1061=v1061 + 1 ;end end v1063=0 -0 ;v1056=1089 -(860 + 226) ;end if (v1056==3) then for v1412,v1413 in pairs(v1058) do v560(v537,string.format("%dx %s",v1413,v1412),v27.SubText);v1063=v1063 + (323 -(121 + 182)) ;end v537.CanvasSize=UDim2.new(0 + 0 ,1240 -(988 + 252) ,0 + 0 ,v1063);v1064=0 + 0 ;for v1414,v1415 in pairs(v1057) do v560(v545,string.format("%dx %s",v1415,v1414),v27.SubText);v1064=v1064 + 20 ;end v1056=4;end end end);end);local v561=v292(v308,"INTERNAL INVENTORY",1971 -(49 + 1921) );local v562=Instance.new("TextButton");v562.Size=UDim2.new(1,890 -(223 + 667) ,52 -(51 + 1) ,60 -25 );v562.BackgroundColor3=v27.Accent;v562.Text="Refresh Inventory";v562.TextColor3=v27.Text;v562.Font=Enum.Font.GothamBold;v562.TextSize=14;v562.LayoutOrder=1 -0 ;v562.Parent=v561;Instance.new("UICorner",v562).CornerRadius=UDim.new(1125 -(146 + 979) ,2 + 4 );local v572=Instance.new("ScrollingFrame");v572.Size=UDim2.new(1,605 -(311 + 294) ,0 -0 ,300);v572.BackgroundTransparency=1 + 0 ;v572.LayoutOrder=2;v572.Parent=v561;local v577=Instance.new("UIListLayout",v572);v577.Padding=UDim.new(0,4);v577:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() v572.CanvasSize=UDim2.new(1443 -(496 + 947) ,1358 -(1233 + 125) ,0 + 0 ,v577.AbsoluteContentSize.Y + 9 + 1 );end);local function v579() pcall(function() for v1110,v1111 in pairs(v572:GetChildren()) do if (v1111:IsA("Frame") or v1111:IsA("TextLabel")) then v1111:Destroy();end end local v1066=v296();local v1067=false;for v1112,v1113 in pairs(v1066) do local v1114=0 + 0 ;local v1115;local v1116;local v1117;local v1118;local v1119;while true do if (v1114==(1651 -(963 + 682))) then v1118.Text="x"   .. v1119 ;v1118.TextColor3=v27.Accent;v1118.TextXAlignment=Enum.TextXAlignment.Right;v1118.Font=Enum.Font.GothamBold;v1114=6 + 1 ;end if (v1114==(1504 -(504 + 1000))) then v1067=true;v1115=Instance.new("Frame");v1115.Size=UDim2.new(1,0 + 0 ,0 + 0 ,3 + 27 );v1115.BackgroundColor3=v27.Element;v1114=1;end if (v1114==(5 -1)) then v1117=Instance.new("UITextSizeConstraint",v1116);v1117.MaxTextSize=12 + 2 ;v1117.MinTextSize=5 + 3 ;v1118=Instance.new("TextLabel",v1115);v1114=187 -(156 + 26) ;end if (v1114==(2 + 0)) then v1116.Position=UDim2.new(0,10,0,0 -0 );v1116.BackgroundTransparency=165 -(149 + 15) ;v1116.Text=v1113.Name;v1116.TextColor3=v27.Text;v1114=3;end if (v1114==5) then v1118.Size=UDim2.new(960.25 -(890 + 70) , -(132 -(39 + 78)),483 -(14 + 468) ,0);v1118.Position=UDim2.new(0.75,5,0 -0 ,0 -0 );v1118.BackgroundTransparency=1 + 0 ;v1119=((type(v1113.Amount)=="number") and tostring(v1113.Amount)) or "1" ;v1114=4 + 2 ;end if (v1114==(2 + 5)) then v1118.TextSize=6 + 6 ;break;end if (v1114==(1 + 0)) then v1115.Parent=v572;Instance.new("UICorner",v1115).CornerRadius=UDim.new(0,7 -3 );v1116=Instance.new("TextLabel",v1115);v1116.Size=UDim2.new(0.7 + 0 , -10,3 -2 ,0 + 0 );v1114=2;end if (v1114==(54 -(12 + 39))) then v1116.TextXAlignment=Enum.TextXAlignment.Left;v1116.Font=Enum.Font.GothamMedium;v1116.TextSize=14 + 0 ;v1116.TextScaled=true;v1114=4;end end end if  not v1067 then local v1243=0 -0 ;local v1244;while true do if (v1243==(6 -4)) then v1244.BackgroundTransparency=1 + 0 ;v1244.Font=Enum.Font.GothamBold;v1243=2 + 1 ;end if ((2 -1)==v1243) then v1244.Size=UDim2.new(1,0 + 0 ,0,217 -172 );v1244.TextColor3=v27.Danger;v1243=1712 -(1596 + 114) ;end if (v1243==3) then v1244.TextSize=12;break;end if (v1243==0) then v1244=Instance.new("TextLabel",v572);v1244.Text="Inventory Empty?\n(Try placing 1 block manually first)";v1243=2 -1 ;end end end end);end v562.MouseButton1Click:Connect(v579);local v580=v292(v309,"MULTI-ACCOUNT OPTIMIZATION",714 -(164 + 549) );local v581={};v300(v580,"Disable3D","Disable 3D Rendering",1439 -(1059 + 379) ,function(v940) if (type(set3drenderingenabled)=="function") then pcall(function() set3drenderingenabled( not v940);end);else pcall(function() v3:Set3dRenderingEnabled( not v940);end);end end);v300(v580,"LimitFPS","Limit FPS to 30",2,function(v941) if (type(setfpscap)=="function") then if v941 then setfpscap(37 -7 );else setfpscap(518 + 481 );end end end);v300(v580,"LowGFX","Low GFX",3,function(v942) pcall(function() if v942 then local v1245=0 + 0 ;local v1246;while true do if (v1245==(392 -(145 + 247))) then settings().Rendering.QualityLevel=Enum.QualityLevel.Level01;v1246=game:GetService("Lighting");v1245=1 + 0 ;end if (v1245==(1 + 1)) then for v1641,v1642 in pairs(v1246:GetChildren()) do if (v1642:IsA("PostEffect") or v1642:IsA("BlurEffect") or v1642:IsA("SunRaysEffect") or v1642:IsA("ColorCorrectionEffect") or v1642:IsA("BloomEffect") or v1642:IsA("DepthOfFieldEffect")) then v1642.Enabled=false;end end task.spawn(function() local v1643=0 -0 ;for v1714,v1715 in pairs(workspace:GetDescendants()) do local v1716=0 + 0 ;while true do if (v1716==(0 + 0)) then if v1715:IsA("BasePart") then v1715.CastShadow=false;end v1643=v1643 + (1 -0) ;v1716=721 -(254 + 466) ;end if (v1716==(561 -(544 + 16))) then if ((v1643%(3178 -2178))==(628 -(294 + 334))) then task.wait();end break;end end end end);break;end if (v1245==(254 -(236 + 17))) then v1246.GlobalShadows=false;pcall(function() v1246.Technology=Enum.Technology.Compatibility;end);v1245=1 + 1 ;end end else local v1247=0 + 0 ;while true do if (v1247==(3 -2)) then for v1646,v1647 in pairs(game:GetService("Lighting"):GetChildren()) do if (v1647:IsA("PostEffect") or v1647:IsA("BlurEffect") or v1647:IsA("SunRaysEffect") or v1647:IsA("ColorCorrectionEffect") or v1647:IsA("BloomEffect") or v1647:IsA("DepthOfFieldEffect")) then v1647.Enabled=true;end end task.spawn(function() local v1648=0;local v1649;while true do if (v1648==0) then v1649=0 -0 ;for v1847,v1848 in pairs(workspace:GetDescendants()) do local v1849=0;while true do if (v1849==(1 + 0)) then if ((v1649%(824 + 176))==0) then task.wait();end break;end if (v1849==(794 -(413 + 381))) then if v1848:IsA("BasePart") then v1848.CastShadow=true;end v1649=v1649 + 1 + 0 ;v1849=1;end end end break;end end end);break;end if (v1247==0) then settings().Rendering.QualityLevel=Enum.QualityLevel.Automatic;game:GetService("Lighting").GlobalShadows=true;v1247=1 -0 ;end end end end);end);local function v582(v943,v944) if (v943.Name:lower()=="face") then return true;end if (v943:IsA("Decal") and v943.Parent and (v943.Parent.Name=="Head")) then return true;end local v945=v944:FindFirstChild("Face");if (v945 and v943:IsDescendantOf(v945)) then return true;end return false;end v300(v580,"HidePlayers","Hide Other Players",9 -5 ,function(v946) v68.HidePlayers=v946;if  not v946 then pcall(function() for v1319,v1320 in pairs(v0:GetPlayers()) do if ((v1320~=v1) and v1320.Character) then for v1650,v1651 in pairs(v1320.Character:GetDescendants()) do if (v1651:IsA("BasePart") or v1651:IsA("Decal")) then if v581[v1651] then v1651.Transparency=v581[v1651];else v1651.Transparency=1970 -(582 + 1388) ;end end end end end end);end end);v300(v580,"DisableParallax","Disable Parallax Background",5,function(v948) pcall(function() local v1068=workspace:FindFirstChild("ParallaxPlane");if v1068 then v1068.Transparency=(v948 and (1 -0)) or (0 + 0) ;end end);end);v300(v580,"DisableTrails","Disable Game Effects",6,function(v949) v68.DisableTrails=v949;end);local function v583(v951) if (v951:IsA("Decal") and ((v951.Name=="face") or (v951.Name=="Face"))) then return true;end if (v951.Parent and (v951.Parent.Name=="Head")) then return true;end return false;end v68.ClearTextures=false;v300(v580,"ClearTextures","Clear Textures & Particles",371 -(326 + 38) ,function(v952) local v953=0 -0 ;while true do if ((0 -0)==v953) then v68.ClearTextures=v952;pcall(function() task.spawn(function() local v1447=0;for v1574,v1575 in pairs(workspace:GetDescendants()) do v1447=v1447 + (621 -(47 + 573)) ;if ((v1447%(353 + 647))==(0 -0)) then task.wait();end if (v1575:IsA("ParticleEmitter") or v1575:IsA("Trail") or v1575:IsA("Sparkles")) then v1575.Enabled= not v952;elseif (v1575:IsA("Decal") or v1575:IsA("Texture")) then local v1811=v1575:FindFirstAncestorOfClass("Model");local v1812=v1811 and v1811:FindFirstChild("Humanoid") ;if ( not v1812 and  not v583(v1575)) then if v952 then if  not v581[v1575] then v581[v1575]=v1575.Transparency;end v1575.Transparency=1 -0 ;elseif v581[v1575] then v1575.Transparency=v581[v1575];end end end end end);end);break;end end end);workspace.DescendantAdded:Connect(function(v954) if (v68.ClearTextures and v77) then if (v954:IsA("ParticleEmitter") or v954:IsA("Trail") or v954:IsA("Sparkles")) then v954.Enabled=false;elseif (v954:IsA("Decal") or v954:IsA("Texture")) then task.delay(0.1,function() local v1652=v954:FindFirstAncestorOfClass("Model");local v1653=v1652 and v1652:FindFirstChild("Humanoid") ;if ( not v1653 and  not v583(v954)) then v581[v954]=v954.Transparency;v954.Transparency=1665 -(1269 + 395) ;end end);end end end);task.spawn(function() while v77 do local v1069=492 -(76 + 416) ;while true do if (v1069==(443 -(319 + 124))) then if (v68.HidePlayers or v68.DisableTrails or v68.HideName) then if v68.HidePlayers then pcall(function() for v1813,v1814 in pairs(v0:GetPlayers()) do if ((v1814~=v1) and v1814.Character) then for v1929,v1930 in pairs(v1814.Character:GetDescendants()) do if ((v1930.Name~="HumanoidRootPart") and  not v582(v1930,v1814.Character) and (v1930:IsA("BasePart") or v1930:IsA("Decal"))) then local v1970=0 -0 ;while true do if ((1007 -(564 + 443))==v1970) then if  not v581[v1930] then v581[v1930]=v1930.Transparency;end v1930.Transparency=2 -1 ;break;end end end end end end end);end if v68.DisableTrails then pcall(function() for v1815,v1816 in pairs(workspace:GetChildren()) do if ((v1816.Name=="TradeTrail") or (v1816.Name=="BezierProjectile")) then v1816:Destroy();end end end);end if (v68.HideName and v1.Character) then pcall(function() local v1766=v1.Character;local v1767=v1766:FindFirstChildOfClass("Humanoid");if (v1767 and (v1767.DisplayDistanceType~=Enum.HumanoidDisplayDistanceType.None)) then v1767.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.None;end local v1768=v1766:FindFirstChild("HumanoidRootPart");if v1768 then local v1855=0;local v1856;while true do if (v1855==(458 -(337 + 121))) then v1856=v1768:FindFirstChild("NameTagUI");if v1856 then v1856.Enabled=false;end break;end end end for v1817,v1818 in pairs(v1766:GetDescendants()) do if (v1818:IsA("BillboardGui") and (v1818.Name:lower():find("name") or v1818.Name:lower():find("title") or v1818.Name:lower():find("tag"))) then v1818.Enabled=false;end end end);end end task.wait(2 -1 );break;end end end end);local v585=v292(v310,"BINDINGS",3 -2 );v303(v585,"AutoPunch","Auto Punch",v68.Keybinds.AutoPunch,1912 -(1261 + 650) );v303(v585,"AutoPlace","Auto Place",v68.Keybinds.AutoPlace,2);v303(v585,"ModZoom","Mod Zoom",v68.Keybinds.ModZoom,2 + 1 );v303(v585,"Fly","Fly Mode",v68.Keybinds.Fly,4);v303(v585,"ToggleUI","Toggle GUI",v68.Keybinds.ToggleUI,7 -2 );v303(v585,"GodMode","God Mode",v68.Keybinds.GodMode,1823 -(772 + 1045) );v303(v585,"InfiniteJump","Infinite Jump",v68.Keybinds.InfiniteJump,1 + 6 );local v586=v292(v312,"INFO & CREDITS",145 -(102 + 42) );local v587=Instance.new("Frame");v587.Size=UDim2.new(1,0,0,2084 -(1524 + 320) );v587.BackgroundColor3=v27.Element;v587.LayoutOrder=1271 -(1049 + 221) ;v587.Parent=v586;Instance.new("UICorner",v587).CornerRadius=UDim.new(0,6);local v593=Instance.new("TextLabel");v593.Text="cx.farm V3\n\n[ SYSTEM INFO ]\nExecutor: "   .. v14   .. " - "   .. v19   .. "\nSUNC Score: "   .. v17   .. "%\nStatus: "   .. v18   .. "\nGameID: 91833329899022\nPlaceID: 114357342940060\n\n[ PATCHNOTES - V3 ]\n* NEW: 7x7 Auto Farm Grid Support.\n* NEW: Auto PTHT Planter Integration.\n* OPTIMIZED: Strict Sequence Farming Place -> Break -> Collect.\n* OPTIMIZED: Eliminated Script Injection Freezes & C-Stack crashes.\n* FIXED: UI Overflow and Clipping bugs.\n* OPTIMIZED: Low GFX Performance Mode." ;v593.Size=UDim2.new(157 -(18 + 138) , -20,2 -1 , -20);v593.Position=UDim2.new(1102 -(67 + 1035) ,358 -(136 + 212) ,0 -0 ,10);v593.BackgroundTransparency=1 + 0 ;v593.TextColor3=v27.SubText;v593.Font=Enum.Font.Gotham;v593.TextSize=14;v593.TextWrapped=true;v593.TextYAlignment=Enum.TextYAlignment.Top;v593.TextXAlignment=Enum.TextXAlignment.Left;v593.Parent=v587;v299(v586,"UI Theme",2,function(v955) v286(v955);end,{"Dark Default","Midnight","Crimson","Matrix"});local v605=Instance.new("TextButton",v586);v605.Text="Join Discord Server";v605.Size=UDim2.new(1,0 + 0 ,0,40);v605.BackgroundColor3=v27.Accent;v605.TextColor3=v27.Text;v605.Font=Enum.Font.GothamBold;v605.TextSize=14;v605.LayoutOrder=1058 -(331 + 724) ;Instance.new("UICorner",v605).CornerRadius=UDim.new(0 + 0 ,650 -(269 + 375) );v605.MouseButton1Click:Connect(function() local v956=0;local v957;while true do if ((725 -(267 + 458))==v956) then v957=setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set) ;if v957 then local v1448=0 + 0 ;while true do if (v1448==(0 -0)) then pcall(function() v957("https://dsc.gg/cxscript");end);v285("Copied Discord Link! Paste in your browser.",v27.Success);break;end end else v285("Executor does not support clipboard. Link: dsc.gg/cxscript",v27.Danger);end break;end end end);local v614=Instance.new("TextButton",v586);v614.Text="Unload Script";v614.Size=UDim2.new(1,818 -(667 + 151) ,1497 -(1410 + 87) ,1937 -(1504 + 393) );v614.BackgroundColor3=v27.Danger;v614.TextColor3=v27.Text;v614.Font=Enum.Font.GothamBold;v614.TextSize=37 -23 ;v614.LayoutOrder=4;Instance.new("UICorner",v614).CornerRadius=UDim.new(0 -0 ,6);v614.MouseButton1Click:Connect(function() local v958=0;while true do if (v958==(796 -(461 + 335))) then v77=false;if v22 then v22:Destroy();end if v28 then v28:Destroy();end if (v104 and v103) then for v1576,v1577 in pairs(getconnections(v103.OnClientEvent)) do v1577:Disable();v103.OnClientEvent:Connect(v104);end end v958=1 + 0 ;end if ((1763 -(1730 + 31))==v958) then pcall(function() local v1322=workspace:FindFirstChild("ParallaxPlane");if v1322 then v1322.Transparency=1668 -(728 + 939) ;end v1.CameraMaxZoomDistance=v76;end);pcall(function() if v1.Character then local v1579=v1.Character:FindFirstChildOfClass("Humanoid");if v1579 then v1579.DisplayDistanceType=Enum.HumanoidDisplayDistanceType.Viewer;end for v1654,v1655 in pairs(v1.Character:GetDescendants()) do if (v1655:IsA("BillboardGui") and (v1655.Name:lower():find("name") or v1655.Name:lower():find("title") or v1655.Name:lower():find("tag"))) then v1655.Enabled=true;end end end end);pcall(function() for v1449,v1450 in pairs(v0:GetPlayers()) do if ((v1450~=v1) and v1450.Character) then for v1720,v1721 in pairs(v1450.Character:GetDescendants()) do if (v1721:IsA("BasePart") or v1721:IsA("Decal")) then if v581[v1721] then v1721.Transparency=v581[v1721];else v1721.Transparency=0;end end end end end end);pcall(function() for v1451,v1452 in pairs(workspace:GetDescendants()) do if (v1452:IsA("ParticleEmitter") or v1452:IsA("Trail") or v1452:IsA("Sparkles")) then v1452.Enabled=true;elseif (v1452:IsA("Decal") or v1452:IsA("Texture")) then if v581[v1452] then v1452.Transparency=v581[v1452];end end end end);break;end if (v958==1) then pcall(function() local v1324=0 -0 ;while true do if (v1324==(1 -0)) then v1:SetAttribute("prefix",tick());if v71 then local v1770=0 -0 ;while true do if (v1770==0) then v1:SetAttribute("nameColor",Color3.new(0,1068 -(138 + 930) ,0 + 0 ));task.wait();v1770=1 + 0 ;end if (v1770==(1 + 0)) then v1:SetAttribute("nameColor",v71);break;end end end v1324=8 -6 ;end if (v1324==2) then if v1.Character then local v1771=0;while true do if (v1771==0) then v1.Character:SetAttribute("country",nil);v1.Character:SetAttribute("skin",v70);break;end end end break;end if ((1766 -(459 + 1307))==v1324) then v1:SetAttribute("namePrefix",nil);v1:SetAttribute("specialNameColor",nil);v1324=1871 -(474 + 1396) ;end end end);if (v91 and (type(v91)=="table")) then pcall(function() v91.Sensor=true;end);end if (type(set3drenderingenabled)=="function") then pcall(function() set3drenderingenabled(true);end);end if (type(setfpscap)=="function") then pcall(function() setfpscap(999);end);end v958=2;end end end);local function v624(v959,v960,v961) if ( not v91 or (type(v91)~="table")) then return;end local v962=v1.Character and v1.Character:FindFirstChild("HumanoidRootPart") ;local v963=(Vector3.new(v959.X,v959.Y,0) -Vector3.new(v960.X,v960.Y,0 -0 )).Magnitude;if (v963<(0.2 + 0)) then return;end local v964=math.max(1 + 4 ,(v961/(286 -186)) * (8 + 52) );local v965=v963/v964 ;local v966=0 -0 ;while (v966<v965) and v77 and  not v80  do local v1070=v3.Heartbeat:Wait();v966=v966 + v1070 ;local v1071=math.clamp(v966/v965 ,0,1);local v1072=v1071 * v1071 * (3 -(2 * v1071)) ;local v1073=v959:Lerp(v960,v1072);v87=v1073;pcall(function() local v1120=0 -0 ;while true do if (v1120==(592 -(562 + 29))) then v91.VelocityX=0 + 0 ;v91.Grounded=true;break;end if (v1120==0) then v91.Position=v1073;v91.VelocityY=0;v1120=1;end end end);if v962 then pcall(function() v962.CFrame=CFrame.new(v1073) * v962.CFrame.Rotation ;end);end if v102 then pcall(function() v102:FireServer(Vector2.new(v1073.X,v1073.Y));end);end end v87=v960;pcall(function() local v1074=1419 -(374 + 1045) ;while true do if (v1074==(1 + 0)) then v91.VelocityX=0;v91.Grounded=true;break;end if (v1074==0) then v91.Position=v960;v91.VelocityY=0 -0 ;v1074=639 -(448 + 190) ;end end end);if v962 then pcall(function() v962.CFrame=CFrame.new(v960) * v962.CFrame.Rotation ;end);end if v102 then pcall(function() v102:FireServer(Vector2.new(v960.X,v960.Y));end);end end local function v625(v967,v968) local v969=0;local v970;local v971;local v972;local v973;local v974;local v975;local v976;while true do if ((1 + 1)==v969) then v975= -(45140 + 54859);v976=false;v969=2 + 1 ;end if (v969==(0 -0)) then v970,v971=math.floor((v967.X/4.5) + 0.5 ),math.floor((v967.Y/(12.5 -8)) + (1494.5 -(1307 + 187)) );v972,v973=math.floor((v968.X/4.5) + (0.5 -0) ),math.floor((v968.Y/(8.5 -4)) + (0.5 -0) );v969=684 -(232 + 451) ;end if (v969==(3 + 0)) then for v1330=1,v974-(1 + 0)  do local v1331=564 -(510 + 54) ;local v1332;local v1333;local v1334;local v1335;local v1336;while true do if (v1331==0) then v1332=v1330/v974 ;v1333=math.floor(v970 + ((v972-v970) * v1332) + (0.5 -0) );v1331=1;end if (v1331==2) then if v1336 then local v1772=0;while true do if (0==v1772) then v976=true;if (v1334>v975) then v975=v1334;end break;end end end break;end if (v1331==1) then v1334=math.floor(v971 + ((v973-v971) * v1332) + 0.5 );v1335,v1335,v1336,v1335=v388(v1333,v1334,"Pathing");v1331=2;end end end return  not v976,v975;end if ((37 -(13 + 23))==v969) then v974=math.max(math.abs(v972-v970 ),math.abs(v973-v971 ));if (v974==0) then return true,0 -0 ;end v969=2 -0 ;end end end local function v626(v977,v978,v979) local v980=0 -0 ;local v981;local v982;while true do if (v980==0) then v981,v982=v625(v977,v978);if v981 then v624(v977,v978,v979);else local v1457=1088 -(830 + 258) ;local v1458;local v1459;local v1460;while true do if (v1457==(0 -0)) then v1458=math.max(math.floor(v977.Y/(3.5 + 1) ),math.floor(v978.Y/(4.5 + 0) ),v982) + (1442 -(860 + 581)) ;v1459=Vector3.new(v977.X,v1458 * 4.5 ,0 -0 );v1457=1 + 0 ;end if (v1457==2) then v624(v1459,v1460,v979);v624(v1460,v978,v979);break;end if (v1457==1) then v1460=Vector3.new(v978.X,v1458 * (245.5 -(237 + 4)) ,0 -0 );v624(v977,v1459,v979);v1457=2;end end end break;end end end local function v627(v983) local v984=0 -0 ;local v985;while true do if (v984==(1 -0)) then return nil;end if (v984==0) then v985=0 + 0 ;for v1337=59,0, -1 do local v1338={};for v1461=0 + 0 ,377 -277  do v985=v985 + 1 + 0 ;if ((v985%(109 + 91))==(1426 -(85 + 1341))) then v3.Heartbeat:Wait();end if  not v983[v1461   .. "_"   .. v1337 ] then local v1657,v1658=v388(v1461,v1337,"Nuker");if (v1657 and  not v1658) then table.insert(v1338,v1461);end end end if ( #v1338>(0 -0)) then local v1581=0;local v1582;while true do if (v1581==(2 -1)) then return {x=v1582,y=v1337};end if (v1581==(372 -(45 + 327))) then v1582=v1338[1];if ((v1337%2)==(0 -0)) then local v1859=0;local v1860;while true do if (v1859==(503 -(444 + 58))) then v1582=v1860;break;end if (v1859==0) then v1860=434549 + 565450 ;for v1971,v1972 in ipairs(v1338) do if (v1972<v1860) then v1860=v1972;end end v1859=1 + 0 ;end end else local v1861=0;local v1862;while true do if (1==v1861) then v1582=v1862;break;end if (v1861==0) then v1862= -(488873 + 511126);for v1973,v1974 in ipairs(v1338) do if (v1974>v1862) then v1862=v1974;end end v1861=2 -1 ;end end end v1581=1733 -(64 + 1668) ;end end end end v984=1974 -(1227 + 746) ;end end end task.spawn(function() while v77 do if (v68.AutoClear and  not v80) then local v1251=v627(v390);if v1251 then local function v1462() local v1583=nil;pcall(function() if (v91 and (type(v91)=="table")) then v1583=rawget(v91,"Position");end if  not v1583 then local v1774=v1.Character and v1.Character:FindFirstChild("HumanoidRootPart") ;v1583=(v1774 and v1774.Position) or Vector3.zero ;end end);return v1583 or Vector3.zero ;end local v1463,v1464=v1251.x,v1251.y + (2 -1) ;local v1465,v1466,v1467,v1465=v388(v1463,v1464,"Nuker");if (v1467 or v1466) then local v1659=0;local v1660;local v1661;local v1662;local v1663;local v1664;while true do if (v1659==0) then v1660,v1661,v1662,v1660=v388(v1251.x-1 ,v1251.y,"Nuker");v1660,v1663,v1664,v1660=v388(v1251.x + 1 ,v1251.y,"Nuker");v1659=1;end if (v1659==(1 -0)) then if ( not v1662 and  not v1661) then v1463=v1251.x-1 ;v1464=v1251.y;elseif ( not v1664 and  not v1663) then v1463=v1251.x + 1 ;v1464=v1251.y;else v1464=v1251.y + (496 -(415 + 79)) ;end break;end end end local v1468=Vector3.new(v1463 * (1.5 + 3) ,v1464 * (495.5 -(142 + 349)) ,0 + 0 );v626(v1462(),v1468,v68.ClearSpeed);v87=v1468;local v1469=os.clock();local v1470=false;local v1471=v106(v68.PunchSpeed);for v1584=1,20 -5  do if ( not v68.AutoClear or  not v77 or v80) then break;end v105(v99,Vector2.new(math.floor(v1251.x),math.floor(v1251.y)));v1470=true;if (v1471>(0 + 0)) then task.wait(v1471);end end local v1472,v1473=v388(v1251.x,v1251.y,"Nuker");while v1472 and  not v1473 and ((os.clock() -v1469)<(4 + 1)) and v68.AutoClear and v77 and  not v80  do local v1585=0 -0 ;while true do if (v1585==1) then if (v1471>(1864 -(1710 + 154))) then task.wait(v1471);else v3.Heartbeat:Wait();end v1472,v1473=v388(v1251.x,v1251.y,"Nuker");break;end if (0==v1585) then v105(v99,Vector2.new(math.floor(v1251.x),math.floor(v1251.y)));v1470=true;v1585=319 -(200 + 118) ;end end end if (v1472 and  not v1473) then v390[v1251.x   .. "_"   .. v1251.y ]=true;elseif (v68.ClearCollect and v1470) then local v1775=0 + 0 ;local v1776;local v1777;local v1778;local v1779;local v1780;while true do if (v1775==(2 -0)) then v1779=Vector2.new(v1251.x * (5.5 -1) ,v1251.y * 4.5 );v1780=nil;v1775=3 + 0 ;end if (v1775==(4 + 0)) then if v1776 then local v1961=0 + 0 ;local v1962;while true do if (v1961==1) then task.wait(0.05 + 0 );v624(v1962,v1468,v68.ClearSpeed);break;end if (v1961==(0 -0)) then v1962=Vector3.new(v1251.x * (1254.5 -(363 + 887)) ,v1251.y * (6.5 -2) ,0);v624(v1468,v1962,v68.ClearSpeed);v1961=4 -3 ;end end end break;end if ((1 + 0)==v1775) then v1777=workspace:FindFirstChild("Drops");v1778=workspace:FindFirstChild("Gems");v1775=2;end if (v1775==(6 -3)) then function v1780(v1931) if v1931 then for v1989,v1990 in ipairs(v1931:GetChildren()) do if v1990:IsA("BasePart") then if ((Vector2.new(v1990.Position.X,v1990.Position.Y) -v1779).Magnitude<=(3.5 + 0)) then return true;end end end end return false;end v1776=v1780(v1777) or v1780(v1778) ;v1775=4;end if (v1775==(1664 -(674 + 990))) then task.wait(0.25 + 0 );v1776=false;v1775=1 + 0 ;end end end v87=nil;else task.wait(1 -0 );end else task.wait(1055.5 -(507 + 548) );end end end);task.spawn(function() while v77 do local v1075=(v68.AutoPunch or v68.AutoPlace or v68.AutoCollect) and  not v68.AutoClear ;if (v1075 and  not v80 and next(v75)) then local v1252=false;local v1253,v1254;if (v68.LockTiles and v68.LockedOrigin) then v1253=v68.LockedOrigin.X;v1254=v68.LockedOrigin.Y;else local function v1476() local v1586=837 -(289 + 548) ;local v1587;while true do if (v1586==(1819 -(821 + 997))) then return v1587 or Vector3.zero ;end if (v1586==(255 -(195 + 60))) then v1587=nil;pcall(function() if (v91 and (type(v91)=="table")) then v1587=rawget(v91,"Position");end if  not v1587 then local v1898=0;local v1899;while true do if (v1898==(0 + 0)) then v1899=v1.Character and v1.Character:FindFirstChild("HumanoidRootPart") ;v1587=(v1899 and v1899.Position) or Vector3.zero ;break;end end end end);v1586=1502 -(251 + 1250) ;end end end local v1477=v1476();v1253=math.floor((v1477.X/(11.5 -7)) + 0.5 );v1254=math.floor((v1477.Y/4.5) + 0.5 );end local v1255={};for v1339,v1340 in pairs(v75) do local v1341,v1342=v1339:match("([^:]+):([^:]+)");if (v1341 and v1342) then local v1588=v1253 + tonumber(v1341) ;local v1589=v1254 + tonumber(v1342) ;table.insert(v1255,{gx=v1588,gy=v1589,yOff=tonumber(v1342),gxOff=tonumber(v1341),wp=Vector3.new(v1588 * (3.5 + 1) ,v1589 * (1036.5 -(809 + 223)) ,0)});end end table.sort(v1255,function(v1343,v1344) if (v1343.gy~=v1344.gy) then return v1343.gy>v1344.gy ;else local v1590=0;local v1591;while true do if (v1590==(0 -0)) then v1591=v1343.yOff + (300 -200) ;if ((v1591%(6 -4))==(0 + 0)) then return v1343.gx>v1344.gx ;else return v1343.gx<v1344.gx ;end break;end end end end);local v1256=nil;local v1257=false;local function v1258() local v1345=0 + 0 ;local v1346;while true do if ((618 -(14 + 603))==v1345) then return v1346;end if (0==v1345) then v1346=v82;pcall(function() if (v89 and (type(v89)=="table") and (type(rawget(v89,"SelectedHotbar"))=="number")) then local v1819=129 -(118 + 11) ;local v1820;while true do if (v1819==(0 + 0)) then v1820=rawget(v89,"HotbarStacks");if v1820 then local v1975=v1820[v89.SelectedHotbar];if ((type(v1975)=="table") and v1975[1 + 0 ]) then v1346=v1975[2 -1 ];end end break;end end end end);v1345=950 -(551 + 398) ;end end end if v68.UseSelectedItem then v1256=v1258();elseif v68.SelectedPlaceItemId then v1256=v297(v68.SelectedPlaceItemId);end if (v1256 and v89 and v89.Stacks and v89.Stacks[v1256]) then local v1478=v89.Stacks[v1256].Id;if (v90 and (type(v90.RequestItemData)=="function")) then local v1666=v90.RequestItemData(v1478);if v1666 then local v1781=0;while true do if ((1 + 0)==v1781) then if (v1666.IsBackground==true) then v1257=true;end if (v1666.Background==true) then v1257=true;end v1781=1 + 1 ;end if (v1781==2) then if (v1666.Name and string.find(string.lower(v1666.Name),"background")) then v1257=true;end break;end if (v1781==(0 + 0)) then v1257=false;if (v1666.Tile and (v1666.Tile.Type==(7 -5))) then v1257=true;end v1781=1;end end end end end local v1259="Any";if (v68.AutoPlace and v1256) then if v1257 then v1259="Background";else v1259="Foreground";end end local v1260={};local v1261={};for v1347,v1348 in ipairs(v1255) do local v1349,v1350,v1351,v1352=v388(v1348.gx,v1348.gy,"Farm");local v1353=false;local v1354=false;if (v1259=="Background") then if v1352 then v1353=true;else v1354=true;end elseif (v1259=="Foreground") then if v1351 then v1353=true;else v1354=true;end elseif v1349 then v1353=true;else v1354=true;end if (v68.AutoPlace and  not v1256) then v1354=false;end if (v1353 and  not v1350) then table.insert(v1261,v1348);end if (v1354 and  not v1350) then table.insert(v1260,v1348);end end if v68.AutoCollect then local v1479={};pcall(function() for v1667,v1668 in ipairs({"Drops","Gems"}) do local v1669=workspace:FindFirstChild(v1668);if v1669 then for v1821,v1822 in ipairs(v1669:GetChildren()) do if v1822:IsA("BasePart") then table.insert(v1479,v1822);end end end end end);local v1480={};for v1592,v1593 in ipairs(v1479) do local v1594=0 -0 ;local v1595;while true do if (v1594==(0 + 0)) then v1595=v1593:GetAttribute("t");if ( not v1595 or (tonumber(v1595)==v1.UserId)) then local v1863=0;local v1864;local v1865;local v1866;local v1867;local v1868;local v1869;local v1870;local v1871;while true do if (v1863==2) then v1868=math.floor(v1866 + (89.5 -(40 + 49)) );v1869=v1867-v1253 ;v1863=11 -8 ;end if (v1863==(490 -(99 + 391))) then v1864=Vector2.new(v1593.Position.X,v1593.Position.Y);v1865=v1864.X/(4.5 + 0) ;v1863=4 -3 ;end if (v1863==1) then v1866=v1864.Y/(9.5 -5) ;v1867=math.floor(v1865 + 0.5 + 0 );v1863=2;end if (v1863==(10 -6)) then if v75[v1871] then local v1991=1604 -(1032 + 572) ;local v1992;while true do if (v1991==(417 -(203 + 214))) then v1992=v1867   .. "_"   .. v1868 ;v1480[v1992]=true;break;end end end break;end if (v1863==3) then v1870=v1868-v1254 ;v1871=v1869   .. ":"   .. v1870 ;v1863=4;end end end break;end end end local v1481={};for v1596,v1597 in ipairs(v1255) do local v1598=v1597.gx   .. "_"   .. v1597.gy ;if v1480[v1598] then table.insert(v1481,v1597.wp);end end if ( #v1481>(1817 -(568 + 1249))) then local function v1670() local v1722=0 + 0 ;local v1723;while true do if (v1722==(0 -0)) then v1723=nil;pcall(function() local v1900=0;while true do if (v1900==0) then if (v91 and (type(v91)=="table")) then v1723=rawget(v91,"Position");end if  not v1723 then local v2000=0 -0 ;local v2001;while true do if (v2000==0) then v2001=v1.Character and v1.Character:FindFirstChild("HumanoidRootPart") ;v1723=(v2001 and v2001.Position) or Vector3.zero ;break;end end end break;end end end);v1722=1307 -(913 + 393) ;end if (v1722==(2 -1)) then return v1723 or Vector3.zero ;end end end local v1671=v1670();local v1672=v1671;for v1724,v1725 in ipairs(v1481) do local v1726=0 -0 ;while true do if (v1726==(410 -(269 + 141))) then v626(v1672,v1725,v68.CollectSpeed);v1672=v1725;v1726=1;end if (v1726==1) then task.wait(0.01 -0 );break;end end end v626(v1672,v1671,v68.CollectSpeed);v1252=true;end end if (v68.AutoPlace and ( #v1260>(1981 -(362 + 1619))) and v1256) then local v1482=0;local v1483;local v1484;local v1485;while true do if ((1625 -(950 + 675))==v1482) then v1483=false;v1484=v106(v68.PlaceSpeed);v1482=1 + 0 ;end if (v1482==(1181 -(216 + 963))) then if v1483 then local v1823=1287 -(485 + 802) ;while true do if (v1823==0) then task.wait(559.15 -(432 + 127) );v1252=true;break;end end end break;end if (v1482==1) then v1485=1073 -(1065 + 8) ;for v1782,v1783 in ipairs(v1260) do if (v80 or v68.AutoClear) then break;end v105(v100,Vector2.new(math.floor(v1783.gx),math.floor(v1783.gy)),tonumber(v1256));v1483=true;if (v1484>(0 + 0)) then task.wait(v1484);else local v1872=1601 -(635 + 966) ;while true do if ((0 + 0)==v1872) then v1485=v1485 + (43 -(5 + 37)) ;if ((v1485%14)==(0 -0)) then v3.Heartbeat:Wait();end break;end end end end v1482=2;end end end if v68.AutoPunch then table.clear(v1261);for v1599,v1600 in ipairs(v1255) do local v1601,v1602,v1603,v1604=v388(v1600.gx,v1600.gy,"Farm");local v1605=false;if (v1259=="Background") then if v1604 then v1605=true;end elseif (v1259=="Foreground") then if v1603 then v1605=true;end elseif v1601 then v1605=true;end if (v1605 and  not v1602) then table.insert(v1261,v1600);end end if ( #v1261>(0 + 0)) then local v1673=0;local v1674;while true do if (v1673==1) then if v1674 then local v1901=v106(v68.PunchSpeed);local v1902=false;for v1932,v1933 in ipairs(v1261) do if (v80 or v68.AutoClear) then break;end local v1932,v1934,v1935,v1936=v388(v1933.gx,v1933.gy,"Farm");local v1937=false;if (v1259=="Background") then if v1936 then v1937=true;end elseif (v1259=="Foreground") then if v1935 then v1937=true;end elseif (v1935 or v1936) then v1937=true;end if (v1937 and  not v1934) then local v1976=0 -0 ;local v1977;while true do if (v1976==(1 + 0)) then v1902=true;v1252=true;break;end if (v1976==(0 -0)) then v1977=os.clock();while v1937 and  not v1934 and ((os.clock() -v1977)<(11 -8)) and v77 and  not v80 and  not v68.AutoClear  do for v2016=1 -0 ,9 -5  do v105(v99,Vector2.new(math.floor(v1933.gx),math.floor(v1933.gy)));end if (v1901>(0 + 0)) then task.wait(v1901);else v3.Heartbeat:Wait();end local v2010,v2011,v2012,v2013=v388(v1933.gx,v1933.gy,"Farm");v1934=v2011;v1937=false;if (v1259=="Background") then if v2013 then v1937=true;end elseif (v1259=="Foreground") then if v2012 then v1937=true;end elseif (v2012 or v2013) then v1937=true;end end v1976=530 -(318 + 211) ;end end end end if v1902 then task.wait(0.15 -0 );end end break;end if (v1673==(1587 -(963 + 624))) then v1674=true;if (v1259~="Any") then local v1903=true;for v1938,v1939 in ipairs(v1255) do local v1938,v1940,v1941,v1942=v388(v1939.gx,v1939.gy,"FarmCheck");if  not v1940 then if ((v1259=="Background") and  not v1942) then v1903=false;break;end if ((v1259=="Foreground") and  not v1941) then v1903=false;break;end end end if  not v1903 then v1674=false;end end v1673=1 + 0 ;end end end end table.clear(v1255);table.clear(v1260);table.clear(v1261);if  not v1252 then task.wait(0.1);end else task.wait(846.1 -(518 + 328) );end end end);task.spawn(function() while v77 do task.wait(0.1);local v1076,v1077;if (v68.LockTiles and v68.LockedOrigin) then local v1262=0 -0 ;while true do if (v1262==(0 -0)) then v1076=v68.LockedOrigin.X;v1077=v68.LockedOrigin.Y;break;end end else local function v1263() local v1355=nil;pcall(function() local v1486=0;while true do if (v1486==(317 -(301 + 16))) then if (v91 and (type(v91)=="table")) then v1355=rawget(v91,"Position");end if  not v1355 then local v1824=v1.Character and v1.Character:FindFirstChild("HumanoidRootPart") ;v1355=(v1824 and v1824.Position) or Vector3.zero ;end break;end end end);return v1355 or Vector3.zero ;end local v1264=v1263();v1076=math.floor((v1264.X/4.5) + (0.5 -0) );v1077=math.floor((v1264.Y/4.5) + (0.5 -0) );end for v1121,v1122 in pairs(v75) do local v1123,v1124=v1121:match("([^:]+):([^:]+)");local v1125=Vector3.new((v1076 + tonumber(v1123)) * (10.5 -6) ,(v1077 + tonumber(v1124)) * 4.5 ,0 + 0 );if (v68.ShowVisuals and  not v80 and  not v68.AutoClear) then local v1356=0 + 0 ;while true do if (1==v1356) then v25[v1121].Color3=v27.Accent;v25[v1121].Visible=true;break;end if (v1356==(0 -0)) then if  not v25[v1121] then local v1784=0 + 0 ;local v1785;while true do if (v1784==(0 + 0)) then v1785=Instance.new("BoxHandleAdornment",v22);v1785.Size=Vector3.new(4,12 -8 ,1 + 0 );v1784=1020 -(829 + 190) ;end if (v1784==(7 -5)) then v1785.Adornee=workspace.Terrain;v25[v1121]=v1785;break;end if (v1784==(1 -0)) then v1785.Transparency=0.6 -0 ;v1785.AlwaysOnTop=true;v1784=2;end end end v25[v1121].CFrame=CFrame.new(v1125);v1356=2 -1 ;end end elseif v25[v1121] then v25[v1121].Visible=false;end end for v1126,v1127 in pairs(v25) do if  not v75[v1126] then v1127.Visible=false;end end end end);v3.Heartbeat:Connect(function(v986) local v987=0 + 0 ;local v988;while true do if (0==v987) then if  not v77 then return;end v988=v1.Character;v987=1;end if (v987==(1 + 0)) then if (v68.RGBSkin and v988) then local v1487=0 -0 ;local v1488;while true do if (v1487==(0 + 0)) then v1488=(tick()%5)/(618 -(520 + 93)) ;v988:SetAttribute("skin",Color3.fromHSV(v1488,277 -(259 + 17) ,1 + 0 ));break;end end end if (v68.GodMode and v988) then local v1489=v988:FindFirstChildOfClass("Humanoid");if (v1489 and (v1489.Health<v1489.MaxHealth)) then v1489.Health=v1489.MaxHealth;end end v987=2;end if (v987==(1 + 1)) then if (v91 and (type(v91)=="table")) then if v68.GodMode then pcall(function() v91.Sensor=false;end);else pcall(function() v91.Sensor=true;end);end if (v68.AutoClear and v87) then pcall(function() local v1729=0;local v1730;while true do if (v1729==(3 -2)) then v1730=v988 and v988:FindFirstChild("HumanoidRootPart") ;if v1730 then v1730.CFrame=CFrame.new(v87) * v1730.CFrame.Rotation ;end v1729=2;end if (v1729==(591 -(396 + 195))) then v91.VelocityY=0;v91.Grounded=true;v1729=2 -1 ;end if (v1729==2) then if ((v91.Position-v87).Magnitude>(1763 -(440 + 1321))) then v91.Position=v87;end break;end end end);elseif (v68.Fly and  not v68.AutoClear) then pcall(function() local v1825=1829 -(1059 + 770) ;local v1826;local v1827;local v1828;local v1829;while true do if (1==v1825) then v1827,v1828=0 -0 ,545 -(424 + 121) ;if (v2:IsKeyDown(Enum.KeyCode.W) or v2:IsKeyDown(Enum.KeyCode.Space) or v2:IsKeyDown(Enum.KeyCode.Up)) then v1828=1;end if (v2:IsKeyDown(Enum.KeyCode.S) or v2:IsKeyDown(Enum.KeyCode.Down)) then v1828= -(1 + 0);end if (v2:IsKeyDown(Enum.KeyCode.A) or v2:IsKeyDown(Enum.KeyCode.Left)) then v1827= -(1348 -(641 + 706));end v1825=2;end if (v1825==2) then if (v2:IsKeyDown(Enum.KeyCode.D) or v2:IsKeyDown(Enum.KeyCode.Right)) then v1827=1;end v1829=(v1827~=(0 + 0)) or (v1828~=(440 -(249 + 191))) ;if v1829 then local v1978=0 -0 ;while true do if (v1978==0) then v91.Position=v91.Position + Vector3.new(v1827 * v1826 * v986 ,v1828 * v1826 * v986 ,0 + 0 ) ;v86=v91.Position;v1978=3 -2 ;end if (v1978==(428 -(183 + 244))) then v85=true;break;end end elseif (v85 and v86) then local v2002=0 + 0 ;while true do if (v2002==(730 -(434 + 296))) then v85=false;if v102 then task.spawn(function() local v2022=0 -0 ;local v2023;local v2024;local v2025;while true do if (v2022==(512 -(169 + 343))) then v2023,v2024=v86.X,v86.Y;v2025=2000;v2022=1;end if (v2022==1) then pcall(function() v102:FireServer(Vector2.new(v2023,v2025));end);task.wait(0.05 + 0 );v2022=3 -1 ;end if ((5 -3)==v2022) then pcall(function() v102:FireServer(Vector2.new(v2023,v2024));end);break;end end end);end v2002=1;end if ((1 + 0)==v2002) then v86=nil;break;end end end break;end if (v1825==(0 -0)) then v91.VelocityY=0;v91.VelocityX=1123 -(651 + 472) ;v91.Grounded=true;v1826=v68.FlySpeed;v1825=1 + 0 ;end end end);elseif ((v68.SpeedBoost>(0 + 0)) and  not v68.AutoClear) then pcall(function() local v1910=0 -0 ;local v1911;while true do if (v1910==0) then v1911=rawget(v91,"MoveX");if (v1911 and (v1911~=0)) then local v2003=483 -(397 + 86) ;local v2004;while true do if (v2003==(876 -(423 + 453))) then v2004=(v68.SpeedBoost/(11 + 89)) * 0.8 ;v91.VelocityX=v91.VelocityX + (v1911 * v2004) ;break;end end end break;end end end);end end break;end end end);task.spawn(function() local v989=0;while true do if (v989==(1 + 4)) then if v304 then v304.Visible=true;end if (v287 and v287[1] and v287[1].Btn) then v287[1 + 0 ].Btn.TextColor3=v27.Text;v287[1 + 0 ].Btn.BackgroundColor3=v27.Element;end pcall(function() local v1358=0 + 0 ;local v1359;local v1360;local v1361;local v1362;local v1363;while true do if (v1358==(1193 -(50 + 1140))) then if v1361 then v1361:DisplaySystemMessage("<font color='#557DFF'><b>[cx.farm]</b></font> Thank you for using cx.farm. Welcome "   .. v1363 );else game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage",{Text="[cx.farm] Thank you for using cx.farm. Welcome "   .. v1363 ,Color=Color3.fromRGB(85,125,255),Font=Enum.Font.SourceSansBold,TextSize=18});end break;end if (v1358==(1 + 0)) then v1361=v1360 and v1360:FindFirstChild("RBXSystem") ;v1362=v1.DisplayName;v1358=2 + 0 ;end if (v1358==(1 + 1)) then v1363="@"   .. string.sub(v1362,1 -0 ,2)   .. string.rep("*",5 + 1 ) ;if (string.len(v1362)<=(598 -(157 + 439))) then v1363="@"   .. v1362   .. "****" ;end v1358=4 -1 ;end if (v1358==(0 -0)) then v1359=game:GetService("TextChatService");v1360=v1359 and v1359:FindFirstChild("TextChannels") ;v1358=1;end end end);break;end if (v989==(2 -1)) then task.spawn(function() pcall(v579);end);task.wait(0.8);if v41 then v41.Text=string.format("Loaded %s Version cx.farm",v13);end v989=920 -(782 + 136) ;end if (v989==(857 -(112 + 743))) then task.wait(0.8);if v41 then v41.Text="Welcome to cx.farm";end task.wait(1171.8 -(1026 + 145) );v989=3;end if (v989==0) then task.wait(0.6 + 0 );if v20 then if v41 then v41.Text="Unsupported Executor. Unloading...";end if v41 then v41.TextColor3=v27.Danger;end task.wait(720 -(493 + 225) );v77=false;if v22 then v22:Destroy();end if v28 then v28:Destroy();end return;end if v41 then v41.Text=string.format("Executor: %s | SUNC: %d%%",v14,v17);end v989=3 -2 ;end if (v989==(3 + 1)) then task.wait(0.45 -0 );if v33 then v33:Destroy();end if v132 then v132.Size=UDim2.new(0,0 + 0 ,0 -0 ,0 + 0 );v132.Visible=true;v132:TweenSize(v79.LastSize,"Out","Back",0.5 -0 ,true);end v989=1600 -(210 + 1385) ;end if (v989==(1692 -(1201 + 488))) then v52:Cancel();v5:Create(v41,TweenInfo.new(0.4 + 0 ),{TextTransparency=1 -0 }):Play();v5:Create(v33,TweenInfo.new(0.4 -0 ),{BackgroundTransparency=1}):Play();v989=589 -(352 + 233) ;end end end);task.spawn(function() local v990=0 -0 ;local v991;local v992;while true do if (v990==(2 + 0)) then if v992 then v992:Disconnect();end break;end if (v990==1) then pcall(function() v992=v3.RenderStepped:Connect(function() v991=v991 + (2 -1) ;end);end);while v77 do local v1364=574 -(489 + 85) ;local v1365;local v1366;local v1367;local v1368;while true do if (v1364==(1503 -(277 + 1224))) then pcall(function() v1366=math.floor(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue());end);v1367,v1368=1493 -(663 + 830) ,0;v1364=3 + 0 ;end if ((2 -1)==v1364) then v991=875 -(461 + 414) ;v1366=0 + 0 ;v1364=1 + 1 ;end if (v1364==0) then task.wait(1);v1365=v991;v1364=1 + 0 ;end if (v1364==3) then pcall(function() local v1731=nil;if (v91 and (type(v91)=="table")) then v1731=rawget(v91,"Position");end if  not v1731 then local v1830=0 + 0 ;local v1831;while true do if (v1830==0) then v1831=v1.Character and v1.Character:FindFirstChild("HumanoidRootPart") ;v1731=(v1831 and v1831.Position) or Vector3.zero ;break;end end end v1367=math.floor((v1731.X/(254.5 -(172 + 78))) + (0.5 -0) );v1368=math.floor((v1731.Y/(2.5 + 2)) + (0.5 -0) );end);if v53 then v53.Text=string.format(" cx.farm | Craft A World | X: %d Y: %d | FPS: %d | Ping: %d ms",v1367,v1368,v1365,v1366);end break;end end end v990=2;end if (0==v990) then v991=0 + 0 ;v992=nil;v990=1 + 0 ;end end end);v2.InputBegan:Connect(function(v993,v994) if (v994 or  not v77) then return;end if ((v993.UserInputType==Enum.UserInputType.MouseButton1) or (v993.UserInputType==Enum.UserInputType.Touch)) then v83=true;end if (v68.InfiniteJump and ((v993.KeyCode==Enum.KeyCode.Space) or (v993.KeyCode==Enum.KeyCode.W) or (v993.KeyCode==Enum.KeyCode.Up))) then local v1128=v1.Character;local v1129=v1128 and v1128:FindFirstChildOfClass("Humanoid") ;local v1130=v1128 and v1128:FindFirstChild("HumanoidRootPart") ;if v1129 then v1129:ChangeState(Enum.HumanoidStateType.Jumping);end if v1130 then pcall(function() v1130.AssemblyLinearVelocity=Vector3.new(v1130.AssemblyLinearVelocity.X,0 -0 ,v1130.AssemblyLinearVelocity.Z);end);end if (v91 and (type(v91)=="table")) then pcall(function() v91.VelocityY=1.5 -0 ;v91.Jumping=true;v91.Grounded=false;end);end end if v81 then local v1131=0;while true do if ((0 + 0)==v1131) then v81.Callback(v993.KeyCode);return;end end end if (v993.KeyCode==v68.Keybinds.ToggleUI) then if v79.Minimized then v79.Minimized=false;task.spawn(function() if v110 then v110:TweenSize(UDim2.new(0 + 0 ,0 + 0 ,0,0 -0 ),"In","Back",0.3 -0 ,true);end task.wait(0.3);if v110 then v110.Visible=false;end if v132 then local v1686=0 + 0 ;while true do if (v1686==1) then v132:TweenSize(v79.LastSize,"Out","Back",0.4 + 0 ,true);break;end if (v1686==(447 -(133 + 314))) then v132.Size=UDim2.new(0 + 0 ,0,213 -(199 + 14) ,0 -0 );v132.Visible=true;v1686=1;end end end end);else local v1370=0;while true do if (v1370==1) then task.spawn(function() if v132 then v132:TweenSize(UDim2.new(1549 -(647 + 902) ,0,0 -0 ,0),"In","Back",0.3,true);end task.wait(233.3 -(85 + 148) );if v132 then v132.Visible=false;end if v110 then local v1835=0;while true do if (v1835==(1289 -(426 + 863))) then v110.Size=UDim2.new(0 -0 ,1654 -(873 + 781) ,0 -0 ,0 -0 );v110.Visible=true;v1835=1 + 0 ;end if ((3 -2)==v1835) then if v132 then v110.Position=v132.Position;end v110:TweenSize(UDim2.new(0 -0 ,148 -98 ,0,1997 -(414 + 1533) ),"Out","Back",0.3 + 0 ,true);break;end end end end);break;end if (v1370==(555 -(443 + 112))) then v79.LastSize=(v132 and v132.Size) or UDim2.new(1479 -(888 + 591) ,1679 -1029 ,0 + 0 ,1581 -1161 ) ;v79.Minimized=true;v1370=1 + 0 ;end end end elseif (v993.KeyCode==v68.Keybinds.AutoPunch) then v301("AutoPunch","Auto Punch");elseif (v993.KeyCode==v68.Keybinds.AutoPlace) then v301("AutoPlace","Auto Place");elseif (v993.KeyCode==v68.Keybinds.ModZoom) then v301("ModZoom","Mod Zoom");if v68.ModZoom then v1.CameraMaxZoomDistance=8708 + 9292 ;else v1.CameraMaxZoomDistance=v76;end elseif (v993.KeyCode==v68.Keybinds.GodMode) then v301("GodMode","God Mode");elseif (v993.KeyCode==v68.Keybinds.Fly) then v301("Fly","Fly Mode");elseif (v993.KeyCode==v68.Keybinds.InfiniteJump) then v301("InfiniteJump","Infinite Jump");end end);v2.InputEnded:Connect(function(v995,v996) if ((v995.UserInputType==Enum.UserInputType.MouseButton1) or (v995.UserInputType==Enum.UserInputType.Touch)) then v83=false;end end);if v195 then v195.MouseButton1Click:Connect(function() local v1132=0 + 0 ;while true do if (v1132==(0 -0)) then v79.LastSize=(v132 and v132.Size) or UDim2.new(0 -0 ,650,1678 -(136 + 1542) ,1377 -957 ) ;v79.Minimized=true;v1132=1;end if (v1132==1) then task.spawn(function() local v1609=0 + 0 ;while true do if (v1609==(0 -0)) then if v132 then v132:TweenSize(UDim2.new(0,0,0,0),"In","Back",0.3 + 0 ,true);end task.wait(0.3);v1609=487 -(68 + 418) ;end if (v1609==(2 -1)) then if v132 then v132.Visible=false;end if v110 then local v1876=0 -0 ;while true do if (v1876==1) then if v132 then v110.Position=v132.Position;end v110:TweenSize(UDim2.new(0 + 0 ,1142 -(770 + 322) ,0 + 0 ,15 + 35 ),"Out","Back",0.3,true);break;end if (v1876==0) then v110.Size=UDim2.new(0 + 0 ,0 -0 ,0 -0 ,0);v110.Visible=true;v1876=2 -1 ;end end end break;end end end);break;end end end);end if v126 then v126.MouseButton1Click:Connect(function() local v1133=0;while true do if (v1133==0) then if v107 then return;end v79.Minimized=false;v1133=3 -2 ;end if (v1133==(1 + 0)) then task.spawn(function() local v1610=0 -0 ;while true do if (v1610==(0 + 0)) then if v110 then v110:TweenSize(UDim2.new(0,0 + 0 ,0 + 0 ,0 -0 ),"In","Back",0.3 -0 ,true);end task.wait(0.3);v1610=1;end if (v1610==(1 + 0)) then if v110 then v110.Visible=false;end if v132 then v132.Size=UDim2.new(0 -0 ,0 -0 ,0 + 0 ,0 -0 );v132.Visible=true;if v110 then v132.Position=v110.Position;end v132:TweenSize(v79.LastSize,"Out","Back",831.4 -(762 + 69) ,true);end break;end end end);break;end end end);end v108(v148,v132);v108(v126,v110);v108(v53);if v204 then v109(v204,v132);end
+local Players = game:GetService("Players")
+
+-- // ENGINE FAILSAFE: Wait for full LocalPlayer & UserId replication //
+while not Players.LocalPlayer do task.wait() end
+local LocalPlayer = Players.LocalPlayer
+while not LocalPlayer.UserId or LocalPlayer.UserId == 0 do task.wait() end
+
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
+local Workspace = game:GetService("Workspace")
+local HttpService = game:GetService("HttpService")
+local Stats = game:GetService("Stats")
+local Camera = Workspace.CurrentCamera
+
+local VirtualUser = nil
+pcall(function() VirtualUser = game:GetService("VirtualUser") end)
+
+local function GetSafeGuiParent()
+    local success, core = pcall(function() return game:GetService("CoreGui") end)
+    if success and core then
+        local test = Instance.new("Folder")
+        local s2 = pcall(function() test.Parent = core end)
+        if s2 then test:Destroy() return core end
+    end
+    return LocalPlayer:WaitForChild("PlayerGui")
+end
+local targetGuiParent = GetSafeGuiParent()
+
+local currentTier = "Premium"
+
+local ExecName = "Unknown"
+pcall(function()
+    local s, r = pcall(identifyexecutor)
+    if s and type(r) == "string" then ExecName = r end
+end)
+local ExecLower = string.lower(ExecName)
+
+local SUNC_DB = {
+    ["macsploit"] = 100, ["potassium"] = 90, ["volt"] = 90, ["bunni"] = 80,
+    ["seliware"] = 85, ["delta"] = 97, ["volcano"] = 75, ["hydrogen"] = 85,
+    ["velocity"] = 94, ["wave"] = 100, ["solara"] = 40, ["xeno"] = 40,
+    ["arceus"] = 0, ["codex"] = 0, ["vega"] = 0, ["ronix"] = 98,
+    ["chocosploit"] = 85, ["isaeva"] = 80, ["cryptic"] = 80,
+    ["valex"] = 70, ["sirhurt"] = 65, ["luna"] = 65
+}
+
+local ExecSUNC = 85 
+for key, score in pairs(SUNC_DB) do
+    if string.find(ExecLower, key) then
+        ExecSUNC = score
+        break
+    end
+end
+
+local ExecSupportStatus = (ExecSUNC >= 90 and "High" or ExecSUNC >= 71 and "Medium" or "Low")
+local ExecEnvironment = "Standard"
+local IsUnsupportedExecutor = false
+
+if ExecSUNC <= 30 then IsUnsupportedExecutor = true end
+
+local blockedExecs = {"codex", "vega", "arceus"}
+for _, blocked in ipairs(blockedExecs) do
+    if string.find(ExecLower, blocked) then
+        IsUnsupportedExecutor = true
+        break
+    end
+end
+
+if string.find(ExecLower, "solara") then ExecEnvironment = "Solara"
+elseif string.find(ExecLower, "delta") then ExecEnvironment = "Delta"
+elseif string.find(ExecLower, "wave") then ExecEnvironment = "Wave"
+elseif string.find(ExecLower, "xeno") then ExecEnvironment = "Xeno"
+elseif string.find(ExecLower, "velocity") then ExecEnvironment = "Velocity"
+elseif string.find(ExecLower, "potassium") then ExecEnvironment = "Potassium"
+end
+
+pcall(function()
+    if targetGuiParent:FindFirstChild("CX_FARM_GUI") then targetGuiParent.CX_FARM_GUI:Destroy() end
+    if targetGuiParent:FindFirstChild("CX_VISUALS") then targetGuiParent.CX_VISUALS:Destroy() end
+    if LocalPlayer:FindFirstChild("PlayerGui") and LocalPlayer.PlayerGui:FindFirstChild("CX_FARM_GUI") then LocalPlayer.PlayerGui.CX_FARM_GUI:Destroy() end
+end)
+
+local VisualFolder = Instance.new("Folder")
+VisualFolder.Name = "CX_VISUALS"
+VisualFolder.Parent = targetGuiParent
+local Adornments = {}
+
+local Themes = {
+    ["Dark Default"] = {
+        Background = Color3.fromRGB(20, 20, 20), Sidebar = Color3.fromRGB(28, 28, 28), Element = Color3.fromRGB(40, 40, 40),
+        Text = Color3.fromRGB(240, 240, 240), SubText = Color3.fromRGB(160, 160, 160), Accent = Color3.fromRGB(85, 125, 255),
+        Danger = Color3.fromRGB(235, 65, 65), Success = Color3.fromRGB(65, 235, 100), Stroke = Color3.fromRGB(50, 50, 50)
+    },
+    ["Midnight"] = {
+        Background = Color3.fromRGB(15, 15, 25), Sidebar = Color3.fromRGB(20, 20, 35), Element = Color3.fromRGB(30, 30, 50),
+        Text = Color3.fromRGB(240, 240, 255), SubText = Color3.fromRGB(150, 150, 180), Accent = Color3.fromRGB(110, 150, 255),
+        Danger = Color3.fromRGB(255, 80, 80), Success = Color3.fromRGB(80, 255, 120), Stroke = Color3.fromRGB(40, 40, 70)
+    },
+    ["Crimson"] = {
+        Background = Color3.fromRGB(25, 15, 15), Sidebar = Color3.fromRGB(35, 20, 20), Element = Color3.fromRGB(50, 30, 30),
+        Text = Color3.fromRGB(255, 240, 240), SubText = Color3.fromRGB(180, 150, 150), Accent = Color3.fromRGB(255, 80, 80),
+        Danger = Color3.fromRGB(255, 50, 50), Success = Color3.fromRGB(80, 255, 100), Stroke = Color3.fromRGB(70, 40, 40)
+    },
+    ["Matrix"] = {
+        Background = Color3.fromRGB(10, 20, 10), Sidebar = Color3.fromRGB(15, 30, 15), Element = Color3.fromRGB(25, 45, 25),
+        Text = Color3.fromRGB(200, 255, 200), SubText = Color3.fromRGB(120, 180, 120), Accent = Color3.fromRGB(50, 255, 100),
+        Danger = Color3.fromRGB(255, 60, 60), Success = Color3.fromRGB(50, 255, 100), Stroke = Color3.fromRGB(30, 70, 30)
+    }
+}
+local Theme = Themes["Dark Default"]
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "CX_FARM_GUI"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = targetGuiParent
+ScreenGui.DisplayOrder = 100
+
+local LoadingFrame = Instance.new("Frame")
+LoadingFrame.Size = UDim2.new(0, 300, 0, 80)
+LoadingFrame.Position = UDim2.new(0.5, -150, 0.5, -40)
+LoadingFrame.BackgroundColor3 = Theme.Background
+LoadingFrame.BackgroundTransparency = 0 
+LoadingFrame.Parent = ScreenGui
+Instance.new("UICorner", LoadingFrame).CornerRadius = UDim.new(0, 8)
+
+local LoadingText = Instance.new("TextLabel")
+LoadingText.Size = UDim2.new(1, 0, 1, 0)
+LoadingText.BackgroundTransparency = 1
+LoadingText.Text = "Loading up cx.farm..."
+LoadingText.TextColor3 = Theme.Accent
+LoadingText.Font = Enum.Font.GothamBold
+LoadingText.TextSize = 18
+LoadingText.TextTransparency = 0 
+LoadingText.Parent = LoadingFrame
+
+local pulseTween = TweenService:Create(LoadingText, TweenInfo.new(0.8, Enum.EasingStyle.Sine, Enum.EasingDirection.InOut, -1, true), {TextTransparency = 0.4})
+pulseTween:Play()
+
+local Watermark = Instance.new("TextButton")
+Watermark.Size = UDim2.new(0, 420, 0, 25)
+Watermark.Position = UDim2.new(0.5, -210, 0, 15)
+Watermark.BackgroundColor3 = Theme.Sidebar
+Watermark.Text = " cx.farm | Loading..."
+Watermark.TextColor3 = Theme.Text
+Watermark.Font = Enum.Font.GothamMedium
+Watermark.TextSize = 13
+Watermark.AutoButtonColor = false
+Watermark.Active = true 
+Watermark.Parent = ScreenGui
+Instance.new("UICorner", Watermark).CornerRadius = UDim.new(0, 4)
+
+local CONFIG = {
+    GridSize = 4.5,
+    AutoPunch = false,
+    AutoPlace = false,
+    AutoCollect = false,
+    AutoClear = false,
+    ClearSpeed = 50,
+    ClearCollect = false,
+    FastDropCatch = true,
+    PlaceSpeed = 100,
+    PunchSpeed = 100, 
+    CollectSpeed = 50,
+    UseSelectedItem = true, 
+    SelectedPlaceItemId = nil, 
+    LockTiles = false,
+    LockedOrigin = nil,
+    SpeedBoost = 0,
+    FlySpeed = 30,
+    InfiniteJump = false, 
+    ShowVisuals = true,
+    ModZoom = false,
+    GodMode = false,
+    HideWatermark = false,
+    Fly = false, 
+    AntiRubberband = false, 
+    HideName = false,
+    FakeModName = false,
+    NameColor = "Default",
+    SpoofFlag = "😫",
+    RGBSkin = false,
+    PlayerDetection = false,
+    SafetyAction = "Stop", 
+    AntiAFK = true,
+    AutoConfirmDrop = false,
+    DropAmount = 200,
+    DisableTrails = false,
+    ClearTextures = false,
+    LowGFX = true, 
+    HidePlayers = false, 
+    Disable3D = false, 
+    LimitFPS = false, 
+    Whitelist = {},
+    Keybinds = {
+        AutoPunch = Enum.KeyCode.P,
+        AutoPlace = Enum.KeyCode.L,
+        ModZoom = Enum.KeyCode.Z,
+        Fly = Enum.KeyCode.F,
+        ToggleUI = Enum.KeyCode.RightControl,
+        GodMode = Enum.KeyCode.G,
+        InfiniteJump = Enum.KeyCode.J
+    }
+}
+CONFIG.Whitelist[LocalPlayer.UserId] = true
+
+local OriginalSkinColor = nil
+local OriginalNameColor = nil
+
+local function CacheOriginals()
+    pcall(function()
+        if LocalPlayer.Character and OriginalSkinColor == nil then
+            OriginalSkinColor = LocalPlayer.Character:GetAttribute("skin")
+        end
+        if OriginalNameColor == nil then
+            OriginalNameColor = LocalPlayer:GetAttribute("nameColor") or Color3.new(1, 1, 1)
+        end
+    end)
+end
+
+LocalPlayer.CharacterAdded:Connect(function(char)
+    task.wait(1)
+    OriginalSkinColor = char:GetAttribute("skin")
+    OriginalNameColor = LocalPlayer:GetAttribute("nameColor") or Color3.new(1, 1, 1)
+    if CONFIG.SpoofFlag ~= "" then char:SetAttribute("country", CONFIG.SpoofFlag) end
+end)
+CacheOriginals()
+
+if LocalPlayer.Character and CONFIG.SpoofFlag ~= "" then
+    pcall(function() LocalPlayer.Character:SetAttribute("country", CONFIG.SpoofFlag) end)
+end
+
+local function UpdateNameAttributes()
+    CacheOriginals()
+    if CONFIG.FakeModName then
+        LocalPlayer:SetAttribute("namePrefix", "@")
+        LocalPlayer:SetAttribute("specialNameColor", Color3.fromRGB(0, 255, 255))
+    else
+        LocalPlayer:SetAttribute("namePrefix", "")
+        if CONFIG.NameColor == "Red" then LocalPlayer:SetAttribute("specialNameColor", Color3.fromRGB(255, 50, 50))
+        elseif CONFIG.NameColor == "Gold" then LocalPlayer:SetAttribute("specialNameColor", Color3.fromRGB(255, 215, 0))
+        elseif CONFIG.NameColor == "Cyan" then LocalPlayer:SetAttribute("specialNameColor", Color3.fromRGB(0, 255, 255))
+        else LocalPlayer:SetAttribute("specialNameColor", nil) end
+    end
+    LocalPlayer:SetAttribute("prefix", tick())
+    LocalPlayer:SetAttribute("nameColor", Color3.new(0, 0, 0))
+    task.spawn(function()
+        task.wait(0.05)
+        LocalPlayer:SetAttribute("nameColor", OriginalNameColor)
+    end)
+end
+
+local FeatureRequirements = {
+    AutoCollect = ExecSUNC >= 50, 
+    Fly = ExecSUNC >= 50,
+    GodMode = type(hookmetamethod) == "function",
+    AntiRubberband = type(getconnections) == "function",
+    AutoConfirmDrop = type(getconnections) == "function",
+    FakeModName = true
+}
+
+local FarmCells = {} 
+local DefaultZoomLimit = LocalPlayer.CameraMaxZoomDistance
+local ScriptRunning = true
+local InventoryCache = {} 
+local UI_State = { Minimized = false, LastSize = UDim2.new(0, 650, 0, 420), MiniSize = UDim2.new(0, 50, 0, 50) }
+local SafetyPause = false
+local BindingAction = nil 
+local TrackedEquippedSlot = nil
+local IsHoldingMouse = false
+local Toggles = {} 
+local WasNoclipping = false
+local LastNoclipPos = nil
+local ActiveNukerPos = nil
+
+local gameName = "Craft A World"
+
+local InventoryModule = nil
+local ItemsManager = nil
+local PlayerMovement = nil
+local WorldTilesModule = nil
+local WorldManager = nil
+local AABBModule = nil
+
+local function SafeRequire(modulePath)
+    local success, result = pcall(require, modulePath)
+    if success and result then return result end
+    success, result = pcall(function()
+        if type(getrenv) == "function" and type(getrenv().require) == "function" then
+            return getrenv().require(modulePath)
+        end
+        return nil
+    end)
+    if success and result then return result end
+    return nil
+end
+
+task.spawn(function()
+    InventoryModule = SafeRequire(ReplicatedStorage:WaitForChild("Modules", 5):WaitForChild("Inventory"))
+    ItemsManager = SafeRequire(ReplicatedStorage:WaitForChild("Managers", 5):WaitForChild("ItemsManager"))
+    PlayerMovement = SafeRequire(LocalPlayer:WaitForChild("PlayerScripts", 5):WaitForChild("PlayerMovement"))
+    WorldTilesModule = SafeRequire(ReplicatedStorage:WaitForChild("WorldTiles", 5))
+    WorldManager = SafeRequire(ReplicatedStorage:WaitForChild("Managers", 5):WaitForChild("WorldManager"))
+    AABBModule = SafeRequire(ReplicatedStorage:WaitForChild("Modules", 5):WaitForChild("AABB"))
+    
+    if AABBModule and type(AABBModule.SweepAABB) == "function" then
+        local oldSweep = AABBModule.SweepAABB
+        AABBModule.SweepAABB = function(...)
+            if CONFIG.Fly then return nil, nil end
+            return oldSweep(...)
+        end
+    end
+end)
+
+local function FindLiveTables()
+    task.spawn(function()
+        pcall(function()
+            if type(getgc) == "function" then
+                local gc = getgc(true)
+                for _, v in pairs(gc) do
+                    if type(v) == "table" then
+                        if rawget(v, "VelocityX") and rawget(v, "Sensor") ~= nil then
+                            PlayerMovement = v
+                        end
+                        if rawget(v, "SelectedHotbar") and rawget(v, "HotbarStacks") then
+                            InventoryModule = v
+                        end
+                    end
+                end
+            end
+        end)
+    end)
+end
+
+local gcSearched = false
+task.spawn(function()
+    while ScriptRunning do
+        if not PlayerMovement or not InventoryModule then 
+            if not gcSearched then
+                FindLiveTables()
+                gcSearched = true
+            end
+        end
+        task.wait(3)
+    end
+end)
+
+LocalPlayer.Idled:Connect(function()
+    if CONFIG.AntiAFK and ScriptRunning and VirtualUser then
+        pcall(function()
+            VirtualUser:CaptureController()
+            VirtualUser:ClickButton2(Vector2.new())
+        end)
+    end
+end)
+
+local Remotes = nil
+local PlayerFist = nil
+local PlayerPlaceItem = nil
+local PlayerMovementPackets = nil
+local PlayerMovementRemote = nil
+local PlayerSetPositionRemote = nil
+
+task.spawn(function()
+    pcall(function()
+        Remotes = ReplicatedStorage:WaitForChild("Remotes", 5)
+        PlayerFist = Remotes and Remotes:WaitForChild("PlayerFist", 3)
+        PlayerPlaceItem = Remotes and Remotes:WaitForChild("PlayerPlaceItem", 3) 
+        PlayerMovementPackets = Remotes and Remotes:WaitForChild("PlayerMovementPackets", 3)
+        PlayerMovementRemote = PlayerMovementPackets and PlayerMovementPackets:WaitForChild(LocalPlayer.Name, 3)
+        PlayerSetPositionRemote = Remotes and Remotes:WaitForChild("PlayerSetPosition", 3)
+    end)
+end)
+
+local OriginalPlayerSetPosition = nil
+task.spawn(function()
+    if type(getconnections) == "function" and PlayerSetPositionRemote then
+        pcall(function()
+            for _, conn in pairs(getconnections(PlayerSetPositionRemote.OnClientEvent)) do
+                local oldFunc = conn.Function
+                if type(oldFunc) == "function" then
+                    OriginalPlayerSetPosition = oldFunc
+                    conn:Disable()
+                    PlayerSetPositionRemote.OnClientEvent:Connect(function(targetPlayer, pos, ...)
+                        if (CONFIG.Fly or CONFIG.AntiRubberband) and targetPlayer == LocalPlayer then return end
+                        oldFunc(targetPlayer, pos, ...)
+                    end)
+                end
+            end
+        end)
+    end
+end)
+
+-- C-STACK & NAMECALL FIX: Completely removes pcall inside the hook to prevent engine thread scrambling
+pcall(function()
+    if type(hookmetamethod) == "function" then
+        local OldNamecall
+        OldNamecall = hookmetamethod(game, "__namecall", function(self, ...)
+            if not ScriptRunning then return OldNamecall(self, ...) end
+            
+            local method = getnamecallmethod()
+            
+            if method == "FireServer" then
+                if CONFIG.GodMode and tostring(self) == "PlayerHurtMe" then return end
+                if type(checkcaller) == "function" and not checkcaller() then
+                    if tostring(self) == "PlayerEquipItem" then
+                        local args = {...}
+                        if type(args[1]) == "number" then TrackedEquippedSlot = args[1] end
+                    end
+                end
+            elseif method == "Fire" and tostring(self) == "Event" and self.ClassName == "BindableEvent" then
+                if type(checkcaller) == "function" and not checkcaller() then
+                    local args = {...}
+                    if type(args[1]) == "number" then TrackedEquippedSlot = args[2] end
+                end
+            end
+            
+            return OldNamecall(self, ...)
+        end)
+    end
+end)
+
+task.spawn(function()
+    if type(getconnections) == "function" then
+        local UIManager = ReplicatedStorage:WaitForChild("Managers", 5)
+        local UIPromptEvent = UIManager and UIManager:WaitForChild("UIManager", 5) and UIManager.UIManager:WaitForChild("UIPromptEvent", 5)
+        if UIPromptEvent then
+            pcall(function()
+                for _, conn in pairs(getconnections(UIPromptEvent.OnClientEvent)) do
+                    local oldFunc = conn.Function
+                    if type(oldFunc) == "function" then
+                        conn:Disable()
+                        UIPromptEvent.OnClientEvent:Connect(function(promptData, ...)
+                            if type(promptData) == "table" and promptData.Title then
+                                local titleLower = string.lower(promptData.Title)
+                                if CONFIG.AutoConfirmDrop and string.find(titleLower, "drop") then
+                                    task.spawn(function()
+                                        local payload = { ButtonAction = "drp", Inputs = { amt = tostring(CONFIG.DropAmount) } }
+                                        UIPromptEvent:FireServer(payload)
+                                    end)
+                                    return 
+                                end
+                            end
+                            oldFunc(promptData, ...)
+                        end)
+                    end
+                end
+            end)
+        end
+    end
+end)
+
+local function SafeRemoteFire(remote, ...)
+    if remote and typeof(remote) == "Instance" and remote.ClassName == "RemoteEvent" then
+        remote:FireServer(...)
+    end
+end
+
+local function GetDelayFromPercentage(speedValue) 
+    if speedValue >= 100 then return 0 end
+    local delay = (100 - speedValue) / 200
+    return math.max(0.05, delay) 
+end
+
+local IsDraggingUI = false
+local function EnableNativeDrag(dragHandle, targetGui)
+    targetGui = targetGui or dragHandle
+    local dragging = false
+    local dragInput, dragStart, startPos
+    
+    dragHandle.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            IsDraggingUI = false
+            dragStart = input.Position
+            startPos = targetGui.Position
+            
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then 
+                    dragging = false 
+                    task.delay(0.1, function() IsDraggingUI = false end)
+                end
+            end)
+        end
+    end)
+    
+    dragHandle.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            local delta = input.Position - dragStart
+            if delta.Magnitude > 3 then IsDraggingUI = true end
+            targetGui.Position = UDim2.new(
+                startPos.X.Scale, startPos.X.Offset + delta.X,
+                startPos.Y.Scale, startPos.Y.Offset + delta.Y
+            )
+        end
+    end)
+end
+
+local function EnableNativeResize(grip, frame)
+    local resizing = false
+    local dragInput, startPos, startSize
+    
+    grip.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            resizing = true
+            startPos = input.Position
+            startSize = frame.Size
+            
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then resizing = false end
+            end)
+        end
+    end)
+    
+    grip.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            dragInput = input
+        end
+    end)
+    
+    UserInputService.InputChanged:Connect(function(input)
+        if input == dragInput and resizing then
+            local delta = input.Position - startPos
+            frame.Size = UDim2.new(
+                0, math.max(400, startSize.X.Offset + delta.X),
+                0, math.max(300, startSize.Y.Offset + delta.Y)
+            )
+        end
+    end)
+end
+
+local MiniLogo = Instance.new("Frame")
+MiniLogo.Size = UDim2.new(0, 0, 0, 0)
+MiniLogo.BackgroundColor3 = Theme.Accent
+MiniLogo.Visible = false
+MiniLogo.Active = true 
+MiniLogo.ZIndex = 100
+MiniLogo.Parent = ScreenGui
+Instance.new("UICorner", MiniLogo).CornerRadius = UDim.new(0, 8)
+
+local MiniLogoImg = Instance.new("ImageLabel")
+MiniLogoImg.Size = UDim2.new(1, -10, 1, -10)
+MiniLogoImg.Position = UDim2.new(0.5, 0, 0.5, 0)
+MiniLogoImg.AnchorPoint = Vector2.new(0.5, 0.5)
+MiniLogoImg.BackgroundTransparency = 1
+MiniLogoImg.Image = "rbxassetid://137345139045332"
+MiniLogoImg.ZIndex = 101
+MiniLogoImg.Parent = MiniLogo
+
+local MiniLogoBtn = Instance.new("TextButton")
+MiniLogoBtn.Size = UDim2.new(1, 0, 1, 0)
+MiniLogoBtn.BackgroundTransparency = 1
+MiniLogoBtn.Text = ""
+MiniLogoBtn.ZIndex = 102
+MiniLogoBtn.Parent = MiniLogo
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 0, 0, 0)
+MainFrame.Position = UDim2.new(0.5, -325, 0.5, -210)
+MainFrame.BackgroundColor3 = Theme.Background
+MainFrame.BorderSizePixel = 0
+MainFrame.Visible = false
+MainFrame.Active = true 
+MainFrame.Parent = ScreenGui
+MainFrame.ClipsDescendants = true 
+
+Instance.new("UICorner", MainFrame).CornerRadius = UDim.new(0, 8)
+local MainStroke = Instance.new("UIStroke")
+MainStroke.Color = Theme.Stroke
+MainStroke.Thickness = 1.5
+MainStroke.Parent = MainFrame
+
+local Header = Instance.new("Frame")
+Header.Size = UDim2.new(1, 0, 0, 40)
+Header.BackgroundColor3 = Theme.Sidebar
+Header.BorderSizePixel = 0
+Header.Parent = MainFrame
+
+local HeaderCorner = Instance.new("UICorner")
+HeaderCorner.CornerRadius = UDim.new(0, 8)
+HeaderCorner.Parent = Header
+
+local HeaderSquare = Instance.new("Frame")
+HeaderSquare.Size = UDim2.new(1, 0, 0.5, 0)
+HeaderSquare.Position = UDim2.new(0, 0, 0.5, 0)
+HeaderSquare.BackgroundColor3 = Theme.Sidebar
+HeaderSquare.BorderSizePixel = 0
+HeaderSquare.Parent = Header
+
+local TitleContainer = Instance.new("Frame")
+TitleContainer.Size = UDim2.new(0.8, -10, 1, 0)
+TitleContainer.Position = UDim2.new(0, 10, 0, 0)
+TitleContainer.BackgroundTransparency = 1
+TitleContainer.Parent = Header
+
+local TitleListLayout = Instance.new("UIListLayout", TitleContainer)
+TitleListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+TitleListLayout.Padding = UDim.new(0, 0)
+TitleListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+
+local Title = Instance.new("TextLabel")
+Title.Text = "cx.farm v3 [dsc.gg/cxscript]"
+Title.Size = UDim2.new(1, 0, 0, 20)
+Title.BackgroundTransparency = 1
+Title.Font = Enum.Font.GothamBold
+Title.TextColor3 = Theme.Accent
+Title.TextSize = 15
+Title.TextXAlignment = Enum.TextXAlignment.Left
+Title.LayoutOrder = 1
+Title.Parent = TitleContainer
+
+local SubTitle = Instance.new("TextLabel")
+SubTitle.Text = currentTier .. " Version" 
+SubTitle.Size = UDim2.new(1, 0, 0, 14)
+SubTitle.BackgroundTransparency = 1
+SubTitle.Font = Enum.Font.GothamMedium
+SubTitle.TextColor3 = Theme.SubText
+SubTitle.TextSize = 10
+SubTitle.TextXAlignment = Enum.TextXAlignment.Left
+SubTitle.LayoutOrder = 2
+SubTitle.Parent = TitleContainer
+
+local MiniBtn = Instance.new("TextButton")
+MiniBtn.Text = "-"
+MiniBtn.Size = UDim2.new(0, 40, 1, 0)
+MiniBtn.Position = UDim2.new(1, -40, 0, 0)
+MiniBtn.BackgroundTransparency = 1
+MiniBtn.Font = Enum.Font.GothamBold
+MiniBtn.TextColor3 = Theme.SubText
+MiniBtn.TextSize = 24
+MiniBtn.Parent = Header
+
+local ResizeGrip = Instance.new("TextButton")
+ResizeGrip.Size = UDim2.new(0, 20, 0, 20)
+ResizeGrip.AnchorPoint = Vector2.new(1, 1)
+ResizeGrip.Position = UDim2.new(1, 0, 1, 0)
+ResizeGrip.BackgroundColor3 = Theme.Accent
+ResizeGrip.BackgroundTransparency = 0.5
+ResizeGrip.Text = ""
+ResizeGrip.ZIndex = 20
+ResizeGrip.Parent = MainFrame
+Instance.new("UICorner", ResizeGrip).CornerRadius = UDim.new(0, 4)
+
+local BodyGroup = Instance.new("Frame")
+BodyGroup.Size = UDim2.new(1, 0, 1, -40)
+BodyGroup.Position = UDim2.new(0, 0, 0, 40)
+BodyGroup.BackgroundTransparency = 1
+BodyGroup.Parent = MainFrame
+
+local Sidebar = Instance.new("Frame")
+Sidebar.Size = UDim2.new(0, 140, 1, 0)
+Sidebar.BackgroundColor3 = Theme.Sidebar
+Sidebar.BorderSizePixel = 0
+Sidebar.Active = true 
+Sidebar.Parent = BodyGroup
+
+local Content = Instance.new("Frame")
+Content.Size = UDim2.new(1, -140, 1, 0)
+Content.Position = UDim2.new(0, 140, 0, 0)
+Content.BackgroundTransparency = 1
+Content.Parent = BodyGroup
+
+local TabContainer = Instance.new("ScrollingFrame")
+TabContainer.Size = UDim2.new(1, 0, 1, -60)
+TabContainer.Position = UDim2.new(0, 0, 0, 10)
+TabContainer.BackgroundTransparency = 1
+TabContainer.ScrollBarThickness = 4
+TabContainer.ScrollingDirection = Enum.ScrollingDirection.Y
+TabContainer.AutomaticCanvasSize = Enum.AutomaticSize.None
+TabContainer.ScrollBarImageColor3 = Theme.Accent
+TabContainer.Parent = Sidebar
+
+local NotifyList = Instance.new("Frame")
+NotifyList.Size = UDim2.new(0, 260, 0.5, 0)
+NotifyList.Position = UDim2.new(1, -270, 0.5, -100)
+NotifyList.BackgroundTransparency = 1
+NotifyList.ZIndex = 100
+NotifyList.Parent = ScreenGui
+local NotifyLayout = Instance.new("UIListLayout", NotifyList)
+NotifyLayout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+NotifyLayout.Padding = UDim.new(0, 5)
+
+local ProfileWidget = Instance.new("Frame")
+ProfileWidget.Size = UDim2.new(1, -10, 0, 45)
+ProfileWidget.Position = UDim2.new(0, 5, 1, -50)
+ProfileWidget.BackgroundColor3 = Theme.Element
+ProfileWidget.Parent = Sidebar
+Instance.new("UICorner", ProfileWidget).CornerRadius = UDim.new(0, 6)
+
+local AvatarImg = Instance.new("ImageLabel")
+AvatarImg.Size = UDim2.new(0, 35, 0, 35)
+AvatarImg.Position = UDim2.new(0, 5, 0, 5)
+AvatarImg.BackgroundColor3 = Theme.Sidebar
+AvatarImg.Parent = ProfileWidget
+Instance.new("UICorner", AvatarImg).CornerRadius = UDim.new(1, 0)
+task.spawn(function()
+    pcall(function()
+        local thumb, isReady = Players:GetUserThumbnailAsync(LocalPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size420x420)
+        if isReady then AvatarImg.Image = thumb end
+    end)
+end)
+
+local NameBtn = Instance.new("TextButton")
+NameBtn.Size = UDim2.new(1, -50, 0, 20)
+NameBtn.Position = UDim2.new(0, 45, 0, 5)
+NameBtn.BackgroundTransparency = 1
+NameBtn.Text = "@******"
+NameBtn.TextColor3 = Theme.Text
+NameBtn.Font = Enum.Font.GothamMedium
+NameBtn.TextSize = 12
+NameBtn.TextXAlignment = Enum.TextXAlignment.Left
+NameBtn.Parent = ProfileWidget
+
+local isCensored = true
+NameBtn.MouseButton1Click:Connect(function()
+    if CONFIG.HideName then return end 
+    isCensored = not isCensored
+    NameBtn.Text = isCensored and "@******" or (CONFIG.FakeModName and "@" or "") .. LocalPlayer.Name
+end)
+
+local TierLbl = Instance.new("TextLabel")
+TierLbl.Size = UDim2.new(1, -50, 0, 15)
+TierLbl.Position = UDim2.new(0, 45, 0, 25)
+TierLbl.BackgroundTransparency = 1
+TierLbl.Text = currentTier .. " User"
+TierLbl.TextColor3 = Theme.SubText
+TierLbl.Font = Enum.Font.GothamBold
+TierLbl.TextSize = 11
+TierLbl.TextXAlignment = Enum.TextXAlignment.Left
+TierLbl.Parent = ProfileWidget
+
+local function SendNotification(text, color)
+    task.spawn(function()
+        local F = Instance.new("Frame")
+        F.Size = UDim2.new(1, 0, 0, 0)
+        F.AutomaticSize = Enum.AutomaticSize.Y
+        F.BackgroundColor3 = Theme.Sidebar
+        F.BackgroundTransparency = 0.1
+        F.ZIndex = 100
+        F.Parent = NotifyList
+        Instance.new("UICorner", F).CornerRadius = UDim.new(0, 4)
+        
+        local pad = Instance.new("UIPadding", F)
+        pad.PaddingTop = UDim.new(0, 10)
+        pad.PaddingBottom = UDim.new(0, 10)
+        pad.PaddingLeft = UDim.new(0, 10)
+        pad.PaddingRight = UDim.new(0, 10)
+
+        local T = Instance.new("TextLabel", F)
+        T.Size = UDim2.new(1, 0, 0, 0)
+        T.AutomaticSize = Enum.AutomaticSize.Y
+        T.BackgroundTransparency = 1
+        T.Text = text
+        T.TextColor3 = Theme.Text
+        T.Font = Enum.Font.GothamBold
+        T.TextSize = 13
+        T.TextWrapped = true
+        T.ZIndex = 100
+        T.TextXAlignment = Enum.TextXAlignment.Left
+        
+        F.Position = UDim2.new(1, 0, 0, 0)
+        TweenService:Create(F, TweenInfo.new(0.3), {Position = UDim2.new(0,0,0,0)}):Play()
+        task.wait(4)
+        if F then F:Destroy() end
+    end)
+end
+
+local function SwitchTheme(themeName)
+    local newTheme = Themes[themeName]
+    if not newTheme then return end
+    
+    for _, obj in pairs(ScreenGui:GetDescendants()) do
+        pcall(function()
+            for role, color in pairs(Theme) do
+                if obj:IsA("GuiObject") or obj:IsA("UIStroke") then
+                    if obj:IsA("GuiObject") and obj.BackgroundColor3 == color then
+                        obj.BackgroundColor3 = newTheme[role]
+                    end
+                    if obj:IsA("TextLabel") or obj:IsA("TextButton") or obj:IsA("TextBox") then
+                        if obj.TextColor3 == color then obj.TextColor3 = newTheme[role] end
+                    end
+                    if obj:IsA("UIStroke") and obj.Color == color then
+                        obj.Color = newTheme[role]
+                    end
+                    if obj:IsA("ScrollingFrame") and obj.ScrollBarImageColor3 == color then
+                        obj.ScrollBarImageColor3 = newTheme[role]
+                    end
+                    if (obj:IsA("ImageLabel") or obj:IsA("ImageButton")) and obj.ImageColor3 == color then
+                        obj.ImageColor3 = newTheme[role]
+                    end
+                end
+            end
+        end)
+    end
+    Theme = newTheme
+end
+
+local Tabs = {}
+local function CreateTab(name, order)
+    local Btn = Instance.new("TextButton")
+    Btn.Name = name
+    Btn.Size = UDim2.new(1, -20, 0, 35)
+    Btn.LayoutOrder = order
+    Btn.BackgroundColor3 = Theme.Sidebar
+    Btn.Text = name
+    Btn.Font = Enum.Font.GothamMedium
+    Btn.TextColor3 = Theme.SubText
+    Btn.TextSize = 15
+    Btn.Parent = TabContainer
+    Instance.new("UICorner", Btn).CornerRadius = UDim.new(0, 6)
+
+    local Page = Instance.new("ScrollingFrame")
+    Page.Name = name .. "Page"
+    Page.Size = UDim2.new(1, -20, 1, -20)
+    Page.Position = UDim2.new(0, 10, 0, 10)
+    Page.BackgroundTransparency = 1
+    Page.ScrollBarThickness = 6
+    Page.ScrollingDirection = Enum.ScrollingDirection.Y
+    Page.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    Page.ScrollBarImageColor3 = Theme.Accent
+    Page.Visible = false
+    Page.Parent = Content
+    
+    local Layout = Instance.new("UIListLayout", Page)
+    Layout.Padding = UDim.new(0, 8)
+    Layout.SortOrder = Enum.SortOrder.LayoutOrder
+
+    Layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        Page.CanvasSize = UDim2.new(0, 0, 0, Layout.AbsoluteContentSize.Y + 20)
+    end)
+
+    Btn.MouseButton1Click:Connect(function()
+        for _, t in pairs(Tabs) do
+            t.Btn.TextColor3 = Theme.SubText
+            t.Btn.BackgroundColor3 = Theme.Sidebar
+            t.Page.Visible = false
+        end
+        Btn.TextColor3 = Theme.Text
+        Btn.BackgroundColor3 = Theme.Element
+        Page.Visible = true
+    end)
+    
+    table.insert(Tabs, {Btn = Btn, Page = Page})
+    return Page
+end
+
+local TabSort = Instance.new("UIListLayout", TabContainer)
+TabSort.SortOrder = Enum.SortOrder.LayoutOrder
+TabSort.Padding = UDim.new(0, 5)
+
+TabSort:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+    TabContainer.CanvasSize = UDim2.new(0, 0, 0, TabSort.AbsoluteContentSize.Y + 20)
+end)
+
+local function CreateContainer(page, title, order)
+    local Section = Instance.new("Frame")
+    Section.LayoutOrder = order
+    Section.Size = UDim2.new(1, 0, 0, 0)
+    Section.AutomaticSize = Enum.AutomaticSize.Y
+    Section.BackgroundTransparency = 1
+    Section.Parent = page
+    
+    local Layout = Instance.new("UIListLayout", Section)
+    Layout.Padding = UDim.new(0, 6)
+    Layout.SortOrder = Enum.SortOrder.LayoutOrder
+    
+    Layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        Section.Size = UDim2.new(1, 0, 0, Layout.AbsoluteContentSize.Y + 6)
+    end)
+    
+    local Lbl = Instance.new("TextLabel")
+    Lbl.Size = UDim2.new(1, 0, 0, 25)
+    Lbl.BackgroundTransparency = 1
+    Lbl.Text = title
+    Lbl.Font = Enum.Font.GothamBold
+    Lbl.TextColor3 = Theme.Accent
+    Lbl.TextSize = 13
+    Lbl.TextXAlignment = Enum.TextXAlignment.Left
+    Lbl.LayoutOrder = 0
+    Lbl.Parent = Section
+    
+    return Section 
+end
+
+local ConfigFolder = "cxfarm/config"
+pcall(function()
+    if type(makefolder) == "function" then
+        if not isfolder("cxfarm") then makefolder("cxfarm") end
+        if not isfolder(ConfigFolder) then makefolder(ConfigFolder) end
+    end
+end)
+
+local function GetSavedConfigs()
+    local configs = {}
+    pcall(function()
+        if type(listfiles) == "function" then
+            for _, file in ipairs(listfiles(ConfigFolder)) do
+                if file:match("%.json$") then
+                    local name = file:match("([^/\\]+)%.json$")
+                    if name then table.insert(configs, name) end
+                end
+            end
+        end
+    end)
+    return #configs > 0 and configs or {"No Configs Found"}
+end
+
+local function UpdateInventoryCache()
+    table.clear(InventoryCache) 
+    if InventoryModule and type(InventoryModule) == "table" and rawget(InventoryModule, "Stacks") then
+        pcall(function()
+            for slotIndex, stack in pairs(InventoryModule.Stacks) do
+                if type(stack) == "table" and stack.Id then
+                    local itemName = "ID: " .. tostring(stack.Id)
+                    if ItemsManager and type(ItemsManager) == "table" then
+                        if type(ItemsManager.GetName) == "function" then
+                            local s, n = pcall(function() return ItemsManager.GetName(stack.Id) end)
+                            if s and n then itemName = n end
+                        else
+                            local s, data = pcall(function() return ItemsManager.RequestItemData(stack.Id) end)
+                            if s and type(data) == "table" and data.Name then 
+                                itemName = data.Name 
+                            end
+                        end
+                    end
+                    InventoryCache[slotIndex] = {Slot = slotIndex, Id = stack.Id, Name = itemName, Amount = stack.Amount or 1}
+                end
+            end
+        end)
+    end
+end
+
+local function GetAggregatedInventory()
+    pcall(UpdateInventoryCache)
+    local agg = {}
+    for _, item in pairs(InventoryCache) do
+        if item.Id then
+            if not agg[item.Id] then
+                agg[item.Id] = { Id = item.Id, Name = item.Name, Amount = 0, Slot = item.Slot }
+            end
+            agg[item.Id].Amount = agg[item.Id].Amount + (tonumber(item.Amount) or 1)
+        end
+    end
+    local sorted = {}
+    for _, v in pairs(agg) do table.insert(sorted, v) end
+    table.sort(sorted, function(a, b) return a.Name < b.Name end)
+    table.clear(agg) 
+    return sorted
+end
+
+local function GetSlotFromItemId(targetId)
+    if InventoryModule and type(InventoryModule) == "table" and rawget(InventoryModule, "Stacks") then
+        for slotIndex, stack in pairs(InventoryModule.Stacks) do
+            if type(stack) == "table" and stack.Id == targetId then
+                return slotIndex
+            end
+        end
+    end
+    return nil
+end
+
+local function CreateTextBox(parent, text, default, order, callback)
+    local Container = Instance.new("Frame")
+    Container.Size = UDim2.new(1, 0, 0, 40)
+    Container.BackgroundColor3 = Theme.Sidebar
+    Container.BackgroundTransparency = 1
+    Container.LayoutOrder = order
+    Container.Parent = parent
+    
+    local Lbl = Instance.new("TextLabel")
+    Lbl.Text = text
+    Lbl.Size = UDim2.new(0.5, -5, 1, 0)
+    Lbl.Position = UDim2.new(0, 12, 0, 0)
+    Lbl.BackgroundTransparency = 1
+    Lbl.Font = Enum.Font.GothamMedium
+    Lbl.TextColor3 = Theme.Text
+    Lbl.TextSize = 14
+    Lbl.TextXAlignment = Enum.TextXAlignment.Left
+    Lbl.Parent = Container
+
+    local Box = Instance.new("TextBox")
+    Box.Size = UDim2.new(0.5, -20, 0, 30)
+    Box.Position = UDim2.new(0.5, 10, 0.5, -15)
+    Box.BackgroundColor3 = Theme.Element
+    Box.Text = default
+    Box.PlaceholderText = "..."
+    Box.TextColor3 = Theme.SubText
+    Box.Font = Enum.Font.GothamMedium
+    Box.TextSize = 13
+    Box.Parent = Container
+    Instance.new("UICorner", Box).CornerRadius = UDim.new(0, 4)
+    
+    Box.Focused:Connect(function()
+        pcall(function() game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false) end)
+    end)
+    
+    Box.FocusLost:Connect(function()
+        pcall(function() game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true) end)
+        callback(Box.Text)
+        SendNotification(text .. " updated.", Theme.Success)
+    end)
+end
+
+local function CreateDropdown(parent, text, order, callback, customList)
+    local Container = Instance.new("Frame")
+    Container.Size = UDim2.new(1, 0, 0, 40)
+    Container.BackgroundColor3 = Theme.Sidebar
+    Container.BackgroundTransparency = 1
+    Container.LayoutOrder = order
+    Container.ZIndex = 5 
+    Container.Parent = parent
+    
+    local MainBtn = Instance.new("TextButton")
+    MainBtn.Size = UDim2.new(1, 0, 0, 40)
+    MainBtn.BackgroundColor3 = Theme.Element
+    MainBtn.Text = text .. ": None"
+    MainBtn.TextColor3 = Theme.Text
+    MainBtn.Font = Enum.Font.GothamMedium
+    MainBtn.TextSize = 14
+    MainBtn.ZIndex = 5
+    MainBtn.Parent = Container
+    Instance.new("UICorner", MainBtn).CornerRadius = UDim.new(0, 6)
+    
+    local ConfigScroll = Instance.new("ScrollingFrame")
+    ConfigScroll.Size = UDim2.new(1, 0, 0, 0)
+    ConfigScroll.Position = UDim2.new(0, 0, 0, 45)
+    ConfigScroll.BackgroundTransparency = 1
+    ConfigScroll.ScrollBarThickness = 6
+    ConfigScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    ConfigScroll.ScrollBarImageColor3 = Theme.Accent
+    ConfigScroll.Visible = false
+    ConfigScroll.ZIndex = 10 
+    ConfigScroll.Parent = Container
+    
+    local ListLayout = Instance.new("UIListLayout", ConfigScroll)
+    ListLayout.Padding = UDim.new(0, 4)
+    
+    local expanded = false
+    MainBtn.MouseButton1Click:Connect(function()
+        expanded = not expanded
+        if expanded then
+            for _, v in pairs(ConfigScroll:GetChildren()) do if v:IsA("TextButton") or v:IsA("TextLabel") then v:Destroy() end end
+            
+            local count = 0
+            if customList then
+                for _, item in ipairs(customList) do
+                    local b = Instance.new("TextButton")
+                    b.Size = UDim2.new(1, -10, 0, 30)
+                    b.BackgroundColor3 = Theme.Sidebar
+                    b.Text = "  " .. item
+                    b.TextColor3 = Theme.SubText
+                    b.TextXAlignment = Enum.TextXAlignment.Left
+                    b.Font = Enum.Font.Gotham
+                    b.TextSize = 13
+                    b.ZIndex = 10
+                    b.Parent = ConfigScroll
+                    Instance.new("UICorner", b).CornerRadius = UDim.new(0, 4)
+                    
+                    b.MouseButton1Click:Connect(function()
+                        expanded = false
+                        ConfigScroll.Visible = false
+                        Container.Size = UDim2.new(1, 0, 0, 40)
+                        MainBtn.Text = text .. ": " .. item
+                        callback(item) 
+                    end)
+                    count = count + 1
+                end
+            else
+                local aggInv = GetAggregatedInventory()
+                for _, item in pairs(aggInv) do
+                    local b = Instance.new("TextButton")
+                    b.Size = UDim2.new(1, -10, 0, 30)
+                    b.BackgroundColor3 = Theme.Sidebar
+                    b.Text = "  " .. item.Name .. " (x" .. item.Amount .. ")"
+                    b.TextColor3 = Theme.SubText
+                    b.TextXAlignment = Enum.TextXAlignment.Left
+                    b.Font = Enum.Font.Gotham
+                    b.TextSize = 13
+                    b.ZIndex = 10
+                    b.Parent = ConfigScroll
+                    Instance.new("UICorner", b).CornerRadius = UDim.new(0, 4)
+                    
+                    b.MouseButton1Click:Connect(function()
+                        expanded = false
+                        ConfigScroll.Visible = false
+                        Container.Size = UDim2.new(1, 0, 0, 40)
+                        MainBtn.Text = text .. ": " .. item.Name
+                        callback(item.Id) 
+                    end)
+                    count = count + 1
+                end
+            end
+            
+            if count == 0 then
+                local b = Instance.new("TextLabel")
+                b.Size = UDim2.new(1, -10, 0, 45)
+                b.BackgroundColor3 = Theme.Sidebar
+                b.Text = "No items available!"
+                b.TextColor3 = Theme.Danger
+                b.Font = Enum.Font.GothamBold
+                b.TextSize = 12
+                b.ZIndex = 10
+                b.Parent = ConfigScroll
+                Instance.new("UICorner", b).CornerRadius = UDim.new(0, 4)
+                count = 1.5
+            end
+            
+            local targetHeight = math.min(150, count * 34)
+            ConfigScroll.Size = UDim2.new(1, 0, 0, targetHeight)
+            Container.Size = UDim2.new(1, 0, 0, 45 + targetHeight)
+            ConfigScroll.Visible = true
+        else
+            ConfigScroll.Visible = false
+            Container.Size = UDim2.new(1, 0, 0, 40)
+        end
+    end)
+end
+
+local function CreateToggle(parent, configKey, text, order, callback, reqCheckKey, isPremiumOnly)
+    local Container = Instance.new("TextButton")
+    Container.Size = UDim2.new(1, 0, 0, 40)
+    Container.BackgroundColor3 = Theme.Element
+    Container.Text = ""
+    Container.LayoutOrder = order
+    Container.Parent = parent
+    Instance.new("UICorner", Container).CornerRadius = UDim.new(0, 6)
+    
+    local Lbl = Instance.new("TextLabel")
+    Lbl.Text = text
+    Lbl.Size = UDim2.new(0.8, 0, 1, 0)
+    Lbl.Position = UDim2.new(0, 12, 0, 0)
+    Lbl.BackgroundTransparency = 1
+    Lbl.Font = Enum.Font.GothamMedium
+    Lbl.TextColor3 = Theme.Text
+    Lbl.TextSize = 14
+    Lbl.TextXAlignment = Enum.TextXAlignment.Left
+    Lbl.Parent = Container
+    
+    local Ind = Instance.new("Frame")
+    Ind.Size = UDim2.new(0, 20, 0, 20)
+    Ind.Position = UDim2.new(1, -30, 0.5, -10)
+    Ind.Parent = Container
+    Instance.new("UICorner", Ind).CornerRadius = UDim.new(0, 4)
+    
+    local function UpdateVisual(state)
+        CONFIG[configKey] = state
+        Ind.BackgroundColor3 = state and Theme.Success or Theme.Sidebar
+        if callback then callback(state) end
+    end
+    
+    Container.MouseButton1Click:Connect(function()
+        if isPremiumOnly and currentTier ~= "Premium" then
+            SendNotification("This feature is for Premium users only!", Theme.Danger)
+            return
+        end
+        local checkKey = reqCheckKey or configKey
+        if FeatureRequirements[checkKey] == false then
+            SendNotification("[Support Error] Your executor (" .. ExecName .. ")'s SUNC level is too low to run " .. text .. ".", Theme.Danger)
+            return
+        end
+        local newState = not CONFIG[configKey]
+        UpdateVisual(newState)
+        SendNotification(text .. ": " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
+    end)
+    
+    Toggles[configKey] = UpdateVisual
+    UpdateVisual(CONFIG[configKey]) 
+end
+
+local function TriggerKeybindToggle(key, name)
+    if FeatureRequirements[key] == false then
+        SendNotification("[Support Error] " .. name .. " requires a higher SUNC level than " .. ExecName .. " provides.", Theme.Danger)
+        return
+    end
+    local newState = not CONFIG[key]
+    if Toggles[key] then Toggles[key](newState) end
+    SendNotification(name .. " [KEYBIND]: " .. (newState and "ON" or "OFF"), newState and Theme.Success or Theme.Danger)
+end
+
+local function CreateSlider(parent, text, min, max, default, order, callback)
+    local Container = Instance.new("Frame")
+    Container.Size = UDim2.new(1, 0, 0, 50)
+    Container.BackgroundColor3 = Theme.Element
+    Container.LayoutOrder = order
+    Container.Parent = parent
+    Instance.new("UICorner", Container).CornerRadius = UDim.new(0, 6)
+    
+    local Lbl = Instance.new("TextLabel")
+    Lbl.Text = text .. ": " .. default
+    Lbl.Size = UDim2.new(1, -20, 0, 20)
+    Lbl.Position = UDim2.new(0, 12, 0, 5)
+    Lbl.BackgroundTransparency = 1
+    Lbl.Font = Enum.Font.Gotham
+    Lbl.TextColor3 = Theme.SubText
+    Lbl.TextSize = 13
+    Lbl.TextXAlignment = Enum.TextXAlignment.Left
+    Lbl.Parent = Container
+    
+    local BarBG = Instance.new("Frame")
+    BarBG.Size = UDim2.new(1, -24, 0, 6)
+    BarBG.Position = UDim2.new(0, 12, 0, 32)
+    BarBG.BackgroundColor3 = Theme.Sidebar
+    BarBG.Parent = Container
+    Instance.new("UICorner", BarBG).CornerRadius = UDim.new(1, 0)
+    
+    local Fill = Instance.new("Frame")
+    Fill.Size = UDim2.new((default-min)/(max-min), 0, 1, 0)
+    Fill.BackgroundColor3 = Theme.Accent
+    Fill.Parent = BarBG
+    Instance.new("UICorner", Fill).CornerRadius = UDim.new(1, 0)
+    
+    local Knob = Instance.new("Frame")
+    Knob.Size = UDim2.new(0, 12, 0, 12)
+    Knob.Position = UDim2.new(1, 0, 0.5, 0)
+    Knob.AnchorPoint = Vector2.new(0.5, 0.5)
+    Knob.BackgroundColor3 = Theme.Text
+    Knob.Parent = Fill
+    Instance.new("UICorner", Knob).CornerRadius = UDim.new(1, 0)
+    
+    local Btn = Instance.new("TextButton")
+    Btn.Size = UDim2.new(1, 0, 1, 0)
+    Btn.BackgroundTransparency = 1
+    Btn.Text = ""
+    Btn.Parent = BarBG
+    
+    local dragging = false
+    local function Update(input)
+        local pos = math.clamp((input.Position.X - BarBG.AbsolutePosition.X) / BarBG.AbsoluteSize.X, 0, 1)
+        Fill.Size = UDim2.new(pos, 0, 1, 0)
+        local val = math.floor(min + ((max-min)*pos))
+        Lbl.Text = text .. ": " .. val
+        callback(val)
+    end
+    
+    Btn.InputBegan:Connect(function(input) 
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then dragging = true Update(input) end 
+    end)
+    UserInputService.InputEnded:Connect(function(input) 
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then dragging = false end 
+    end)
+    UserInputService.InputChanged:Connect(function(input) 
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then Update(input) end 
+    end)
+end
+
+local function CreateKeybind(parent, id, text, defaultKey, order)
+    local Container = Instance.new("TextButton")
+    Container.Size = UDim2.new(1, 0, 0, 40)
+    Container.BackgroundColor3 = Theme.Element
+    Container.Text = ""
+    Container.LayoutOrder = order
+    Container.Parent = parent
+    Instance.new("UICorner", Container).CornerRadius = UDim.new(0, 6)
+    local Lbl = Instance.new("TextLabel")
+    Lbl.Text = text
+    Lbl.Size = UDim2.new(0.6, 0, 1, 0)
+    Lbl.Position = UDim2.new(0, 12, 0, 0)
+    Lbl.BackgroundTransparency = 1
+    Lbl.Font = Enum.Font.GothamMedium
+    Lbl.TextColor3 = Theme.Text
+    Lbl.TextSize = 14
+    Lbl.TextXAlignment = Enum.TextXAlignment.Left
+    Lbl.Parent = Container
+    local BindLbl = Instance.new("TextLabel")
+    BindLbl.Text = defaultKey.Name
+    BindLbl.Size = UDim2.new(0.3, 0, 1, 0)
+    BindLbl.Position = UDim2.new(0.65, 0, 0, 0)
+    BindLbl.BackgroundTransparency = 1
+    BindLbl.Font = Enum.Font.GothamBold
+    BindLbl.TextColor3 = Theme.SubText
+    BindLbl.TextSize = 14
+    BindLbl.TextXAlignment = Enum.TextXAlignment.Right
+    BindLbl.Parent = Container
+    
+    Container.MouseButton1Click:Connect(function()
+        BindLbl.Text = "..."
+        BindingAction = {
+            Callback = function(key)
+                CONFIG.Keybinds[id] = key
+                BindLbl.Text = key.Name
+                BindingAction = nil
+                SendNotification("Bound " .. text .. " to " .. key.Name, Theme.Accent)
+            end
+        }
+    end)
+end
+
+local P_Auto = CreateTab("Auto", 1)
+local P_World = CreateTab("World", 2)
+local P_Misc = CreateTab("Misc", 3)
+local P_Scanner = CreateTab("World Scanner", 4)
+local P_Inv = CreateTab("Inventory", 5)
+local P_Perf = CreateTab("Performance", 6)
+local P_Keys = CreateTab("Keybinds", 7)
+local P_Configs = CreateTab("Configs", 8)
+local P_Credits = CreateTab("Credits", 9)
+
+local S_Farm = CreateContainer(P_Auto, "FARMING", 1)
+
+CreateToggle(S_Farm, "AutoPlace", "Auto Place", 1)
+CreateSlider(S_Farm, "Place Speed", 0, 100, 100, 2, function(v) CONFIG.PlaceSpeed = v end) 
+
+CreateToggle(S_Farm, "AutoPunch", "Auto Punch", 3)
+CreateSlider(S_Farm, "Punch Speed", 0, 100, 100, 4, function(v) CONFIG.PunchSpeed = v end) 
+
+CreateToggle(S_Farm, "AutoCollect", "Auto Collect", 5)
+CreateSlider(S_Farm, "Collect Speed", 0, 100, 15, 6, function(v) CONFIG.CollectSpeed = v end) 
+
+CreateToggle(S_Farm, "UseSelectedItem", "Use Selected Item", 7) 
+CreateDropdown(S_Farm, "Select Block", 8, function(itemId) CONFIG.SelectedPlaceItemId = itemId end) 
+
+local S_Grid = CreateContainer(P_Auto, "SELECT TILES", 2)
+
+local function GetPlayerPos()
+    local pos = nil
+    if PlayerMovement and type(PlayerMovement) == "table" then
+        pos = rawget(PlayerMovement, "Position")
+    end
+    if not pos then
+        local root = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+        pos = root and root.Position or Vector3.zero
+    end
+    return pos or Vector3.zero
+end
+
+local function GetGridFromWorld(posOverride) 
+    local pos = posOverride or GetPlayerPos()
+    return math.floor((pos.X / 4.5) + 0.5), math.floor((pos.Y / 4.5) + 0.5) 
+end
+
+CreateToggle(S_Grid, "LockTiles", "Lock Selected Tiles", 1, function(v)
+    if v then
+        local cx, cy = GetGridFromWorld()
+        CONFIG.LockedOrigin = {X = cx, Y = cy}
+    else
+        CONFIG.LockedOrigin = nil
+    end
+end)
+
+local GridDropContainer = Instance.new("Frame")
+GridDropContainer.Size = UDim2.new(1, 0, 0, 40)
+GridDropContainer.BackgroundColor3 = Theme.Sidebar
+GridDropContainer.BackgroundTransparency = 1
+GridDropContainer.LayoutOrder = 2
+GridDropContainer.Parent = S_Grid
+
+local GridMainBtn = Instance.new("TextButton")
+GridMainBtn.Size = UDim2.new(1, 0, 0, 40)
+GridMainBtn.BackgroundColor3 = Theme.Element
+GridMainBtn.Text = "Tile Selector" 
+GridMainBtn.TextColor3 = Theme.Text
+GridMainBtn.Font = Enum.Font.GothamMedium
+GridMainBtn.TextSize = 14
+GridMainBtn.Parent = GridDropContainer
+Instance.new("UICorner", GridMainBtn).CornerRadius = UDim.new(0, 6)
+
+local GridBoxWrapper = Instance.new("Frame")
+GridBoxWrapper.Size = UDim2.new(1, 0, 0, 290)
+GridBoxWrapper.Position = UDim2.new(0, 0, 0, 45)
+GridBoxWrapper.BackgroundTransparency = 1
+GridBoxWrapper.Visible = false
+GridBoxWrapper.Parent = GridDropContainer
+
+local GridBox = Instance.new("Frame")
+GridBox.Size = UDim2.new(0, 280, 0, 280)
+GridBox.Position = UDim2.new(0.5, -140, 0, 0)
+GridBox.BackgroundColor3 = Theme.Element
+GridBox.Parent = GridBoxWrapper
+Instance.new("UICorner", GridBox).CornerRadius = UDim.new(0, 6)
+
+local Grid = Instance.new("UIGridLayout", GridBox)
+Grid.CellSize = UDim2.new(0, 35, 0, 35)
+Grid.CellPadding = UDim2.new(0, 5, 0, 5)
+Grid.HorizontalAlignment = Enum.HorizontalAlignment.Center
+Grid.VerticalAlignment = Enum.VerticalAlignment.Center
+
+-- 7x7 Grid Generation
+for y = 3, -3, -1 do
+    for x = -3, 3, 1 do
+        local key = x .. ":" .. y
+        local Btn = Instance.new("TextButton")
+        Btn.Text = (x==0 and y==0) and "P" or ""
+        Btn.BackgroundColor3 = Theme.Sidebar
+        Btn.TextColor3 = Theme.Text
+        Btn.Parent = GridBox
+        Instance.new("UICorner", Btn).CornerRadius = UDim.new(0, 4)
+        Btn.MouseButton1Click:Connect(function()
+            if FarmCells[key] then FarmCells[key] = nil Btn.BackgroundColor3 = Theme.Sidebar else FarmCells[key] = {xOff = x, yOff = y} Btn.BackgroundColor3 = Theme.Success end
+        end)
+    end
+end
+
+GridMainBtn.MouseButton1Click:Connect(function()
+    GridBoxWrapper.Visible = not GridBoxWrapper.Visible
+    GridDropContainer.Size = GridBoxWrapper.Visible and UDim2.new(1, 0, 0, 340) or UDim2.new(1, 0, 0, 40)
+end)
+
+-- // PTHT INTEGRATION INTO MAIN CX.FARM //
+local S_PTHT = CreateContainer(P_Auto, "Auto PTHT (Premium)⭐", 3)
+
+local PTHT_OpenBtn = Instance.new("TextButton")
+PTHT_OpenBtn.Size = UDim2.new(1, 0, 0, 40)
+PTHT_OpenBtn.BackgroundColor3 = Theme.Accent
+PTHT_OpenBtn.Text = "Open cx.planter"
+PTHT_OpenBtn.TextColor3 = Theme.Text
+PTHT_OpenBtn.Font = Enum.Font.GothamBold
+PTHT_OpenBtn.TextSize = 14
+PTHT_OpenBtn.LayoutOrder = 1
+PTHT_OpenBtn.Parent = S_PTHT
+Instance.new("UICorner", PTHT_OpenBtn).CornerRadius = UDim.new(0, 6)
+
+local PTHT_PerksLbl = Instance.new("TextLabel")
+PTHT_PerksLbl.Size = UDim2.new(1, -10, 0, 130)
+PTHT_PerksLbl.BackgroundTransparency = 1
+PTHT_PerksLbl.Text = "🤑 <b>Premium Perks:</b>\n• Premium Features: Unlock exclusive powerful tools like Auto PTHT Planter!\n• Early Access: Get all new script feature updates 6 hours ahead of free users!\n• Multi-Device Support: Enjoy increased HWID limits so you can use your key across multiple devices Up to 2 devices!.\n• Direct Support: Your purchase directly supports the Developer!"
+PTHT_PerksLbl.TextColor3 = Theme.SubText
+PTHT_PerksLbl.Font = Enum.Font.Gotham
+PTHT_PerksLbl.TextSize = 11
+PTHT_PerksLbl.RichText = true
+PTHT_PerksLbl.TextWrapped = true
+PTHT_PerksLbl.TextXAlignment = Enum.TextXAlignment.Left
+PTHT_PerksLbl.TextYAlignment = Enum.TextYAlignment.Top
+PTHT_PerksLbl.LayoutOrder = 3
+PTHT_PerksLbl.Visible = false
+PTHT_PerksLbl.Parent = S_PTHT
+
+local PTHT_DiscordBtn = Instance.new("TextButton")
+PTHT_DiscordBtn.Size = UDim2.new(1, 0, 0, 35)
+PTHT_DiscordBtn.BackgroundColor3 = Theme.Sidebar
+PTHT_DiscordBtn.Text = "Get Premium Here (dsc.gg/cxscript)"
+PTHT_DiscordBtn.TextColor3 = Theme.SubText
+PTHT_DiscordBtn.Font = Enum.Font.GothamMedium
+PTHT_DiscordBtn.TextSize = 12
+PTHT_DiscordBtn.LayoutOrder = 2
+PTHT_DiscordBtn.Visible = false
+PTHT_DiscordBtn.Parent = S_PTHT
+Instance.new("UICorner", PTHT_DiscordBtn).CornerRadius = UDim.new(0, 4)
+
+if currentTier == "Premium" then
+    PTHT_OpenBtn.Visible = true
+    PTHT_DiscordBtn.Visible = false
+    PTHT_PerksLbl.Visible = false
+else
+    PTHT_OpenBtn.Visible = false
+    PTHT_DiscordBtn.Visible = true
+    PTHT_PerksLbl.Visible = true
+end
+
+PTHT_OpenBtn.MouseButton1Click:Connect(function()
+    pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/cxdoesitallsys/cxcaw/refs/heads/main/cxplanter.lua"))()
+        SendNotification("Launching cx.planter...", Theme.Success)
+    end)
+end)
+
+PTHT_DiscordBtn.MouseButton1Click:Connect(function()
+    local copyFunc = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
+    if copyFunc then
+        pcall(function() copyFunc("https://dsc.gg/cxscript") end)
+        SendNotification("Copied Discord Link!", Theme.Success)
+    end
+end)
+
+local function GetTileStatus(gx, gy, mode)
+    local hasBlock = false
+    local isBad = false
+    local hasFg = false
+    local hasBg = false
+    
+    local bads = {"bedrock", "main door", "portal", "spawn", "white door", "cave door", "lock"}
+    
+    if not WorldManager or type(WorldManager.GetTile) ~= "function" then return false, false, false, false end
+    
+    for layer = 0, 2 do
+        local id = WorldManager.GetTile(gx, gy, layer)
+        
+        if id then
+            if type(id) == "table" then
+                id = id[1]
+            end
+            if id and tostring(id) ~= "0" and tostring(id) ~= "" and tostring(id) ~= "nil" then
+                hasBlock = true
+                if layer == 1 then hasFg = true end
+                if layer == 2 or layer == 0 then hasBg = true end
+                
+                if mode == "Nuker" then
+                    local name = tostring(id)
+                    if ItemsManager then
+                        if type(ItemsManager.GetName) == "function" then
+                            pcall(function() name = ItemsManager.GetName(id) or name end)
+                        end
+                        if name == tostring(id) and type(ItemsManager.RequestItemData) == "function" then
+                            pcall(function() 
+                                local d = ItemsManager.RequestItemData(id)
+                                if d and d.Name then name = d.Name end
+                            end)
+                        end
+                    end
+                    name = string.lower(name)
+
+                    for _, b in ipairs(bads) do 
+                        if string.find(name, b) then isBad = true break end 
+                    end
+                end
+            end
+        end
+    end
+    
+    return hasBlock, isBad, hasFg, hasBg
+end
+
+local S_Clear = CreateContainer(P_World, "WORLD NUKER", 1)
+local FailedClearBlocks = {}
+
+CreateToggle(S_Clear, "AutoClear", "Auto Clear World", 1, function(v)
+    CONFIG.AutoClear = v
+    if v then 
+        table.clear(FailedClearBlocks)
+    else
+        table.clear(FailedClearBlocks)
+    end
+end)
+
+CreateSlider(S_Clear, "Pathfinding Speed", 0, 100, 50, 2, function(v)
+    CONFIG.ClearSpeed = v
+end)
+
+CreateToggle(S_Clear, "ClearCollect", "Auto Collect", 3, function(v)
+    CONFIG.ClearCollect = v
+end)
+
+local S_Mods = CreateContainer(P_Misc, "MODS & VISUALS", 1)
+CreateToggle(S_Mods, "ModZoom", "Mod Zoom", 1, function(v) 
+    if v then LocalPlayer.CameraMaxZoomDistance = 18000 else LocalPlayer.CameraMaxZoomDistance = DefaultZoomLimit end
+end)
+
+CreateToggle(S_Mods, "HideName", "Hide Name", 2, function(v) 
+    CONFIG.HideName = v
+    if not v and LocalPlayer.Character then
+        local hum = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if hum then hum.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.Viewer end
+        for _, desc in pairs(LocalPlayer.Character:GetDescendants()) do
+            if desc:IsA("BillboardGui") and (desc.Name:lower():find("name") or desc.Name:lower():find("title") or desc.Name:lower():find("tag")) then
+                desc.Enabled = true
+            end
+        end
+    end
+    if v then
+        NameBtn.Text = ""
+    else
+        NameBtn.Text = isCensored and "@******" or (CONFIG.FakeModName and "@" or "") .. LocalPlayer.Name
+    end
+end)
+
+CreateToggle(S_Mods, "FakeModName", "Fake Mod Name", 3, function(v) 
+    CONFIG.FakeModName = v 
+    UpdateNameAttributes()
+end)
+
+CreateDropdown(S_Mods, "Name Color", 4, function(v) 
+    CONFIG.NameColor = v 
+    UpdateNameAttributes()
+end, {"Default", "Red", "Gold", "Cyan"})
+
+CreateTextBox(S_Mods, "Spoof Flag", CONFIG.SpoofFlag, 5, function(v) 
+    CONFIG.SpoofFlag = v 
+    if LocalPlayer.Character then LocalPlayer.Character:SetAttribute("country", v) end
+end)
+
+CreateToggle(S_Mods, "RGBSkin", "RGB Skin", 6, function(v)
+    CONFIG.RGBSkin = v
+    if not v and LocalPlayer.Character then
+        LocalPlayer.Character:SetAttribute("skin", OriginalSkinColor)
+    end
+end)
+
+CreateToggle(S_Mods, "GodMode", "God Mode", 7)
+
+local watermarkLbl = currentTier == "Premium" and "Hide Watermark" or "Hide Watermark (Premium Only)"
+CreateToggle(S_Mods, "HideWatermark", watermarkLbl, 8, function(v)
+    if Watermark then Watermark.Visible = not v end
+end, nil, true)
+
+local S_Move = CreateContainer(P_Misc, "MOVEMENT", 2)
+CreateToggle(S_Move, "Fly", "Fly Mode", 1, function(v) CONFIG.Fly = v end)
+CreateSlider(S_Move, "Fly Speed", 10, 150, 30, 2, function(v) CONFIG.FlySpeed = v end)
+CreateToggle(S_Move, "AntiRubberband", "Anti-Rubberband", 3, function(v) CONFIG.AntiRubberband = v end)
+CreateSlider(S_Move, "Walk Speed Boost", 0, 200, 0, 4, function(v) CONFIG.SpeedBoost = v end)
+CreateToggle(S_Move, "InfiniteJump", "Infinite Jump", 5)
+
+local S_Drop = CreateContainer(P_Misc, "QUICK DROP ENGINE", 3)
+CreateToggle(S_Drop, "AutoConfirmDrop", "Auto-Confirm Drops", 1)
+CreateSlider(S_Drop, "Drop Amount", 1, 200, 200, 2, function(v) CONFIG.DropAmount = v end)
+
+local S_Safety = CreateContainer(P_Misc, "SAFETY & WHITELIST", 4)
+CreateToggle(S_Safety, "PlayerDetection", "Player Detection", 1)
+local ModeBtn_Misc = Instance.new("TextButton")
+ModeBtn_Misc.Size = UDim2.new(1, 0, 0, 40)
+ModeBtn_Misc.BackgroundColor3 = Theme.Element
+ModeBtn_Misc.Text = "Safety Action: Stop Auto"
+ModeBtn_Misc.TextColor3 = Theme.Text
+ModeBtn_Misc.Font = Enum.Font.GothamMedium
+ModeBtn_Misc.TextScaled = true 
+ModeBtn_Misc.LayoutOrder = 2
+ModeBtn_Misc.Parent = S_Safety
+Instance.new("UICorner", ModeBtn_Misc).CornerRadius = UDim.new(0, 6)
+local modePadding = Instance.new("UIPadding", ModeBtn_Misc)
+modePadding.PaddingTop = UDim.new(0, 8)
+modePadding.PaddingBottom = UDim.new(0, 8)
+modePadding.PaddingLeft = UDim.new(0, 10)
+modePadding.PaddingRight = UDim.new(0, 10)
+
+ModeBtn_Misc.MouseButton1Click:Connect(function()
+    if CONFIG.SafetyAction == "Stop" then 
+        CONFIG.SafetyAction = "Disconnect" 
+        ModeBtn_Misc.Text = "Safety Action: Disconnect" 
+        ModeBtn_Misc.TextColor3 = Theme.Danger 
+    else 
+        CONFIG.SafetyAction = "Stop" 
+        ModeBtn_Misc.Text = "Safety Action: Stop Auto" 
+        ModeBtn_Misc.TextColor3 = Theme.Text 
+    end
+end)
+
+CreateToggle(S_Safety, "AntiAFK", "Anti-AFK", 3)
+
+local WLContainer = Instance.new("Frame")
+WLContainer.Size = UDim2.new(1, 0, 0, 150)
+WLContainer.BackgroundColor3 = Theme.Element
+WLContainer.LayoutOrder = 4
+WLContainer.Parent = S_Safety
+Instance.new("UICorner", WLContainer).CornerRadius = UDim.new(0, 6)
+local WLLbl = Instance.new("TextLabel")
+WLLbl.Text = "Whitelist"
+WLLbl.Size = UDim2.new(1, -20, 0, 30)
+WLLbl.Position = UDim2.new(0, 10, 0, 0)
+WLLbl.BackgroundTransparency = 1
+WLLbl.Font = Enum.Font.GothamBold
+WLLbl.TextColor3 = Theme.SubText
+WLLbl.TextSize = 13
+WLLbl.TextXAlignment = Enum.TextXAlignment.Left
+WLLbl.Parent = WLContainer
+local WLScroll = Instance.new("ScrollingFrame")
+WLScroll.Size = UDim2.new(1, -10, 1, -35)
+WLScroll.Position = UDim2.new(0, 5, 0, 35)
+WLScroll.BackgroundTransparency = 1
+WLScroll.Parent = WLContainer
+local WLList = Instance.new("UIListLayout", WLScroll)
+WLList.Padding = UDim.new(0, 4)
+
+local function RefreshWL()
+    pcall(function()
+        for _, v in pairs(WLScroll:GetChildren()) do if v:IsA("TextButton") then v:Destroy() end end
+        local count = 0
+        for _, p in pairs(Players:GetPlayers()) do
+            if not p or not p.UserId then continue end
+            local b = Instance.new("TextButton")
+            b.Size = UDim2.new(1, -4, 0, 25)
+            b.BackgroundColor3 = Theme.Sidebar
+            b.Text = "  " .. p.Name
+            b.TextColor3 = CONFIG.Whitelist[p.UserId] and Theme.Success or Theme.Danger
+            b.Font = Enum.Font.GothamMedium
+            b.TextSize = 13
+            b.TextXAlignment = Enum.TextXAlignment.Left
+            b.Parent = WLScroll
+            Instance.new("UICorner", b).CornerRadius = UDim.new(0, 4)
+            count = count + 1
+            
+            if p == LocalPlayer then b.TextColor3 = Theme.Accent b.Text = b.Text .. " (YOU)" else
+                b.MouseButton1Click:Connect(function()
+                    if CONFIG.Whitelist[p.UserId] then CONFIG.Whitelist[p.UserId] = nil else CONFIG.Whitelist[p.UserId] = true end
+                    RefreshWL()
+                end)
+            end
+        end
+        WLScroll.CanvasSize = UDim2.new(0, 0, 0, count * 29)
+    end)
+end
+Players.PlayerAdded:Connect(RefreshWL)
+Players.PlayerRemoving:Connect(RefreshWL)
+RefreshWL()
+
+task.spawn(function()
+    while ScriptRunning do
+        if CONFIG.PlayerDetection then
+            local foundPlayer = false
+            for _, p in pairs(Players:GetPlayers()) do
+                if p ~= LocalPlayer and not CONFIG.Whitelist[p.UserId] then
+                    foundPlayer = true
+                    break
+                end
+            end
+
+            if foundPlayer then
+                if CONFIG.SafetyAction == "Disconnect" then
+                    LocalPlayer:Kick("cx.farm | Player Detected! Disconnecting for safety.")
+                    ScriptRunning = false
+                elseif CONFIG.SafetyAction == "Stop" then
+                    SafetyPause = true
+                end
+            else
+                SafetyPause = false
+            end
+        else
+            if SafetyPause and not CONFIG.PlayerDetection then 
+                SafetyPause = false 
+            end
+        end
+        task.wait(1) 
+    end
+end)
+
+local S_ConfigOptions = CreateContainer(P_Configs, "CONFIGURATION MANAGEMENT", 1)
+
+local SaveConfigName = "MyConfig"
+CreateTextBox(S_ConfigOptions, "Config Name", "MyConfig", 1, function(v) SaveConfigName = v end)
+
+local SaveBtn = Instance.new("TextButton")
+SaveBtn.Size = UDim2.new(1, 0, 0, 40)
+SaveBtn.BackgroundColor3 = Theme.Accent
+SaveBtn.Text = "Save Config"
+SaveBtn.TextColor3 = Theme.Text
+SaveBtn.Font = Enum.Font.GothamBold
+SaveBtn.TextSize = 14
+SaveBtn.LayoutOrder = 2
+SaveBtn.Parent = S_ConfigOptions
+Instance.new("UICorner", SaveBtn).CornerRadius = UDim.new(0, 6)
+
+SaveBtn.MouseButton1Click:Connect(function()
+    local save = {}
+    for k, v in pairs(CONFIG) do
+        if type(v) == "boolean" or type(v) == "number" or type(v) == "string" then
+            save[k] = v
+        elseif type(v) == "table" and k == "Keybinds" then
+            save[k] = {}
+            for bk, bv in pairs(v) do save[k][bk] = bv.Name end
+        end
+    end
+    local str = HttpService:JSONEncode(save)
+    pcall(function()
+        if type(writefile) == "function" then
+            writefile(ConfigFolder .. "/" .. SaveConfigName .. ".json", str)
+            SendNotification("Saved " .. SaveConfigName .. ".json!", Theme.Success)
+        else
+            SendNotification("Executor does not support file saving.", Theme.Danger)
+        end
+    end)
+end)
+
+local SelectedLoadConfig = ""
+
+local ConfigDropdownContainer = Instance.new("Frame")
+ConfigDropdownContainer.Size = UDim2.new(1, 0, 0, 40)
+ConfigDropdownContainer.BackgroundColor3 = Theme.Sidebar
+ConfigDropdownContainer.BackgroundTransparency = 1
+ConfigDropdownContainer.LayoutOrder = 3
+ConfigDropdownContainer.ZIndex = 5 
+ConfigDropdownContainer.Parent = S_ConfigOptions
+
+local ConfigMainBtn = Instance.new("TextButton")
+ConfigMainBtn.Size = UDim2.new(1, 0, 0, 40)
+ConfigMainBtn.BackgroundColor3 = Theme.Element
+ConfigMainBtn.Text = "Select Config: None"
+ConfigMainBtn.TextColor3 = Theme.Text
+ConfigMainBtn.Font = Enum.Font.GothamMedium
+ConfigMainBtn.TextSize = 14
+ConfigMainBtn.ZIndex = 5
+ConfigMainBtn.Parent = ConfigDropdownContainer
+Instance.new("UICorner", ConfigMainBtn).CornerRadius = UDim.new(0, 6)
+
+local ConfigScroll = Instance.new("ScrollingFrame")
+ConfigScroll.Size = UDim2.new(1, 0, 0, 0)
+ConfigScroll.Position = UDim2.new(0, 0, 0, 45)
+ConfigScroll.BackgroundTransparency = 1
+ConfigScroll.ScrollBarThickness = 6
+ConfigScroll.AutomaticCanvasSize = Enum.AutomaticSize.Y
+ConfigScroll.ScrollBarImageColor3 = Theme.Accent
+ConfigScroll.Visible = false
+ConfigScroll.ZIndex = 10 
+ConfigScroll.Parent = ConfigDropdownContainer
+
+local ConfigListLayout = Instance.new("UIListLayout", ConfigScroll)
+ConfigListLayout.Padding = UDim.new(0, 4)
+
+local configExpanded = false
+ConfigMainBtn.MouseButton1Click:Connect(function()
+    configExpanded = not configExpanded
+    if configExpanded then
+        for _, v in pairs(ConfigScroll:GetChildren()) do if v:IsA("TextButton") or v:IsA("TextLabel") then v:Destroy() end end
+        
+        local customList = GetSavedConfigs()
+        local count = 0
+        for _, item in ipairs(customList) do
+            local b = Instance.new("TextButton")
+            b.Size = UDim2.new(1, -10, 0, 30)
+            b.BackgroundColor3 = Theme.Sidebar
+            b.Text = "  " .. item
+            b.TextColor3 = Theme.SubText
+            b.TextXAlignment = Enum.TextXAlignment.Left
+            b.Font = Enum.Font.Gotham
+            b.TextSize = 13
+            b.ZIndex = 10
+            b.Parent = ConfigScroll
+            Instance.new("UICorner", b).CornerRadius = UDim.new(0, 4)
+            
+            b.MouseButton1Click:Connect(function()
+                configExpanded = false
+                ConfigScroll.Visible = false
+                ConfigDropdownContainer.Size = UDim2.new(1, 0, 0, 40)
+                if item ~= "No Configs Found" then
+                    SelectedLoadConfig = item
+                    ConfigMainBtn.Text = "Select Config: " .. item
+                end
+            end)
+            count = count + 1
+        end
+        
+        local targetHeight = math.min(150, count * 34)
+        ConfigScroll.Size = UDim2.new(1, 0, 0, targetHeight)
+        ConfigDropdownContainer.Size = UDim2.new(1, 0, 0, 45 + targetHeight)
+        ConfigScroll.Visible = true
+    else
+        ConfigScroll.Visible = false
+        ConfigDropdownContainer.Size = UDim2.new(1, 0, 0, 40)
+    end
+end)
+
+local LoadBtn = Instance.new("TextButton")
+LoadBtn.Size = UDim2.new(1, 0, 0, 40)
+LoadBtn.BackgroundColor3 = Theme.Element
+LoadBtn.Text = "Import / Load Config"
+LoadBtn.TextColor3 = Theme.Text
+LoadBtn.Font = Enum.Font.GothamBold
+LoadBtn.TextSize = 14
+LoadBtn.LayoutOrder = 4
+LoadBtn.Parent = S_ConfigOptions
+Instance.new("UICorner", LoadBtn).CornerRadius = UDim.new(0, 6)
+
+LoadBtn.MouseButton1Click:Connect(function()
+    if SelectedLoadConfig ~= "" then
+        pcall(function()
+            if type(readfile) == "function" then
+                local str = readfile(ConfigFolder .. "/" .. SelectedLoadConfig .. ".json")
+                local s, d = pcall(function() return HttpService:JSONDecode(str) end)
+                if s and type(d) == "table" then
+                    for k, v in pairs(d) do
+                        if k == "Keybinds" and type(v) == "table" then
+                            for bk, bv in pairs(v) do
+                                pcall(function() CONFIG.Keybinds[bk] = Enum.KeyCode[bv] end)
+                            end
+                        elseif CONFIG[k] ~= nil and k ~= "Whitelist" and k ~= "LockedOrigin" then
+                            CONFIG[k] = v
+                            if Toggles[k] then pcall(function() Toggles[k](v) end) end
+                        end
+                    end
+                    SendNotification("Config loaded! Settings applied.", Theme.Success)
+                else
+                    SendNotification("Invalid config data.", Theme.Danger)
+                end
+            else
+                SendNotification("Executor does not support file reading.", Theme.Danger)
+            end
+        end)
+    else
+        SendNotification("Please select a config from the dropdown first.", Theme.Danger)
+    end
+end)
+
+
+local S_Scan = CreateContainer(P_Scanner, "WORLD STATISTICS", 1)
+
+local ScanBtn = Instance.new("TextButton")
+ScanBtn.Size = UDim2.new(1, 0, 0, 35)
+ScanBtn.BackgroundColor3 = Theme.Sidebar
+ScanBtn.Text = "Scan Blocks & Drops"
+ScanBtn.TextColor3 = Theme.Text
+ScanBtn.Font = Enum.Font.GothamMedium
+ScanBtn.TextSize = 13
+ScanBtn.LayoutOrder = 4
+ScanBtn.Parent = S_Scan
+Instance.new("UICorner", ScanBtn).CornerRadius = UDim.new(0, 6)
+
+local ScanWrapper = Instance.new("Frame", S_Scan)
+ScanWrapper.Size = UDim2.new(1, 0, 0, 260)
+ScanWrapper.BackgroundTransparency = 1
+ScanWrapper.LayoutOrder = 5
+
+local LeftCol = Instance.new("Frame", ScanWrapper)
+LeftCol.Size = UDim2.new(0.5, -4, 0, 220)
+LeftCol.Position = UDim2.new(0, 0, 0, 0)
+LeftCol.BackgroundColor3 = Theme.Sidebar
+Instance.new("UICorner", LeftCol).CornerRadius = UDim.new(0, 6)
+
+local RightCol = Instance.new("Frame", ScanWrapper)
+RightCol.Size = UDim2.new(0.5, -4, 0, 220)
+RightCol.Position = UDim2.new(0.5, 4, 0, 0)
+RightCol.BackgroundColor3 = Theme.Sidebar
+Instance.new("UICorner", RightCol).CornerRadius = UDim.new(0, 6)
+
+local BottomBox = Instance.new("Frame", ScanWrapper)
+BottomBox.Size = UDim2.new(1, 0, 0, 35)
+BottomBox.Position = UDim2.new(0, 0, 0, 225)
+BottomBox.BackgroundColor3 = Theme.Sidebar
+Instance.new("UICorner", BottomBox).CornerRadius = UDim.new(0, 6)
+
+local TitleDrops = Instance.new("TextLabel", LeftCol)
+TitleDrops.Size = UDim2.new(1, -10, 0, 25)
+TitleDrops.Position = UDim2.new(0, 5, 0, 5)
+TitleDrops.BackgroundTransparency = 1
+TitleDrops.Text = "Dropped Items"
+TitleDrops.TextColor3 = Theme.Text
+TitleDrops.Font = Enum.Font.GothamBold
+TitleDrops.TextSize = 13
+TitleDrops.TextXAlignment = Enum.TextXAlignment.Left
+
+local TitleBlocks = Instance.new("TextLabel", RightCol)
+TitleBlocks.Size = UDim2.new(1, -10, 0, 25)
+TitleBlocks.Position = UDim2.new(0, 5, 0, 5)
+TitleBlocks.BackgroundTransparency = 1
+TitleBlocks.Text = "World Blocks"
+TitleBlocks.TextColor3 = Theme.Text
+TitleBlocks.Font = Enum.Font.GothamBold
+TitleBlocks.TextSize = 13
+TitleBlocks.TextXAlignment = Enum.TextXAlignment.Left
+
+local ScrollDrops = Instance.new("ScrollingFrame", LeftCol)
+ScrollDrops.Size = UDim2.new(1, 0, 1, -30)
+ScrollDrops.Position = UDim2.new(0, 0, 0, 30)
+ScrollDrops.BackgroundTransparency = 1
+ScrollDrops.ScrollBarThickness = 4
+ScrollDrops.ScrollBarImageColor3 = Theme.Accent
+local ListDrops = Instance.new("UIListLayout", ScrollDrops)
+ListDrops.Padding = UDim.new(0, 2)
+
+local ScrollBlocks = Instance.new("ScrollingFrame", RightCol)
+ScrollBlocks.Size = UDim2.new(1, 0, 1, -30)
+ScrollBlocks.Position = UDim2.new(0, 0, 0, 30)
+ScrollBlocks.BackgroundTransparency = 1
+ScrollBlocks.ScrollBarThickness = 4
+ScrollBlocks.ScrollBarImageColor3 = Theme.Accent
+local ListBlocks = Instance.new("UIListLayout", ScrollBlocks)
+ListBlocks.Padding = UDim.new(0, 2)
+
+local GemLabel = Instance.new("TextLabel", BottomBox)
+GemLabel.Size = UDim2.new(1, 0, 1, 0)
+GemLabel.BackgroundTransparency = 1
+GemLabel.Text = "💎 Gems in World: 0"
+GemLabel.TextColor3 = Theme.Text
+GemLabel.Font = Enum.Font.GothamBold
+GemLabel.TextSize = 13
+
+local function CreateScanRow(parent, text, color)
+    local lbl = Instance.new("TextLabel")
+    lbl.Size = UDim2.new(1, -10, 0, 18)
+    lbl.Position = UDim2.new(0, 5, 0, 0)
+    lbl.BackgroundTransparency = 1
+    lbl.Text = text
+    lbl.TextColor3 = color
+    lbl.Font = Enum.Font.Gotham
+    lbl.TextSize = 12
+    lbl.TextXAlignment = Enum.TextXAlignment.Left
+    lbl.Parent = parent
+end
+
+ScanBtn.MouseButton1Click:Connect(function()
+    pcall(function()
+        for _, v in pairs(ScrollDrops:GetChildren()) do if v:IsA("TextLabel") then v:Destroy() end end
+        for _, v in pairs(ScrollBlocks:GetChildren()) do if v:IsA("TextLabel") then v:Destroy() end end
+        
+        local blockCounts = {}
+        if WorldManager and type(WorldManager.GetTile) == "function" then
+            for x = 0, 100 do
+                if x % 10 == 0 then task.wait() end 
+                for y = 0, 60 do
+                    for layer = 0, 2 do
+                        local t = WorldManager.GetTile(x, y, layer)
+                        if t then
+                            local id = type(t) == "table" and t[1] or t
+                            if id and tostring(id) ~= "0" and tostring(id) ~= "" and tostring(id) ~= "nil" then
+                                local name = tostring(id)
+                                if ItemsManager and type(ItemsManager.GetName) == "function" then
+                                    pcall(function() name = ItemsManager.GetName(id) or name end)
+                                end
+                                blockCounts[name] = (blockCounts[name] or 0) + 1
+                                break
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        
+        local dropCounts = {}
+        local dropsFolder = workspace:FindFirstChild("Drops")
+        if dropsFolder then
+            for _, drop in ipairs(dropsFolder:GetChildren()) do
+                local amt = tonumber(drop:GetAttribute("amount")) or 1
+                local id = drop:GetAttribute("id")
+                
+                if id and tostring(id) ~= "0" and tostring(id) ~= "" and tostring(id) ~= "nil" then
+                    local name = tostring(id)
+                    if ItemsManager and type(ItemsManager.GetName) == "function" then
+                        pcall(function() name = ItemsManager.GetName(id) or name end)
+                    end
+                    dropCounts[name] = (dropCounts[name] or 0) + amt
+                elseif drop.Name ~= "Drops" then
+                    local name = drop.Name
+                    if ItemsManager and type(ItemsManager.GetName) == "function" then
+                        pcall(function() name = ItemsManager.GetName(drop.Name) or name end)
+                    end
+                    dropCounts[name] = (dropCounts[name] or 0) + 1
+                end
+            end
+        end
+        
+        local gemCounts = {}
+        local totalGems = 0
+        local gemsFolder = workspace:FindFirstChild("Gems")
+        if gemsFolder then
+            for _, gem in ipairs(gemsFolder:GetChildren()) do
+                local name = gem.Name
+                gemCounts[name] = (gemCounts[name] or 0) + 1
+                totalGems = totalGems + 1
+            end
+        end
+        
+        local dropY = 0
+        for name, count in pairs(dropCounts) do
+            CreateScanRow(ScrollDrops, string.format("%dx %s", count, name), Theme.SubText)
+            dropY = dropY + 20
+        end
+        ScrollDrops.CanvasSize = UDim2.new(0, 0, 0, dropY)
+        
+        local blockY = 0
+        for name, count in pairs(blockCounts) do
+            CreateScanRow(ScrollBlocks, string.format("%dx %s", count, name), Theme.SubText)
+            blockY = blockY + 20
+        end
+        ScrollBlocks.CanvasSize = UDim2.new(0, 0, 0, blockY)
+        
+        local gemString = "💎 Gems in World: " .. totalGems
+        if totalGems > 0 then
+            gemString = gemString .. " ("
+            for name, count in pairs(gemCounts) do gemString = gemString .. count .. "x " .. name .. ", " end
+            gemString = gemString:sub(1, -3) .. ")"
+        end
+        GemLabel.Text = gemString
+    end)
+end)
+
+local S_Inv = CreateContainer(P_Inv, "INTERNAL INVENTORY", 1)
+local RefreshInv = Instance.new("TextButton")
+RefreshInv.Size = UDim2.new(1, 0, 0, 35)
+RefreshInv.BackgroundColor3 = Theme.Accent
+RefreshInv.Text = "Refresh Inventory"
+RefreshInv.TextColor3 = Theme.Text
+RefreshInv.Font = Enum.Font.GothamBold
+RefreshInv.TextSize = 14
+RefreshInv.LayoutOrder = 1
+RefreshInv.Parent = S_Inv
+Instance.new("UICorner", RefreshInv).CornerRadius = UDim.new(0, 6)
+
+local InvScroll = Instance.new("ScrollingFrame")
+InvScroll.Size = UDim2.new(1, 0, 0, 300) 
+InvScroll.BackgroundTransparency = 1
+InvScroll.LayoutOrder = 2
+InvScroll.Parent = S_Inv
+local InvLayout = Instance.new("UIListLayout", InvScroll)
+InvLayout.Padding = UDim.new(0, 4)
+InvLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function() InvScroll.CanvasSize = UDim2.new(0,0,0,InvLayout.AbsoluteContentSize.Y+10) end)
+
+local function RefreshInventoryUI()
+    pcall(function()
+        for _, v in pairs(InvScroll:GetChildren()) do if v:IsA("Frame") or v:IsA("TextLabel") then v:Destroy() end end
+        
+        local aggInv = GetAggregatedInventory()
+        local hasItems = false
+        
+        for _, item in pairs(aggInv) do
+            hasItems = true
+            local row = Instance.new("Frame")
+            row.Size = UDim2.new(1, 0, 0, 30)
+            row.BackgroundColor3 = Theme.Element
+            row.Parent = InvScroll
+            Instance.new("UICorner", row).CornerRadius = UDim.new(0, 4)
+            
+            local nameLbl = Instance.new("TextLabel", row)
+            nameLbl.Size = UDim2.new(0.7, -10, 1, 0)
+            nameLbl.Position = UDim2.new(0, 10, 0, 0)
+            nameLbl.BackgroundTransparency = 1
+            nameLbl.Text = item.Name
+            nameLbl.TextColor3 = Theme.Text
+            nameLbl.TextXAlignment = Enum.TextXAlignment.Left
+            nameLbl.Font = Enum.Font.GothamMedium
+            nameLbl.TextSize = 14
+            nameLbl.TextScaled = true
+            
+            local textConstraint = Instance.new("UITextSizeConstraint", nameLbl)
+            textConstraint.MaxTextSize = 14
+            textConstraint.MinTextSize = 8
+            
+            local amtLbl = Instance.new("TextLabel", row)
+            amtLbl.Size = UDim2.new(0.25, -15, 1, 0)
+            amtLbl.Position = UDim2.new(0.75, 5, 0, 0)
+            amtLbl.BackgroundTransparency = 1
+            local amtStr = type(item.Amount) == "number" and tostring(item.Amount) or "1"
+            amtLbl.Text = "x" .. amtStr
+            amtLbl.TextColor3 = Theme.Accent
+            amtLbl.TextXAlignment = Enum.TextXAlignment.Right
+            amtLbl.Font = Enum.Font.GothamBold
+            amtLbl.TextSize = 12
+        end
+        
+        if not hasItems then
+            local l = Instance.new("TextLabel", InvScroll)
+            l.Text = "Inventory Empty?\n(Try placing 1 block manually first)"
+            l.Size = UDim2.new(1, 0, 0, 45)
+            l.TextColor3 = Theme.Danger
+            l.BackgroundTransparency = 1
+            l.Font = Enum.Font.GothamBold
+            l.TextSize = 12
+        end
+    end)
+end
+RefreshInv.MouseButton1Click:Connect(RefreshInventoryUI)
+
+local S_PerfOpts = CreateContainer(P_Perf, "MULTI-ACCOUNT OPTIMIZATION", 1)
+local OriginalWorkspaceTransparencies = {}
+
+CreateToggle(S_PerfOpts, "Disable3D", "Disable 3D Rendering", 1, function(v)
+    if type(set3drenderingenabled) == "function" then
+        pcall(function() set3drenderingenabled(not v) end)
+    else
+        pcall(function() RunService:Set3dRenderingEnabled(not v) end)
+    end
+end)
+
+CreateToggle(S_PerfOpts, "LimitFPS", "Limit FPS to 30", 2, function(v)
+    if type(setfpscap) == "function" then
+        if v then setfpscap(30) else setfpscap(999) end
+    end
+end)
+
+CreateToggle(S_PerfOpts, "LowGFX", "Low GFX", 3, function(v)
+    pcall(function()
+        if v then
+            settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
+            local lighting = game:GetService("Lighting")
+            lighting.GlobalShadows = false
+            pcall(function() lighting.Technology = Enum.Technology.Compatibility end)
+            for _, effect in pairs(lighting:GetChildren()) do
+                if effect:IsA("PostEffect") or effect:IsA("BlurEffect") or effect:IsA("SunRaysEffect") or effect:IsA("ColorCorrectionEffect") or effect:IsA("BloomEffect") or effect:IsA("DepthOfFieldEffect") then
+                    effect.Enabled = false
+                end
+            end
+            
+            task.spawn(function()
+                local count = 0
+                for _, p in pairs(workspace:GetDescendants()) do
+                    if p:IsA("BasePart") then p.CastShadow = false end
+                    count = count + 1
+                    if count % 1000 == 0 then task.wait() end
+                end
+            end)
+        else
+            settings().Rendering.QualityLevel = Enum.QualityLevel.Automatic
+            game:GetService("Lighting").GlobalShadows = true
+            for _, effect in pairs(game:GetService("Lighting"):GetChildren()) do
+                if effect:IsA("PostEffect") or effect:IsA("BlurEffect") or effect:IsA("SunRaysEffect") or effect:IsA("ColorCorrectionEffect") or effect:IsA("BloomEffect") or effect:IsA("DepthOfFieldEffect") then
+                    effect.Enabled = true
+                end
+            end
+            
+            task.spawn(function()
+                local count = 0
+                for _, p in pairs(workspace:GetDescendants()) do
+                    if p:IsA("BasePart") then p.CastShadow = true end
+                    count = count + 1
+                    if count % 1000 == 0 then task.wait() end
+                end
+            end)
+        end
+    end)
+end)
+
+local function IsFacePart(part, char)
+    if part.Name:lower() == "face" then return true end
+    if part:IsA("Decal") and part.Parent and part.Parent.Name == "Head" then return true end
+    local faceModel = char:FindFirstChild("Face")
+    if faceModel and part:IsDescendantOf(faceModel) then return true end
+    return false
+end
+
+CreateToggle(S_PerfOpts, "HidePlayers", "Hide Other Players", 4, function(v)
+    CONFIG.HidePlayers = v
+    if not v then
+        pcall(function()
+            for _, p in pairs(Players:GetPlayers()) do
+                if p ~= LocalPlayer and p.Character then
+                    for _, part in pairs(p.Character:GetDescendants()) do
+                        if part:IsA("BasePart") or part:IsA("Decal") then
+                            if OriginalWorkspaceTransparencies[part] then
+                                part.Transparency = OriginalWorkspaceTransparencies[part]
+                            else
+                                part.Transparency = 0
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+    end
+end)
+
+CreateToggle(S_PerfOpts, "DisableParallax", "Disable Parallax Background", 5, function(v)
+    pcall(function()
+        local bg = workspace:FindFirstChild("ParallaxPlane")
+        if bg then bg.Transparency = v and 1 or 0 end
+    end)
+end)
+
+CreateToggle(S_PerfOpts, "DisableTrails", "Disable Game Effects", 6, function(v)
+    CONFIG.DisableTrails = v
+end)
+
+local function IsProtectedFaceDecal(obj)
+    if obj:IsA("Decal") and (obj.Name == "face" or obj.Name == "Face") then return true end
+    if obj.Parent and obj.Parent.Name == "Head" then return true end
+    return false
+end
+
+CONFIG.ClearTextures = false
+CreateToggle(S_PerfOpts, "ClearTextures", "Clear Textures & Particles", 7, function(v)
+    CONFIG.ClearTextures = v
+    pcall(function()
+        task.spawn(function()
+            local count = 0
+            for _, obj in pairs(workspace:GetDescendants()) do
+                count = count + 1
+                if count % 1000 == 0 then task.wait() end
+                
+                if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Sparkles") then
+                    obj.Enabled = not v
+                elseif obj:IsA("Decal") or obj:IsA("Texture") then
+                    local model = obj:FindFirstAncestorOfClass("Model")
+                    local isCharacter = model and model:FindFirstChild("Humanoid")
+                    
+                    if not isCharacter and not IsProtectedFaceDecal(obj) then
+                        if v then
+                            if not OriginalWorkspaceTransparencies[obj] then
+                                OriginalWorkspaceTransparencies[obj] = obj.Transparency
+                            end
+                            obj.Transparency = 1
+                        else
+                            if OriginalWorkspaceTransparencies[obj] then
+                                obj.Transparency = OriginalWorkspaceTransparencies[obj]
+                            end
+                        end
+                    end
+                end
+            end
+        end)
+    end)
+end)
+
+workspace.DescendantAdded:Connect(function(obj)
+    if CONFIG.ClearTextures and ScriptRunning then
+        if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Sparkles") then
+            obj.Enabled = false
+        elseif obj:IsA("Decal") or obj:IsA("Texture") then
+            task.delay(0.1, function()
+                local model = obj:FindFirstAncestorOfClass("Model")
+                local isCharacter = model and model:FindFirstChild("Humanoid")
+                if not isCharacter and not IsProtectedFaceDecal(obj) then
+                    OriginalWorkspaceTransparencies[obj] = obj.Transparency
+                    obj.Transparency = 1
+                end
+            end)
+        end
+    end
+end)
+
+task.spawn(function()
+    while ScriptRunning do
+        if CONFIG.HidePlayers or CONFIG.DisableTrails or CONFIG.HideName then
+            if CONFIG.HidePlayers then
+                pcall(function()
+                    for _, p in pairs(Players:GetPlayers()) do
+                        if p ~= LocalPlayer and p.Character then
+                            for _, part in pairs(p.Character:GetDescendants()) do
+                                if part.Name ~= "HumanoidRootPart" and not IsFacePart(part, p.Character) and (part:IsA("BasePart") or part:IsA("Decal")) then
+                                    if not OriginalWorkspaceTransparencies[part] then
+                                        OriginalWorkspaceTransparencies[part] = part.Transparency
+                                    end
+                                    part.Transparency = 1 
+                                end
+                            end
+                        end
+                    end
+                end)
+            end
+            
+            if CONFIG.DisableTrails then
+                pcall(function()
+                    for _, v in pairs(workspace:GetChildren()) do
+                        if v.Name == "TradeTrail" or v.Name == "BezierProjectile" then
+                            v:Destroy()
+                        end
+                    end
+                end)
+            end
+            
+            if CONFIG.HideName and LocalPlayer.Character then
+                pcall(function()
+                    local char = LocalPlayer.Character
+                    local hum = char:FindFirstChildOfClass("Humanoid")
+                    if hum and hum.DisplayDistanceType ~= Enum.HumanoidDisplayDistanceType.None then
+                        hum.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.None
+                    end
+                    local root = char:FindFirstChild("HumanoidRootPart")
+                    if root then
+                        local tag = root:FindFirstChild("NameTagUI")
+                        if tag then tag.Enabled = false end
+                    end
+                    for _, desc in pairs(char:GetDescendants()) do
+                        if desc:IsA("BillboardGui") and (desc.Name:lower():find("name") or desc.Name:lower():find("title") or desc.Name:lower():find("tag")) then
+                            desc.Enabled = false
+                        end
+                    end
+                end)
+            end
+        end
+        task.wait(1)
+    end
+end)
+
+local S_Keys = CreateContainer(P_Keys, "BINDINGS", 1)
+CreateKeybind(S_Keys, "AutoPunch", "Auto Punch", CONFIG.Keybinds.AutoPunch, 1)
+CreateKeybind(S_Keys, "AutoPlace", "Auto Place", CONFIG.Keybinds.AutoPlace, 2)
+CreateKeybind(S_Keys, "ModZoom", "Mod Zoom", CONFIG.Keybinds.ModZoom, 3)
+CreateKeybind(S_Keys, "Fly", "Fly Mode", CONFIG.Keybinds.Fly, 4)
+CreateKeybind(S_Keys, "ToggleUI", "Toggle GUI", CONFIG.Keybinds.ToggleUI, 5)
+CreateKeybind(S_Keys, "GodMode", "God Mode", CONFIG.Keybinds.GodMode, 6)
+CreateKeybind(S_Keys, "InfiniteJump", "Infinite Jump", CONFIG.Keybinds.InfiniteJump, 7)
+
+local S_Credits = CreateContainer(P_Credits, "INFO & CREDITS", 1)
+
+local CredsBox = Instance.new("Frame")
+CredsBox.Size = UDim2.new(1, 0, 0, 240)
+CredsBox.BackgroundColor3 = Theme.Element
+CredsBox.LayoutOrder = 1
+CredsBox.Parent = S_Credits
+Instance.new("UICorner", CredsBox).CornerRadius = UDim.new(0, 6)
+
+local Creds = Instance.new("TextLabel")
+Creds.Text = "cx.farm V3\n\n[ SYSTEM INFO ]\nExecutor: " .. ExecName .. " - " .. ExecEnvironment .. "\nSUNC Score: " .. ExecSUNC .. "%\nStatus: " .. ExecSupportStatus .. "\nGameID: 91833329899022\nPlaceID: 114357342940060\n\n[ PATCHNOTES - V3 ]\n* NEW: 7x7 Auto Farm Grid Support.\n* NEW: Auto PTHT Planter Integration.\n* OPTIMIZED: Strict Sequence Farming Place -> Break -> Collect.\n* OPTIMIZED: Eliminated Script Injection Freezes & C-Stack crashes.\n* FIXED: UI Overflow and Clipping bugs.\n* OPTIMIZED: Low GFX Performance Mode."
+Creds.Size = UDim2.new(1, -20, 1, -20)
+Creds.Position = UDim2.new(0, 10, 0, 10)
+Creds.BackgroundTransparency = 1
+Creds.TextColor3 = Theme.SubText
+Creds.Font = Enum.Font.Gotham
+Creds.TextSize = 14
+Creds.TextWrapped = true
+Creds.TextYAlignment = Enum.TextYAlignment.Top
+Creds.TextXAlignment = Enum.TextXAlignment.Left
+Creds.Parent = CredsBox
+
+CreateDropdown(S_Credits, "UI Theme", 2, function(themeName) SwitchTheme(themeName) end, {"Dark Default", "Midnight", "Crimson", "Matrix"})
+
+local DiscordBtn = Instance.new("TextButton", S_Credits)
+DiscordBtn.Text = "Join Discord Server"
+DiscordBtn.Size = UDim2.new(1, 0, 0, 40)
+DiscordBtn.BackgroundColor3 = Theme.Accent
+DiscordBtn.TextColor3 = Theme.Text
+DiscordBtn.Font = Enum.Font.GothamBold
+DiscordBtn.TextSize = 14
+DiscordBtn.LayoutOrder = 3
+Instance.new("UICorner", DiscordBtn).CornerRadius = UDim.new(0, 6)
+DiscordBtn.MouseButton1Click:Connect(function()
+    local copyFunc = setclipboard or toclipboard or set_clipboard or (Clipboard and Clipboard.set)
+    if copyFunc then
+        pcall(function() copyFunc("https://dsc.gg/cxscript") end)
+        SendNotification("Copied Discord Link! Paste in your browser.", Theme.Success)
+    else
+        SendNotification("Executor does not support clipboard. Link: dsc.gg/cxscript", Theme.Danger)
+    end
+end)
+
+local Unload = Instance.new("TextButton", S_Credits)
+Unload.Text = "Unload Script"
+Unload.Size = UDim2.new(1, 0, 0, 40)
+Unload.BackgroundColor3 = Theme.Danger
+Unload.TextColor3 = Theme.Text
+Unload.Font = Enum.Font.GothamBold
+Unload.TextSize = 14
+Unload.LayoutOrder = 4
+Instance.new("UICorner", Unload).CornerRadius = UDim.new(0, 6)
+Unload.MouseButton1Click:Connect(function()
+    ScriptRunning = false
+    if VisualFolder then VisualFolder:Destroy() end
+    if ScreenGui then ScreenGui:Destroy() end
+    
+    if OriginalPlayerSetPosition and PlayerSetPositionRemote then
+        for _, conn in pairs(getconnections(PlayerSetPositionRemote.OnClientEvent)) do
+            conn:Disable()
+            PlayerSetPositionRemote.OnClientEvent:Connect(OriginalPlayerSetPosition)
+        end
+    end
+    
+    pcall(function()
+        LocalPlayer:SetAttribute("namePrefix", nil)
+        LocalPlayer:SetAttribute("specialNameColor", nil)
+        LocalPlayer:SetAttribute("prefix", tick())
+        
+        if OriginalNameColor then
+            LocalPlayer:SetAttribute("nameColor", Color3.new(0,0,0))
+            task.wait()
+            LocalPlayer:SetAttribute("nameColor", OriginalNameColor)
+        end
+        
+        if LocalPlayer.Character then
+            LocalPlayer.Character:SetAttribute("country", nil)
+            LocalPlayer.Character:SetAttribute("skin", OriginalSkinColor)
+        end
+    end)
+    
+    if PlayerMovement and type(PlayerMovement) == "table" then pcall(function() PlayerMovement.Sensor = true end) end
+    if type(set3drenderingenabled) == "function" then pcall(function() set3drenderingenabled(true) end) end
+    if type(setfpscap) == "function" then pcall(function() setfpscap(999) end) end
+    
+    pcall(function()
+        local bg = workspace:FindFirstChild("ParallaxPlane")
+        if bg then bg.Transparency = 1 end
+        LocalPlayer.CameraMaxZoomDistance = DefaultZoomLimit
+    end)
+    
+    pcall(function()
+        if LocalPlayer.Character then
+            local hum = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+            if hum then hum.DisplayDistanceType = Enum.HumanoidDisplayDistanceType.Viewer end
+            for _, desc in pairs(LocalPlayer.Character:GetDescendants()) do
+                if desc:IsA("BillboardGui") and (desc.Name:lower():find("name") or desc.Name:lower():find("title") or desc.Name:lower():find("tag")) then
+                    desc.Enabled = true
+                end
+            end
+        end
+    end)
+    
+    pcall(function()
+        for _, p in pairs(Players:GetPlayers()) do
+            if p ~= LocalPlayer and p.Character then
+                for _, part in pairs(p.Character:GetDescendants()) do
+                    if part:IsA("BasePart") or part:IsA("Decal") then
+                        if OriginalWorkspaceTransparencies[part] then part.Transparency = OriginalWorkspaceTransparencies[part] else part.Transparency = 0 end
+                    end
+                end
+            end
+        end
+    end)
+    
+    pcall(function()
+        for _, obj in pairs(workspace:GetDescendants()) do
+            if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Sparkles") then
+                obj.Enabled = true
+            elseif obj:IsA("Decal") or obj:IsA("Texture") then
+                if OriginalWorkspaceTransparencies[obj] then
+                    obj.Transparency = OriginalWorkspaceTransparencies[obj]
+                end
+            end
+        end
+    end)
+end)
+
+local function RawGlideTo(startPos, endPos, speedPercent)
+    if not PlayerMovement or type(PlayerMovement) ~= "table" then return end
+    local hrp = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+    
+    local dist = (Vector3.new(startPos.X, startPos.Y, 0) - Vector3.new(endPos.X, endPos.Y, 0)).Magnitude
+    if dist < 0.2 then return end
+    
+    local speed = math.max(5, (speedPercent / 100) * 60) 
+    local duration = dist / speed
+    local elapsed = 0
+    
+    while elapsed < duration and ScriptRunning and not SafetyPause do
+        local dt = RunService.Heartbeat:Wait()
+        elapsed = elapsed + dt
+        local alpha = math.clamp(elapsed / duration, 0, 1)
+        local smoothAlpha = alpha * alpha * (3 - 2 * alpha) 
+        local currentPos = startPos:Lerp(endPos, smoothAlpha)
+        ActiveNukerPos = currentPos
+        
+        pcall(function() 
+            PlayerMovement.Position = currentPos 
+            PlayerMovement.VelocityY = 0 
+            PlayerMovement.VelocityX = 0
+            PlayerMovement.Grounded = true
+        end)
+        if hrp then pcall(function() hrp.CFrame = CFrame.new(currentPos) * hrp.CFrame.Rotation end) end
+        if PlayerMovementRemote then pcall(function() PlayerMovementRemote:FireServer(Vector2.new(currentPos.X, currentPos.Y)) end) end
+    end
+    
+    ActiveNukerPos = endPos
+    pcall(function() 
+        PlayerMovement.Position = endPos 
+        PlayerMovement.VelocityY = 0 
+        PlayerMovement.VelocityX = 0
+        PlayerMovement.Grounded = true
+    end)
+    if hrp then pcall(function() hrp.CFrame = CFrame.new(endPos) * hrp.CFrame.Rotation end) end
+    if PlayerMovementRemote then pcall(function() PlayerMovementRemote:FireServer(Vector2.new(endPos.X, endPos.Y)) end) end
+end
+
+local function PathIsClear(startPos, endPos)
+    local gx1, gy1 = math.floor((startPos.X/4.5)+0.5), math.floor((startPos.Y/4.5)+0.5)
+    local gx2, gy2 = math.floor((endPos.X/4.5)+0.5), math.floor((endPos.Y/4.5)+0.5)
+    
+    local steps = math.max(math.abs(gx2 - gx1), math.abs(gy2 - gy1))
+    if steps == 0 then return true, 0 end
+    
+    local highestBlockY = -99999
+    local hit = false
+    
+    for i = 1, steps - 1 do
+        local t = i / steps
+        local cx = math.floor(gx1 + (gx2 - gx1) * t + 0.5)
+        local cy = math.floor(gy1 + (gy2 - gy1) * t + 0.5)
+        local _, _, hasFg, _ = GetTileStatus(cx, cy, "Pathing")
+        if hasFg then 
+            hit = true 
+            if cy > highestBlockY then highestBlockY = cy end
+        end
+    end
+    return not hit, highestBlockY
+end
+
+local function SmoothGlideTo(startPos, endPos, speedPercent)
+    local isClear, highestBlockY = PathIsClear(startPos, endPos)
+    if isClear then
+        RawGlideTo(startPos, endPos, speedPercent)
+    else
+        local vaultY = math.max(math.floor(startPos.Y/4.5), math.floor(endPos.Y/4.5), highestBlockY) + 1
+        local wp1 = Vector3.new(startPos.X, vaultY * 4.5, 0)
+        local wp2 = Vector3.new(endPos.X, vaultY * 4.5, 0)
+        
+        RawGlideTo(startPos, wp1, speedPercent)
+        RawGlideTo(wp1, wp2, speedPercent)
+        RawGlideTo(wp2, endPos, speedPercent)
+    end
+end
+
+local function GetNextNukeTarget(failedList)
+    local checks = 0
+    for y = 59, 0, -1 do
+        local rowXs = {}
+        for x = 0, 100 do
+            checks = checks + 1
+            if checks % 200 == 0 then RunService.Heartbeat:Wait() end 
+            
+            if not failedList[x.."_"..y] then
+                local hasBlock, isBad = GetTileStatus(x, y, "Nuker")
+                if hasBlock and not isBad then
+                    table.insert(rowXs, x)
+                end
+            end
+        end
+        
+        if #rowXs > 0 then
+            local targetX = rowXs[1]
+            if y % 2 == 0 then
+                local minX = 999999
+                for _, x in ipairs(rowXs) do if x < minX then minX = x end end
+                targetX = minX
+            else
+                local maxX = -999999
+                for _, x in ipairs(rowXs) do if x > maxX then maxX = x end end
+                targetX = maxX
+            end
+            return {x = targetX, y = y}
+        end
+    end
+    return nil
+end
+
+task.spawn(function()
+    while ScriptRunning do
+        if CONFIG.AutoClear and not SafetyPause then
+            local target = GetNextNukeTarget(FailedClearBlocks)
+            if target then
+                local function GetPlayerPos2()
+                    local pos = nil
+                    pcall(function()
+                        if PlayerMovement and type(PlayerMovement) == "table" then
+                            pos = rawget(PlayerMovement, "Position")
+                        end
+                        if not pos then
+                            local root = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                            pos = root and root.Position or Vector3.zero
+                        end
+                    end)
+                    return pos or Vector3.zero
+                end
+                
+                local standX, standY = target.x, target.y + 1
+                local _, standBad, standFg, _ = GetTileStatus(standX, standY, "Nuker")
+                
+                if standFg or standBad then
+                    local _, lBad, lFg, _ = GetTileStatus(target.x - 1, target.y, "Nuker")
+                    local _, rBad, rFg, _ = GetTileStatus(target.x + 1, target.y, "Nuker")
+                    
+                    if not lFg and not lBad then
+                        standX = target.x - 1
+                        standY = target.y
+                    elseif not rFg and not rBad then
+                        standX = target.x + 1
+                        standY = target.y
+                    else
+                        standY = target.y + 2 
+                    end
+                end
+                
+                local standPos = Vector3.new(standX * 4.5, standY * 4.5, 0)
+                SmoothGlideTo(GetPlayerPos2(), standPos, CONFIG.ClearSpeed)
+                
+                ActiveNukerPos = standPos
+                local sW = os.clock()
+                local didPunch = false
+                
+                local punchDelay = GetDelayFromPercentage(CONFIG.PunchSpeed)
+                
+                for i = 1, 15 do
+                    if not CONFIG.AutoClear or not ScriptRunning or SafetyPause then break end
+                    SafeRemoteFire(PlayerFist, Vector2.new(math.floor(target.x), math.floor(target.y)))
+                    didPunch = true
+                    if punchDelay > 0 then task.wait(punchDelay) end
+                end
+                
+                local hasBlock, badBlock = GetTileStatus(target.x, target.y, "Nuker")
+                while hasBlock and not badBlock and (os.clock() - sW < 5) and CONFIG.AutoClear and ScriptRunning and not SafetyPause do
+                    SafeRemoteFire(PlayerFist, Vector2.new(math.floor(target.x), math.floor(target.y)))
+                    didPunch = true
+                    if punchDelay > 0 then task.wait(punchDelay) else RunService.Heartbeat:Wait() end
+                    hasBlock, badBlock = GetTileStatus(target.x, target.y, "Nuker")
+                end
+                
+                if hasBlock and not badBlock then
+                    FailedClearBlocks[target.x.."_"..target.y] = true
+                elseif CONFIG.ClearCollect and didPunch then
+                    task.wait(0.25) 
+                    
+                    local dropFound = false
+                    local drops = workspace:FindFirstChild("Drops")
+                    local gems = workspace:FindFirstChild("Gems")
+                    local tWP = Vector2.new(target.x * 4.5, target.y * 4.5)
+                    
+                    local function checkDrops(folder)
+                        if folder then
+                            for _, d in ipairs(folder:GetChildren()) do
+                                if d:IsA("BasePart") then
+                                    if (Vector2.new(d.Position.X, d.Position.Y) - tWP).Magnitude <= 3.5 then
+                                        return true
+                                    end
+                                end
+                            end
+                        end
+                        return false
+                    end
+                    
+                    dropFound = checkDrops(drops) or checkDrops(gems)
+                    
+                    if dropFound then
+                        local dropPos = Vector3.new(target.x * 4.5, target.y * 4.5, 0)
+                        RawGlideTo(standPos, dropPos, CONFIG.ClearSpeed)
+                        task.wait(0.05)
+                        RawGlideTo(dropPos, standPos, CONFIG.ClearSpeed)
+                    end
+                end
+                ActiveNukerPos = nil
+            else
+                task.wait(1) 
+            end
+        else
+            task.wait(0.5)
+        end
+    end
+end)
+
+-- STRICT SEQUENCE: COLLECT -> PLACE -> PUNCH
+task.spawn(function()
+    while ScriptRunning do
+        local hasAction = (CONFIG.AutoPunch or CONFIG.AutoPlace or CONFIG.AutoCollect) and not CONFIG.AutoClear
+        
+        if hasAction and not SafetyPause and next(FarmCells) then
+            local didAction = false
+            
+            local px, py
+            if CONFIG.LockTiles and CONFIG.LockedOrigin then
+                px = CONFIG.LockedOrigin.X
+                py = CONFIG.LockedOrigin.Y
+            else
+                local function GetPlayerPos3()
+                    local pos = nil
+                    pcall(function()
+                        if PlayerMovement and type(PlayerMovement) == "table" then pos = rawget(PlayerMovement, "Position") end
+                        if not pos then local root = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart"); pos = root and root.Position or Vector3.zero end
+                    end)
+                    return pos or Vector3.zero
+                end
+                local pos = GetPlayerPos3()
+                px = math.floor((pos.X / 4.5) + 0.5)
+                py = math.floor((pos.Y / 4.5) + 0.5)
+            end
+
+            local cellWorlds = {}
+            for key, _ in pairs(FarmCells) do
+                local xOff, yOff = key:match("([^:]+):([^:]+)")
+                if xOff and yOff then
+                    local gx = px + tonumber(xOff)
+                    local gy = py + tonumber(yOff)
+                    table.insert(cellWorlds, {gx = gx, gy = gy, yOff = tonumber(yOff), gxOff = tonumber(xOff), wp = Vector3.new(gx * 4.5, gy * 4.5, 0)})
+                end
+            end
+
+            -- S-Pattern sorting
+            table.sort(cellWorlds, function(a, b)
+                if a.gy ~= b.gy then return a.gy > b.gy else
+                    local rowIdx = a.yOff + 100 
+                    if rowIdx % 2 == 0 then return a.gx > b.gx else return a.gx < b.gx end
+                end
+            end)
+
+            local pSlot = nil
+            local isBackground = false
+            
+            local function GetActiveHotbarSlot2()
+                local result = TrackedEquippedSlot
+                pcall(function()
+                    if InventoryModule and type(InventoryModule) == "table" and type(rawget(InventoryModule, "SelectedHotbar")) == "number" then
+                        local hotbarStacks = rawget(InventoryModule, "HotbarStacks")
+                        if hotbarStacks then
+                            local stack = hotbarStacks[InventoryModule.SelectedHotbar]
+                            if type(stack) == "table" and stack[1] then result = stack[1] end
+                        end
+                    end
+                end)
+                return result
+            end
+
+            if CONFIG.UseSelectedItem then 
+                pSlot = GetActiveHotbarSlot2()
+            elseif CONFIG.SelectedPlaceItemId then 
+                pSlot = GetSlotFromItemId(CONFIG.SelectedPlaceItemId) 
+            end
+            
+            if pSlot and InventoryModule and InventoryModule.Stacks and InventoryModule.Stacks[pSlot] then
+                local itemId = InventoryModule.Stacks[pSlot].Id
+                if ItemsManager and type(ItemsManager.RequestItemData) == "function" then
+                    local itemData = ItemsManager.RequestItemData(itemId)
+                    if itemData then
+                        isBackground = false
+                        if itemData.Tile and itemData.Tile.Type == 2 then isBackground = true end
+                        if itemData.IsBackground == true then isBackground = true end
+                        if itemData.Background == true then isBackground = true end
+                        if itemData.Name and string.find(string.lower(itemData.Name), "background") then isBackground = true end
+                    end
+                end
+            end
+
+            local targetLayer = "Any"
+            if CONFIG.AutoPlace and pSlot then
+                if isBackground then targetLayer = "Background" else targetLayer = "Foreground" end
+            end
+
+            local emptyCells = {}
+            local filledCells = {}
+            for _, cell in ipairs(cellWorlds) do
+                local hasBlock, badBlock, hasFg, hasBg = GetTileStatus(cell.gx, cell.gy, "Farm")
+                
+                local isFilled = false
+                local isEmpty = false
+                
+                if targetLayer == "Background" then
+                    if hasBg then isFilled = true else isEmpty = true end
+                elseif targetLayer == "Foreground" then
+                    if hasFg then isFilled = true else isEmpty = true end
+                else
+                    if hasBlock then isFilled = true else isEmpty = true end
+                end
+                
+                if CONFIG.AutoPlace and not pSlot then isEmpty = false end
+                
+                if isFilled and not badBlock then table.insert(filledCells, cell) end
+                if isEmpty and not badBlock then table.insert(emptyCells, cell) end
+            end
+
+            -- 1. COLLECT PHASE
+            if CONFIG.AutoCollect then
+                local drops = {}
+                pcall(function()
+                    for _, fName in ipairs({"Drops", "Gems"}) do
+                        local f = workspace:FindFirstChild(fName)
+                        if f then
+                            for _, item in ipairs(f:GetChildren()) do
+                                if item:IsA("BasePart") then table.insert(drops, item) end
+                            end
+                        end
+                    end
+                end)
+
+                local gridDropTiles = {}
+                for _, drop in ipairs(drops) do
+                    local targetUser = drop:GetAttribute("t")
+                    if not targetUser or tonumber(targetUser) == LocalPlayer.UserId then
+                        local iPos = Vector2.new(drop.Position.X, drop.Position.Y)
+                        local dx = iPos.X / 4.5
+                        local dy = iPos.Y / 4.5
+                        
+                        local tX = math.floor(dx + 0.5)
+                        local tY = math.floor(dy + 0.5)
+                        local xOff = tX - px
+                        local yOff = tY - py
+                        local farmKey = xOff .. ":" .. yOff
+                        
+                        if FarmCells[farmKey] then
+                            local key = tX .. "_" .. tY
+                            gridDropTiles[key] = true
+                        end
+                    end
+                end
+
+                local activeWaypoints = {}
+                for _, cell in ipairs(cellWorlds) do
+                    local key = cell.gx .. "_" .. cell.gy
+                    if gridDropTiles[key] then
+                        table.insert(activeWaypoints, cell.wp)
+                    end
+                end
+
+                if #activeWaypoints > 0 then
+                    local function GetPlayerPos5()
+                        local pos = nil
+                        pcall(function()
+                            if PlayerMovement and type(PlayerMovement) == "table" then pos = rawget(PlayerMovement, "Position") end
+                            if not pos then local root = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart"); pos = root and root.Position or Vector3.zero end
+                        end)
+                        return pos or Vector3.zero
+                    end
+                    local startP = GetPlayerPos5()
+                    local currentP = startP
+                    
+                    for _, targetWP in ipairs(activeWaypoints) do
+                        SmoothGlideTo(currentP, targetWP, CONFIG.CollectSpeed)
+                        currentP = targetWP
+                        task.wait(0.01) 
+                    end
+                    
+                    SmoothGlideTo(currentP, startP, CONFIG.CollectSpeed)
+                    didAction = true
+                end
+            end
+
+            -- 2. PLACE PHASE
+            if CONFIG.AutoPlace and #emptyCells > 0 and pSlot then
+                local placedAny = false
+                local pDelay = GetDelayFromPercentage(CONFIG.PlaceSpeed)
+                local batchCount = 0
+                
+                for _, cell in ipairs(emptyCells) do
+                    if SafetyPause or CONFIG.AutoClear then break end
+                    
+                    SafeRemoteFire(PlayerPlaceItem, Vector2.new(math.floor(cell.gx), math.floor(cell.gy)), tonumber(pSlot))
+                    placedAny = true
+                    
+                    if pDelay > 0 then 
+                        task.wait(pDelay) 
+                    else
+                        batchCount = batchCount + 1
+                        if batchCount % 14 == 0 then RunService.Heartbeat:Wait() end
+                    end
+                end
+                
+                if placedAny then
+                    task.wait(0.15) 
+                    didAction = true
+                end
+            end
+
+            -- 3. PUNCH PHASE
+            if CONFIG.AutoPunch then
+                table.clear(filledCells)
+                for _, cell in ipairs(cellWorlds) do
+                    local hasBlock, badBlock, hasFg, hasBg = GetTileStatus(cell.gx, cell.gy, "Farm")
+                    local isFilled = false
+                    
+                    if targetLayer == "Background" then
+                        if hasBg then isFilled = true end
+                    elseif targetLayer == "Foreground" then
+                        if hasFg then isFilled = true end
+                    else
+                        if hasBlock then isFilled = true end
+                    end
+                    
+                    if isFilled and not badBlock then table.insert(filledCells, cell) end
+                end
+
+                if #filledCells > 0 then
+                    local shouldPunch = true
+                    
+                    if targetLayer ~= "Any" then
+                        local isGridFull = true
+                        for _, cell in ipairs(cellWorlds) do
+                            local _, cBad, hF, hB = GetTileStatus(cell.gx, cell.gy, "FarmCheck")
+                            if not cBad then 
+                                if targetLayer == "Background" and not hB then isGridFull = false break end
+                                if targetLayer == "Foreground" and not hF then isGridFull = false break end
+                            end
+                        end
+                        if not isGridFull then shouldPunch = false end
+                    end
+
+                    if shouldPunch then
+                        local punchDelay = GetDelayFromPercentage(CONFIG.PunchSpeed)
+                        local brokeAny = false
+                        
+                        for _, cell in ipairs(filledCells) do
+                            if SafetyPause or CONFIG.AutoClear then break end
+                            
+                            local _, cBadBlock, cHasFg, cHasBg = GetTileStatus(cell.gx, cell.gy, "Farm")
+                            local isTargetFilled = false
+                            
+                            if targetLayer == "Background" then
+                                if cHasBg then isTargetFilled = true end
+                            elseif targetLayer == "Foreground" then
+                                if cHasFg then isTargetFilled = true end
+                            else
+                                if cHasFg or cHasBg then isTargetFilled = true end
+                            end
+
+                            if isTargetFilled and not cBadBlock then
+                                local sW = os.clock()
+                                while isTargetFilled and not cBadBlock and (os.clock() - sW < 3) and ScriptRunning and not SafetyPause and not CONFIG.AutoClear do
+                                    
+                                    for i = 1, 4 do
+                                        SafeRemoteFire(PlayerFist, Vector2.new(math.floor(cell.gx), math.floor(cell.gy)))
+                                    end
+                                    
+                                    if punchDelay > 0 then task.wait(punchDelay) else RunService.Heartbeat:Wait() end
+                                    
+                                    local _, cB, hF, hB = GetTileStatus(cell.gx, cell.gy, "Farm")
+                                    cBadBlock = cB
+                                    isTargetFilled = false
+                                    if targetLayer == "Background" then
+                                        if hB then isTargetFilled = true end
+                                    elseif targetLayer == "Foreground" then
+                                        if hF then isTargetFilled = true end
+                                    else
+                                        if hF or hB then isTargetFilled = true end
+                                    end
+                                end
+                                brokeAny = true
+                                didAction = true
+                            end
+                        end
+                        if brokeAny then task.wait(0.15) end
+                    end
+                end
+            end
+            
+            table.clear(cellWorlds)
+            table.clear(emptyCells)
+            table.clear(filledCells)
+            
+            if not didAction then task.wait(0.1) end
+        else
+            task.wait(0.1)
+        end
+    end
+end)
+
+-- OPTIMIZATION: Background Visual Updater
+task.spawn(function()
+    while ScriptRunning do
+        task.wait(0.1) 
+        local px, py
+        if CONFIG.LockTiles and CONFIG.LockedOrigin then
+            px = CONFIG.LockedOrigin.X
+            py = CONFIG.LockedOrigin.Y
+        else
+            local function GetPlayerPos6()
+                local pos = nil
+                pcall(function()
+                    if PlayerMovement and type(PlayerMovement) == "table" then pos = rawget(PlayerMovement, "Position") end
+                    if not pos then local root = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart"); pos = root and root.Position or Vector3.zero end
+                end)
+                return pos or Vector3.zero
+            end
+            local pos = GetPlayerPos6()
+            px = math.floor((pos.X / 4.5) + 0.5)
+            py = math.floor((pos.Y / 4.5) + 0.5)
+        end
+        
+        for key, _ in pairs(FarmCells) do
+            local xOff, yOff = key:match("([^:]+):([^:]+)")
+            local wPos = Vector3.new((px + tonumber(xOff)) * 4.5, (py + tonumber(yOff)) * 4.5, 0)
+            
+            if CONFIG.ShowVisuals and not SafetyPause and not CONFIG.AutoClear then
+                if not Adornments[key] then
+                    local b = Instance.new("BoxHandleAdornment", VisualFolder)
+                    b.Size = Vector3.new(4,4,1)
+                    b.Transparency = 0.6
+                    b.AlwaysOnTop = true
+                    b.Adornee = workspace.Terrain
+                    Adornments[key] = b
+                end
+                Adornments[key].CFrame = CFrame.new(wPos)
+                Adornments[key].Color3 = Theme.Accent
+                Adornments[key].Visible = true
+            else
+                if Adornments[key] then Adornments[key].Visible = false end
+            end
+        end
+        
+        for key, adornment in pairs(Adornments) do
+            if not FarmCells[key] then adornment.Visible = false end
+        end
+    end
+end)
+
+RunService.Heartbeat:Connect(function(dt)
+    if not ScriptRunning then return end
+    
+    local char = LocalPlayer.Character
+    
+    if CONFIG.RGBSkin and char then
+        local hue = tick() % 5 / 5
+        char:SetAttribute("skin", Color3.fromHSV(hue, 1, 1))
+    end
+    
+    if CONFIG.GodMode and char then
+        local hum = char:FindFirstChildOfClass("Humanoid")
+        if hum and hum.Health < hum.MaxHealth then hum.Health = hum.MaxHealth end
+    end
+    
+    if PlayerMovement and type(PlayerMovement) == "table" then
+        if CONFIG.GodMode then
+            pcall(function() PlayerMovement.Sensor = false end)
+        else
+            pcall(function() PlayerMovement.Sensor = true end)
+        end
+        
+        if CONFIG.AutoClear and ActiveNukerPos then
+            pcall(function()
+                PlayerMovement.VelocityY = 0 
+                PlayerMovement.Grounded = true
+                
+                local hrp = char and char:FindFirstChild("HumanoidRootPart")
+                if hrp then hrp.CFrame = CFrame.new(ActiveNukerPos) * hrp.CFrame.Rotation end
+                
+                if (PlayerMovement.Position - ActiveNukerPos).Magnitude > 2 then
+                    PlayerMovement.Position = ActiveNukerPos
+                end
+            end)
+        elseif CONFIG.Fly and not CONFIG.AutoClear then
+            pcall(function()
+                PlayerMovement.VelocityY = 0 
+                PlayerMovement.VelocityX = 0
+                PlayerMovement.Grounded = true 
+                
+                local speed = CONFIG.FlySpeed 
+                local mx, my = 0, 0
+                
+                if UserInputService:IsKeyDown(Enum.KeyCode.W) or UserInputService:IsKeyDown(Enum.KeyCode.Space) or UserInputService:IsKeyDown(Enum.KeyCode.Up) then my = 1 end
+                if UserInputService:IsKeyDown(Enum.KeyCode.S) or UserInputService:IsKeyDown(Enum.KeyCode.Down) then my = -1 end
+                if UserInputService:IsKeyDown(Enum.KeyCode.A) or UserInputService:IsKeyDown(Enum.KeyCode.Left) then mx = -1 end
+                if UserInputService:IsKeyDown(Enum.KeyCode.D) or UserInputService:IsKeyDown(Enum.KeyCode.Right) then mx = 1 end
+                
+                local isMoving = (mx ~= 0 or my ~= 0)
+                
+                if isMoving then
+                    PlayerMovement.Position = PlayerMovement.Position + Vector3.new(mx * speed * dt, my * speed * dt, 0)
+                    LastNoclipPos = PlayerMovement.Position
+                    WasNoclipping = true
+                else
+                    if WasNoclipping and LastNoclipPos then
+                        WasNoclipping = false
+                        if PlayerMovementRemote then
+                            task.spawn(function()
+                                local tX, tY = LastNoclipPos.X, LastNoclipPos.Y
+                                local skyY = 2000
+                                pcall(function() PlayerMovementRemote:FireServer(Vector2.new(tX, skyY)) end)
+                                task.wait(0.05)
+                                pcall(function() PlayerMovementRemote:FireServer(Vector2.new(tX, tY)) end)
+                            end)
+                        end
+                        LastNoclipPos = nil
+                    end
+                end
+            end)
+        else
+            if CONFIG.SpeedBoost > 0 and not CONFIG.AutoClear then
+                pcall(function()
+                    local moveX = rawget(PlayerMovement, "MoveX")
+                    if moveX and moveX ~= 0 then
+                        local boost = (CONFIG.SpeedBoost / 100) * 0.8
+                        PlayerMovement.VelocityX = PlayerMovement.VelocityX + (moveX * boost)
+                    end
+                end)
+            end
+        end
+    end
+end)
+
+task.spawn(function()
+    task.wait(0.6)
+    if IsUnsupportedExecutor then
+        if LoadingText then LoadingText.Text = "Unsupported Executor. Unloading..." end
+        if LoadingText then LoadingText.TextColor3 = Theme.Danger end
+        task.wait(2)
+        ScriptRunning = false
+        if VisualFolder then VisualFolder:Destroy() end
+        if ScreenGui then ScreenGui:Destroy() end
+        return
+    end
+
+    if LoadingText then LoadingText.Text = string.format("Executor: %s | SUNC: %d%%", ExecName, ExecSUNC) end
+    task.spawn(function() pcall(RefreshInventoryUI) end)
+    task.wait(0.8)
+    
+    if LoadingText then LoadingText.Text = string.format("Loaded %s Version cx.farm", currentTier) end
+    task.wait(0.8)
+    
+    if LoadingText then LoadingText.Text = "Welcome to cx.farm" end
+    task.wait(0.8)
+    
+    pulseTween:Cancel()
+    TweenService:Create(LoadingText, TweenInfo.new(0.4), {TextTransparency = 1}):Play()
+    TweenService:Create(LoadingFrame, TweenInfo.new(0.4), {BackgroundTransparency = 1}):Play()
+    
+    task.wait(0.45) 
+    if LoadingFrame then LoadingFrame:Destroy() end
+    if MainFrame then
+        MainFrame.Size = UDim2.new(0, 0, 0, 0)
+        MainFrame.Visible = true
+        MainFrame:TweenSize(UI_State.LastSize, "Out", "Back", 0.5, true)
+    end
+    if P_Auto then P_Auto.Visible = true end
+    if Tabs and Tabs[1] and Tabs[1].Btn then
+        Tabs[1].Btn.TextColor3 = Theme.Text
+        Tabs[1].Btn.BackgroundColor3 = Theme.Element
+    end
+    
+    pcall(function()
+        local tcs = game:GetService("TextChatService")
+        local channels = tcs and tcs:FindFirstChild("TextChannels")
+        local rbxSystem = channels and channels:FindFirstChild("RBXSystem")
+        local dName = LocalPlayer.DisplayName
+        local masked = "@" .. string.sub(dName, 1, 2) .. string.rep("*", 6)
+        if string.len(dName) <= 2 then masked = "@" .. dName .. "****" end
+        if rbxSystem then
+            rbxSystem:DisplaySystemMessage("<font color='#557DFF'><b>[cx.farm]</b></font> Thank you for using cx.farm. Welcome " .. masked)
+        else
+            game:GetService("StarterGui"):SetCore("ChatMakeSystemMessage", {
+                Text = "[cx.farm] Thank you for using cx.farm. Welcome " .. masked,
+                Color = Color3.fromRGB(85, 125, 255),
+                Font = Enum.Font.SourceSansBold,
+                TextSize = 18
+            })
+        end
+    end)
+end)
+
+task.spawn(function()
+    local frames = 0
+    local conn
+    pcall(function()
+        conn = RunService.RenderStepped:Connect(function() frames = frames + 1 end)
+    end)
+    
+    while ScriptRunning do
+        task.wait(1)
+        local currentFps = frames
+        frames = 0
+        
+        local pingVal = 0
+        pcall(function() 
+            pingVal = math.floor(game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue())
+        end)
+        
+        local px, py = 0, 0
+        pcall(function()
+            local pos = nil
+            if PlayerMovement and type(PlayerMovement) == "table" then pos = rawget(PlayerMovement, "Position") end
+            if not pos then local root = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart"); pos = root and root.Position or Vector3.zero end
+            px = math.floor((pos.X / 4.5) + 0.5)
+            py = math.floor((pos.Y / 4.5) + 0.5)
+        end)
+        
+        if Watermark then
+            Watermark.Text = string.format(" cx.farm | Craft A World | X: %d Y: %d | FPS: %d | Ping: %d ms", px, py, currentFps, pingVal)
+        end
+    end
+    if conn then conn:Disconnect() end
+end)
+
+UserInputService.InputBegan:Connect(function(input, gp)
+    if gp or not ScriptRunning then return end
+    
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        IsHoldingMouse = true
+    end
+    
+    if CONFIG.InfiniteJump and (input.KeyCode == Enum.KeyCode.Space or input.KeyCode == Enum.KeyCode.W or input.KeyCode == Enum.KeyCode.Up) then
+        local char = LocalPlayer.Character
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        local hrp = char and char:FindFirstChild("HumanoidRootPart")
+        
+        if hum then hum:ChangeState(Enum.HumanoidStateType.Jumping) end
+        
+        if hrp then 
+            pcall(function() 
+                hrp.AssemblyLinearVelocity = Vector3.new(hrp.AssemblyLinearVelocity.X, 0, hrp.AssemblyLinearVelocity.Z) 
+            end) 
+        end
+        
+        if PlayerMovement and type(PlayerMovement) == "table" then
+            pcall(function()
+                PlayerMovement.VelocityY = 1.5 
+                PlayerMovement.Jumping = true
+                PlayerMovement.Grounded = false
+            end)
+        end
+    end
+
+    if BindingAction then BindingAction.Callback(input.KeyCode) return end
+    
+    if input.KeyCode == CONFIG.Keybinds.ToggleUI then
+        if UI_State.Minimized then
+            UI_State.Minimized = false
+            task.spawn(function()
+                if MiniLogo then MiniLogo:TweenSize(UDim2.new(0, 0, 0, 0), "In", "Back", 0.3, true) end
+                task.wait(0.3)
+                if MiniLogo then MiniLogo.Visible = false end
+                if MainFrame then
+                    MainFrame.Size = UDim2.new(0, 0, 0, 0)
+                    MainFrame.Visible = true
+                    MainFrame:TweenSize(UI_State.LastSize, "Out", "Back", 0.4, true)
+                end
+            end)
+        else
+            UI_State.LastSize = MainFrame and MainFrame.Size or UDim2.new(0, 650, 0, 420)
+            UI_State.Minimized = true
+            task.spawn(function()
+                if MainFrame then MainFrame:TweenSize(UDim2.new(0, 0, 0, 0), "In", "Back", 0.3, true) end
+                task.wait(0.3)
+                if MainFrame then MainFrame.Visible = false end
+                if MiniLogo then
+                    MiniLogo.Size = UDim2.new(0, 0, 0, 0)
+                    MiniLogo.Visible = true
+                    if MainFrame then MiniLogo.Position = MainFrame.Position end
+                    MiniLogo:TweenSize(UDim2.new(0, 50, 0, 50), "Out", "Back", 0.3, true)
+                end
+            end)
+        end
+    elseif input.KeyCode == CONFIG.Keybinds.AutoPunch then
+        TriggerKeybindToggle("AutoPunch", "Auto Punch")
+    elseif input.KeyCode == CONFIG.Keybinds.AutoPlace then
+        TriggerKeybindToggle("AutoPlace", "Auto Place")
+    elseif input.KeyCode == CONFIG.Keybinds.ModZoom then
+        TriggerKeybindToggle("ModZoom", "Mod Zoom")
+        if CONFIG.ModZoom then LocalPlayer.CameraMaxZoomDistance = 18000 else LocalPlayer.CameraMaxZoomDistance = DefaultZoomLimit end
+    elseif input.KeyCode == CONFIG.Keybinds.GodMode then
+        TriggerKeybindToggle("GodMode", "God Mode")
+    elseif input.KeyCode == CONFIG.Keybinds.Fly then
+        TriggerKeybindToggle("Fly", "Fly Mode")
+    elseif input.KeyCode == CONFIG.Keybinds.InfiniteJump then
+        TriggerKeybindToggle("InfiniteJump", "Infinite Jump")
+    end
+end)
+
+UserInputService.InputEnded:Connect(function(input, gp)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+        IsHoldingMouse = false
+    end
+end)
+
+if MiniBtn then
+    MiniBtn.MouseButton1Click:Connect(function()
+        UI_State.LastSize = MainFrame and MainFrame.Size or UDim2.new(0, 650, 0, 420)
+        UI_State.Minimized = true
+        task.spawn(function()
+            if MainFrame then MainFrame:TweenSize(UDim2.new(0, 0, 0, 0), "In", "Back", 0.3, true) end
+            task.wait(0.3)
+            if MainFrame then MainFrame.Visible = false end
+            if MiniLogo then
+                MiniLogo.Size = UDim2.new(0, 0, 0, 0)
+                MiniLogo.Visible = true
+                if MainFrame then MiniLogo.Position = MainFrame.Position end
+                MiniLogo:TweenSize(UDim2.new(0, 50, 0, 50), "Out", "Back", 0.3, true)
+            end
+        end)
+    end)
+end
+
+if MiniLogoBtn then
+    MiniLogoBtn.MouseButton1Click:Connect(function()
+        if IsDraggingUI then return end
+        UI_State.Minimized = false
+        task.spawn(function()
+            if MiniLogo then MiniLogo:TweenSize(UDim2.new(0, 0, 0, 0), "In", "Back", 0.3, true) end
+            task.wait(0.3)
+            if MiniLogo then MiniLogo.Visible = false end
+            if MainFrame then
+                MainFrame.Size = UDim2.new(0, 0, 0, 0)
+                MainFrame.Visible = true
+                if MiniLogo then MainFrame.Position = MiniLogo.Position end
+                MainFrame:TweenSize(UI_State.LastSize, "Out", "Back", 0.4, true)
+            end
+        end)
+    end)
+end
+
+EnableNativeDrag(Header, MainFrame)
+EnableNativeDrag(MiniLogoBtn, MiniLogo)
+EnableNativeDrag(Watermark)
+
+if ResizeGrip then
+    EnableNativeResize(ResizeGrip, MainFrame)
+end
